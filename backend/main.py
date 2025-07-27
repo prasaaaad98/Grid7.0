@@ -64,9 +64,13 @@ app.add_middleware(
 class Product(BaseModel):
     id: int
     title: str
+    brand: str
+    category: str
     price: float
-    image: str
+    retail_price: float
+    images: list
     rating: float
+    description: str
 
 
 @app.get("/autosuggest", response_model=List[str])
@@ -199,7 +203,21 @@ def search(
         filtered.append(item)
 
     ranked = rank_products(q_vec[0], filtered)
-    return ranked[:10]
+    # Only return the required fields for each product
+    result = []
+    for item in ranked[:10]:
+        result.append({
+            'id': item.get('id'),
+            'title': item.get('title'),
+            'brand': item.get('brand', 'Unknown'),
+            'category': item.get('category', 'General'),
+            'price': item.get('price'),
+            'retail_price': item.get('retail_price', item.get('price')), 
+            'images': item.get('images', []),
+            'rating': item.get('rating'),
+            'description': item.get('description', ''),
+        })
+    return result
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
