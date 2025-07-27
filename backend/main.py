@@ -11,12 +11,48 @@ from fastapi.middleware.cors import CORSMiddleware
 from rapidfuzz import process, fuzz
 import spacy
 from metaphone import doublemetaphone
-# from argostranslate import translate  # Commented out due to installation issues
 
-# Initialize FastAPI
+# ------------------------- Setup -------------------------
+data = json.load(open("data/products.json", encoding='utf-8'))
+product_titles = [item['title'] for item in data]
+
+nlp = spacy.load("en_core_web_sm")
+
+def normalize(text: str) -> str:
+    return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
+
+def translate_hindi_to_english(text: str) -> str:
+    # TODO: Real translation here
+    return normalize(text)
+
+def extract_phrases(title: str):
+    doc = nlp(title)
+    phrases = []
+    for chunk in doc.noun_chunks:
+        phrase = normalize(chunk.text.lower())
+        if 1 <= len(chunk.text.split()) <= 4 and len(phrase) >= 2:
+            phrases.append(phrase)
+    return phrases
+
+all_phrases = set()
+for title in product_titles:
+    all_phrases.update(extract_phrases(title))
+suggestion_phrases = sorted(all_phrases)
+
+phrase_phonetics = {phrase: doublemetaphone(phrase)[0] for phrase in suggestion_phrases}
+product_titles_norm = [normalize(title) for title in product_titles]
+product_titles_phonetic = [doublemetaphone(normalize(title))[0] for title in product_titles]
+
+trending_keywords = ["rakhi", "smartphone", "headphones", "air conditioner", "washing machine"]
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+product_embeddings = model.encode(product_titles)
+dimension = product_embeddings[0].shape[0]
+index = faiss.IndexFlatL2(dimension)
+index.add(np.array(product_embeddings))
+
 app = FastAPI()
 
-# Enable CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -25,36 +61,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Normalize text
-def normalize(text: str) -> str:
-    return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
-
-# Translate Hindi to English (simplified version)
-def translate_hindi_to_english(text: str) -> str:
-    # For now, just return normalized text
-    # TODO: Implement proper translation when argostranslate is available
-    return normalize(text)
-
-# Trending keywords
-trending_keywords = ["rakhi", "smartphone", "headphones", "air conditioner", "washing machine"]
-
-# Load NLP model
-nlp = spacy.load("en_core_web_sm")
-
-# Load product catalog
-data = json.load(open("data/products.json", encoding='utf-8'))
-product_titles = [item['title'] for item in data]
-product_titles_norm = [normalize(title) for title in product_titles]
-product_titles_phonetic = [doublemetaphone(normalize(title))[0] for title in product_titles]
-
-# Load sentence transformer and FAISS index  , do this :-> "apple earbuds" ≈ "AirPods" , "foldable phone" ≈ "Samsung Galaxy Z Fold"
-model = SentenceTransformer("all-MiniLM-L6-v2")
-product_embeddings = model.encode(product_titles)
-dimension = product_embeddings[0].shape[0]
-index = faiss.IndexFlatL2(dimension)
-index.add(np.array(product_embeddings))
-
-# Product schema
 class Product(BaseModel):
     id: int
     title: str
@@ -62,7 +68,7 @@ class Product(BaseModel):
     image: str
     rating: float
 
-# ------------------------- AUTOSUGGEST -------------------------
+
 @app.get("/autosuggest", response_model=List[str])
 def autosuggest(q: str = Query(..., min_length=1)):
     q_norm = normalize(q)
@@ -73,43 +79,56 @@ def autosuggest(q: str = Query(..., min_length=1)):
     q_phonetic = doublemetaphone(q_norm)[0]
     suggestions = []
 
-    # 1. Titles that start with the query
-    startswith_hits = [title for title in product_titles if normalize(title).startswith(q_norm)]
+    # 1. Trending keywords starting with q_norm
+    trending_hits = [kw for kw in trending_keywords if kw.startswith(q_norm)]
+    
+    # For single letter, show all trending keywords starting with that letter with highest priority
+    if len(q_norm) == 1:
+        # Just ensure all trending keywords starting with this letter come first
+        suggestions.extend(trending_hits)
+    else:
+        # For longer queries, trending keywords containing q_norm anywhere
+        trending_hits_anywhere = [kw for kw in trending_keywords if q_norm in kw]
+        suggestions.extend(trending_hits_anywhere)
 
-    # 2. Fuzzy matches (token-based, lower threshold for multi-word queries)
+    # 2. Startswith matches in phrases
+    startswith_hits = [phrase for phrase in suggestion_phrases if phrase.startswith(q_norm) and phrase not in suggestions]
+
+    # 3. Fuzzy matches
     if len(q_norm.split()) > 1:
         fuzzy_scorer = fuzz.token_set_ratio
-        fuzzy_threshold = 50  # Lower threshold for multi-word queries
+        fuzzy_threshold = 50
     else:
         fuzzy_scorer = fuzz.partial_ratio
         fuzzy_threshold = 60
 
-    fuzzy_matches = process.extract(q_norm, product_titles, scorer=fuzzy_scorer, limit=10)
-    fuzzy_hits = [match[0] for match in fuzzy_matches if match[1] >= fuzzy_threshold and match[0] not in startswith_hits]
+    fuzzy_matches = process.extract(q_norm, suggestion_phrases, scorer=fuzzy_scorer, limit=10)
+    fuzzy_hits = [match[0] for match in fuzzy_matches if match[1] >= fuzzy_threshold and match[0] not in suggestions and match[0] not in startswith_hits]
 
-    # 3. Substring matches (excluding already found)
-    substr_hits = [title for title in product_titles if q_norm in normalize(title) and title not in startswith_hits]
+    # 4. Substring matches
+    substr_hits = [phrase for phrase in suggestion_phrases if q_norm in phrase and phrase not in suggestions and phrase not in startswith_hits]
 
-    # 4. Phonetic matches (excluding already found)
-    phonetic_hits = [title for i, title in enumerate(product_titles)
-                     if product_titles_phonetic[i] == q_phonetic and title not in startswith_hits]
+    # 5. Phonetic matches
+    phonetic_hits = [phrase for phrase, p_code in phrase_phonetics.items()
+                     if p_code == q_phonetic and phrase not in suggestions and phrase not in startswith_hits]
 
-    # Combine, prioritizing startswith, then fuzzy
+    # Combine all:
     suggestions.extend(startswith_hits)
     suggestions.extend(fuzzy_hits)
     suggestions.extend(substr_hits)
     suggestions.extend(phonetic_hits)
 
-    # Remove duplicates, keep order
-    seen, result = set(), []
+    # Deduplicate and filter out 1-letter nonsense suggestions
+    seen = set()
+    result = []
     for s in suggestions:
-        if s not in seen:
+        if s not in seen and len(s) > 1:
             seen.add(s)
             result.append(s)
 
     return result[:5]
 
-# ------------------------- RANKING -------------------------
+
 def rank_products(query_vec, candidates):
     results = []
     for item in candidates:
@@ -121,10 +140,9 @@ def rank_products(query_vec, candidates):
             0.2 * (1 if normalize(item["title"]) in trending_keywords else 0)
         )
         results.append((score, item))
-    results.sort(reverse=True)
+    results.sort(key=lambda x: x[0], reverse=True)  # <-- fix here
     return [item for _, item in results]
 
-# ------------------------- SEARCH -------------------------
 @app.get("/search", response_model=List[Product])
 def search(
     q: str = Query(..., min_length=1),
@@ -183,6 +201,5 @@ def search(
     ranked = rank_products(q_vec[0], filtered)
     return ranked[:10]
 
-# ------------------------- RUN -------------------------
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
