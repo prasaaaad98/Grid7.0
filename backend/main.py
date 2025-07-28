@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Query
-from typing import List
-from pydantic import BaseModel
+from typing import List, Optional
+from pydantic import BaseModel, Field
 import uvicorn
 import json
 import faiss
@@ -15,6 +15,20 @@ import pygtrie
 
 # ------------------------- Setup -------------------------
 data = json.load(open("data/products.json", encoding='utf-8'))
+
+# Transform data to align with new schema
+for item in data:
+    # Rename ratings to rating
+    if 'ratings' in item:
+        item['rating'] = item.pop('ratings')
+    
+    # Add missing fields with defaults
+    if 'images' not in item:
+        item['images'] = []
+    if 'retail_price' not in item:
+        item['retail_price'] = item.get('price', 0.0)
+    if 'subcategories' not in item:
+        item['subcategories'] = []
 
 # Define hierarchical categories and keywords
 category_rules = [
@@ -350,6 +364,11 @@ trending_map = {
     ],
 }
 
+# Create trending keywords set from trending_map
+trending_keywords = set()
+for letter_products in trending_map.values():
+    trending_keywords.update([normalize(product) for product in letter_products])
+
 # Semantic model and FAISS index
 model = SentenceTransformer("all-MiniLM-L6-v2")
 embeddings = model.encode(product_titles)
@@ -372,11 +391,15 @@ class Product(BaseModel):
     brand: str
     category: str
     price: float
-    retail_price: float
-    images: list
+    retail_price: Optional[float] = None
+    images: List[str] = []
     rating: float
     description: str
     category_hierarchy: str
+    subcategories: List[str] = []
+    
+    class Config:
+        allow_population_by_field_name = True
 
 @app.get("/autosuggest", response_model=List[str])
 def autosuggest(q: str = Query(..., min_length=1)):
@@ -460,20 +483,22 @@ def search(
     # Filters
     filtered=[]
     for item in candidates:
-        if not(min_price<=item['price']<=max_price): continue
-        if item['rating']<min_rating: continue
-        if brand and brand not in normalize(item['title']): continue
-        if category and category not in normalize(item['title']): continue
+        if not(min_price<=item.get('price', 0)<=max_price): continue
+        if item.get('rating', 0)<min_rating: continue
+        if brand and brand not in normalize(item.get('title', '')): continue
+        if category and category not in normalize(item.get('title', '')): continue
         filtered.append(item)
     # Rank
     def score_item(item):
-        tv=model.encode([item['title']])[0]
+        tv=model.encode([item.get('title', '')])[0]
         sim=np.dot(vec,tv)/(np.linalg.norm(vec)*np.linalg.norm(tv))
-        return 0.5*sim+0.3*(item['rating']/5)+0.2*(1 if normalize(item['title']) in trending_keywords else 0)
+        rating_score = item.get('rating', 0) / 5
+        trending_bonus = 0.2 if normalize(item.get('title', '')) in trending_keywords else 0
+        return 0.5*sim + 0.3*rating_score + trending_bonus
     ranked=sorted(filtered, key=score_item, reverse=True)
     # Response
     return [
-        {**item, 'category_hierarchy': item['category_hierarchy']}
+        {**item, 'category_hierarchy': item.get('category_hierarchy', 'other')}
         for item in ranked[:10]
     ]
 
