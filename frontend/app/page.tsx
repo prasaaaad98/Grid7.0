@@ -22,6 +22,11 @@ export default function App() {
   const [userLon, setUserLon] = useState<number | null>(null)
   const [showMobileFilters, setShowMobileFilters] = useState(false)
 
+  const handleHomeClick = () => {
+    setQuery("")
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   // Mandatory geolocation on app load
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -41,7 +46,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header onSearch={setQuery} />
+      <Header onSearch={setQuery} onHomeClick={handleHomeClick} />
       <TrendingBar onTrendingClick={setQuery} />
 
       {!query ? (

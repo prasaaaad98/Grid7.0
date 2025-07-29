@@ -7,9 +7,10 @@ import CartModal from "./CartModal"
 
 interface HeaderProps {
   onSearch: (query: string) => void
+  onHomeClick?: () => void
 }
 
-export default function Header({ onSearch }: HeaderProps) {
+export default function Header({ onSearch, onHomeClick }: HeaderProps) {
   const [cartCount, setCartCount] = useState(0)
   const [showLogin, setShowLogin] = useState(false)
   const [showCart, setShowCart] = useState(false)
@@ -54,10 +55,13 @@ export default function Header({ onSearch }: HeaderProps) {
         <div className="md:hidden">
           {/* Top row - Logo and icons */}
           <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center">
-              <div className="text-lg font-bold">Flipkart</div>
-              <div className="text-xs text-yellow-300 ml-1">Plus</div>
-            </div>
+                      <div 
+            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={onHomeClick}
+          >
+            <div className="text-lg font-bold">Flipkart</div>
+            <div className="text-xs text-yellow-300 ml-1">Plus</div>
+          </div>
 
             <div className="flex items-center space-x-4">
               {currentUser ? (
@@ -94,7 +98,10 @@ export default function Header({ onSearch }: HeaderProps) {
         {/* Desktop Layout */}
         <div className="hidden md:flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
-          <div className="flex items-center">
+          <div 
+            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={onHomeClick}
+          >
             <div className="text-xl font-bold">Flipkart</div>
             <div className="text-xs text-yellow-300 ml-1">Plus</div>
           </div>
