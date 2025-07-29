@@ -10,8 +10,8 @@ import WelcomeSection from "@/components/WelcomeSection"
 export default function App() {
   const [query, setQuery] = useState("")
   const [filters, setFilters] = useState({
-    categories: [],
-    brands: [],
+    categories: [] as string[],
+    brands: [] as string[],
     rating: 0,
     priceMin: 0,
     priceMax: 50000,
