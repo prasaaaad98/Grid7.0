@@ -217,7 +217,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       </div>
 
       {showSuggestions && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-b shadow-lg z-50">
+        <div className="absolute top-full left-0 bg-white border border-gray-200 rounded-b shadow-lg z-50" style={{ width: 'calc(100% - 48px)' }}>
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
