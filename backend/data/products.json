@@ -2598,5 +2598,2605 @@
       "Smart",
       "Front Load"
     ]
+  },
+  {
+    "id": 201,
+    "brand": "Maybelline",
+    "title": "Maybelline Face Cream",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 148564.74,
+    "ratings": 4.9,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 202,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Ultrabook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 12881.33,
+    "ratings": 3.2,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 203,
+    "brand": "Zara",
+    "title": "Zara Rug",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 76179.39,
+    "ratings": 3.1,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 204,
+    "brand": "Puma",
+    "title": "Puma Lamp",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 142618.99,
+    "ratings": 3.5,
+    "subcategories": [
+      "Cotton",
+      "Eco-friendly"
+    ]
+  },
+  {
+    "id": 205,
+    "brand": "Puma",
+    "title": "Puma Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 4850.46,
+    "ratings": 3.3,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 206,
+    "brand": "Apple",
+    "title": "Apple Trimmer",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 69550.98,
+    "ratings": 4.8,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 207,
+    "brand": "Apple",
+    "title": "Apple Power Bank",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 123278.27,
+    "ratings": 4.5,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 208,
+    "brand": "Zara",
+    "title": "Zara Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 102587.12,
+    "ratings": 4.3,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 209,
+    "brand": "OnePlus",
+    "title": "OnePlus Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 85396.31,
+    "ratings": 3.8,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 210,
+    "brand": "Canon",
+    "title": "Canon Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 112137.46,
+    "ratings": 3.5,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 211,
+    "brand": "OnePlus",
+    "title": "OnePlus Refrigerator",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 123548.08,
+    "ratings": 2.7,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 212,
+    "brand": "SG",
+    "title": "SG Microwave Oven",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 98717.95,
+    "ratings": 3.1,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 213,
+    "brand": "Biotique",
+    "title": "Biotique Microwave Oven",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 90600.98,
+    "ratings": 4.4,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 214,
+    "brand": "Yonex",
+    "title": "Yonex Camera",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 7893.29,
+    "ratings": 4.1,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 215,
+    "brand": "Samsung",
+    "title": "Samsung Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 129503.25,
+    "ratings": 5.0,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 216,
+    "brand": "Philips",
+    "title": "Philips Refrigerator",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 95502.76,
+    "ratings": 3.6,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 217,
+    "brand": "Philips",
+    "title": "Philips Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 106351.63,
+    "ratings": 4.1,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 218,
+    "brand": "Puma",
+    "title": "Puma Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 28419.29,
+    "ratings": 3.1,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 219,
+    "brand": "Sony",
+    "title": "Sony Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 48047.38,
+    "ratings": 2.8,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 220,
+    "brand": "HP",
+    "title": "HP Running Shoes",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 66079.4,
+    "ratings": 2.6,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 221,
+    "brand": "SG",
+    "title": "SG Rug",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 43569.46,
+    "ratings": 3.0,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 222,
+    "brand": "OnePlus",
+    "title": "OnePlus Curtains",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 124247.04,
+    "ratings": 2.9,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 223,
+    "brand": "Apple",
+    "title": "Apple Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 130397.14,
+    "ratings": 3.2,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 224,
+    "brand": "Biotique",
+    "title": "Biotique Water Purifier",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 128183.49,
+    "ratings": 4.7,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 225,
+    "brand": "Realme",
+    "title": "Realme Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 51168.85,
+    "ratings": 4.3,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 226,
+    "brand": "Realme",
+    "title": "Realme Traditional Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 151316.65,
+    "ratings": 2.7,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 227,
+    "brand": "OnePlus",
+    "title": "OnePlus Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 81240.6,
+    "ratings": 3.5,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 228,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 133610.33,
+    "ratings": 3.5,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 229,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Yoga Mat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 92266.59,
+    "ratings": 4.7,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 230,
+    "brand": "Samsung",
+    "title": "Samsung Traditional Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 38262.34,
+    "ratings": 3.8,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 231,
+    "brand": "Lakme",
+    "title": "Lakme Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 69049.23,
+    "ratings": 2.9,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 232,
+    "brand": "Asus",
+    "title": "Asus Flagship Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 91165.84,
+    "ratings": 3.0,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 233,
+    "brand": "Biotique",
+    "title": "Biotique Flagship Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 150237.43,
+    "ratings": 3.1,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 234,
+    "brand": "Biotique",
+    "title": "Biotique Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 124384.58,
+    "ratings": 3.0,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 235,
+    "brand": "Lakme",
+    "title": "Lakme Water Purifier",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 61946.34,
+    "ratings": 4.7,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 236,
+    "brand": "Dell",
+    "title": "Dell Face Cream",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 44813.07,
+    "ratings": 2.6,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 237,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Camera",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 48013.75,
+    "ratings": 3.1,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 238,
+    "brand": "Apple",
+    "title": "Apple T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 110619.69,
+    "ratings": 3.6,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 239,
+    "brand": "Sony",
+    "title": "Sony Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 63869.74,
+    "ratings": 4.3,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 240,
+    "brand": "Nivia",
+    "title": "Nivia Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 48882.47,
+    "ratings": 4.8,
+    "subcategories": [
+      "5G",
+      "Dual SIM"
+    ]
+  },
+  {
+    "id": 241,
+    "brand": "Philips",
+    "title": "Philips Water Purifier",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 141020.17,
+    "ratings": 2.9,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 242,
+    "brand": "Canon",
+    "title": "Canon Refrigerator",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 25521.64,
+    "ratings": 2.7,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 243,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Cricket Bat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 122358.71,
+    "ratings": 4.4,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 244,
+    "brand": "Cosco",
+    "title": "Cosco Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 34124.85,
+    "ratings": 4.9,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 245,
+    "brand": "Apple",
+    "title": "Apple Washing Machine",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 50845.13,
+    "ratings": 4.1,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 246,
+    "brand": "Apple",
+    "title": "Apple Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 117422.77,
+    "ratings": 4.0,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 247,
+    "brand": "SG",
+    "title": "SG Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 144529.28,
+    "ratings": 4.6,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 248,
+    "brand": "Zara",
+    "title": "Zara Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 104468.18,
+    "ratings": 4.6,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 249,
+    "brand": "Realme",
+    "title": "Realme Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 148702.98,
+    "ratings": 4.1,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 250,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Yoga Mat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 115145.81,
+    "ratings": 4.8,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 251,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Dress",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 110807.34,
+    "ratings": 2.7,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 252,
+    "brand": "Realme",
+    "title": "Realme Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 103690.3,
+    "ratings": 4.9,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 253,
+    "brand": "Lakme",
+    "title": "Lakme Air Conditioner",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 27879.52,
+    "ratings": 4.4,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 254,
+    "brand": "Biotique",
+    "title": "Biotique Cricket Bat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 75953.84,
+    "ratings": 2.7,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 255,
+    "brand": "Lakme",
+    "title": "Lakme Face Cream",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 22872.38,
+    "ratings": 4.5,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 256,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 56668.27,
+    "ratings": 3.6,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 257,
+    "brand": "OnePlus",
+    "title": "OnePlus Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 83831.41,
+    "ratings": 3.0,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 258,
+    "brand": "Apple",
+    "title": "Apple Air Conditioner",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 125373.9,
+    "ratings": 4.8,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 259,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 115158.0,
+    "ratings": 4.1,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 260,
+    "brand": "Zara",
+    "title": "Zara Camera",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 151489.62,
+    "ratings": 2.8,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 261,
+    "brand": "SG",
+    "title": "SG Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 100948.36,
+    "ratings": 4.9,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 262,
+    "brand": "HP",
+    "title": "HP Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 92104.08,
+    "ratings": 4.5,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 263,
+    "brand": "Nike",
+    "title": "Nike Water Purifier",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 131964.38,
+    "ratings": 3.3,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 264,
+    "brand": "Asus",
+    "title": "Asus Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 96762.02,
+    "ratings": 4.8,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 265,
+    "brand": "Yonex",
+    "title": "Yonex Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 114606.97,
+    "ratings": 4.1,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 266,
+    "brand": "Dell",
+    "title": "Dell Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 37306.95,
+    "ratings": 4.8,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 267,
+    "brand": "Samsung",
+    "title": "Samsung 5G Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 8049.91,
+    "ratings": 4.7,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 268,
+    "brand": "Nivia",
+    "title": "Nivia Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 83626.52,
+    "ratings": 3.0,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 269,
+    "brand": "Adidas",
+    "title": "Adidas Trimmer",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 10869.49,
+    "ratings": 4.3,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 270,
+    "brand": "Asus",
+    "title": "Asus Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 27271.19,
+    "ratings": 4.7,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 271,
+    "brand": "H&M",
+    "title": "H&M Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 127186.55,
+    "ratings": 3.4,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 272,
+    "brand": "Canon",
+    "title": "Canon Camera",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 27614.6,
+    "ratings": 3.9,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 273,
+    "brand": "Asus",
+    "title": "Asus Jacket",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 76976.83,
+    "ratings": 3.5,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 274,
+    "brand": "Zara",
+    "title": "Zara Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 149041.08,
+    "ratings": 3.0,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 275,
+    "brand": "Lakme",
+    "title": "Lakme Power Bank",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 26973.58,
+    "ratings": 3.1,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 276,
+    "brand": "Nike",
+    "title": "Nike Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 86267.64,
+    "ratings": 3.6,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 277,
+    "brand": "SG",
+    "title": "SG Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 108174.96,
+    "ratings": 2.7,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 278,
+    "brand": "H&M",
+    "title": "H&M Lamp",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 39002.86,
+    "ratings": 2.9,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 279,
+    "brand": "LG",
+    "title": "LG Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 9687.04,
+    "ratings": 4.7,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 280,
+    "brand": "Biotique",
+    "title": "Biotique Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 32791.9,
+    "ratings": 4.7,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 281,
+    "brand": "Nivia",
+    "title": "Nivia Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 64974.69,
+    "ratings": 3.8,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 282,
+    "brand": "Asus",
+    "title": "Asus Badminton Racket",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 125126.23,
+    "ratings": 3.2,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 283,
+    "brand": "H&M",
+    "title": "H&M Running Shoes",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 133939.18,
+    "ratings": 2.8,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 284,
+    "brand": "Nivia",
+    "title": "Nivia Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 68469.04,
+    "ratings": 3.7,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 285,
+    "brand": "Zara",
+    "title": "Zara Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 21342.3,
+    "ratings": 4.9,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 286,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Air Conditioner",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 32211.66,
+    "ratings": 3.8,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 287,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Mobile Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 52024.1,
+    "ratings": 4.7,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 288,
+    "brand": "SG",
+    "title": "SG Smartwatch",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 4313.25,
+    "ratings": 3.5,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 289,
+    "brand": "Canon",
+    "title": "Canon Smartwatch",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 150725.36,
+    "ratings": 4.0,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 290,
+    "brand": "Adidas",
+    "title": "Adidas T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 150064.03,
+    "ratings": 4.1,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 291,
+    "brand": "Nike",
+    "title": "Nike Trimmer",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 105044.48,
+    "ratings": 2.8,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 292,
+    "brand": "Adidas",
+    "title": "Adidas Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 75789.04,
+    "ratings": 2.9,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 293,
+    "brand": "Cosco",
+    "title": "Cosco Bedsheet",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 146942.14,
+    "ratings": 3.4,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 294,
+    "brand": "Cosco",
+    "title": "Cosco Power Bank",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 10252.77,
+    "ratings": 4.0,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 295,
+    "brand": "Realme",
+    "title": "Realme Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 89439.33,
+    "ratings": 2.9,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 296,
+    "brand": "Cosco",
+    "title": "Cosco Face Cream",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 37053.36,
+    "ratings": 3.6,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 297,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Smartwatch",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 55414.75,
+    "ratings": 3.1,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 298,
+    "brand": "Dell",
+    "title": "Dell Rug",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 96648.04,
+    "ratings": 3.7,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 299,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 2803.1,
+    "ratings": 4.8,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 300,
+    "brand": "Dell",
+    "title": "Dell Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 39176.76,
+    "ratings": 2.9,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 301,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Ultrabook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 79038.39,
+    "ratings": 2.8,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 302,
+    "brand": "SG",
+    "title": "SG Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 86370.4,
+    "ratings": 2.7,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 303,
+    "brand": "Asus",
+    "title": "Asus Washing Machine",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 107449.14,
+    "ratings": 3.0,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 304,
+    "brand": "LG",
+    "title": "LG Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 71642.76,
+    "ratings": 2.8,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 305,
+    "brand": "Yonex",
+    "title": "Yonex Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 25674.95,
+    "ratings": 4.3,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 306,
+    "brand": "Dell",
+    "title": "Dell Badminton Racket",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 4771.78,
+    "ratings": 2.7,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 307,
+    "brand": "Dell",
+    "title": "Dell 5G Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 113745.77,
+    "ratings": 4.5,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 308,
+    "brand": "Canon",
+    "title": "Canon Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 56322.21,
+    "ratings": 3.8,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 309,
+    "brand": "Asus",
+    "title": "Asus Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 107538.32,
+    "ratings": 2.8,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 310,
+    "brand": "Biotique",
+    "title": "Biotique T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 90667.37,
+    "ratings": 3.7,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 311,
+    "brand": "Nike",
+    "title": "Nike Badminton Racket",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 140144.42,
+    "ratings": 4.5,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 312,
+    "brand": "Asus",
+    "title": "Asus Lamp",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 62089.11,
+    "ratings": 3.3,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 313,
+    "brand": "Maybelline",
+    "title": "Maybelline Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 134110.62,
+    "ratings": 3.5,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 314,
+    "brand": "H&M",
+    "title": "H&M Ultrabook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 23728.3,
+    "ratings": 4.6,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 315,
+    "brand": "Canon",
+    "title": "Canon Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 87444.85,
+    "ratings": 2.6,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 316,
+    "brand": "Realme",
+    "title": "Realme Washing Machine",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 35722.59,
+    "ratings": 4.1,
+    "subcategories": [
+      "Smart",
+      "Inverter"
+    ]
+  },
+  {
+    "id": 317,
+    "brand": "Lakme",
+    "title": "Lakme Bedsheet",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 22568.26,
+    "ratings": 3.5,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 318,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 107039.44,
+    "ratings": 2.6,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 319,
+    "brand": "Philips",
+    "title": "Philips Curtains",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 98689.26,
+    "ratings": 4.0,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 320,
+    "brand": "Maybelline",
+    "title": "Maybelline Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 15577.99,
+    "ratings": 4.6,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 321,
+    "brand": "Maybelline",
+    "title": "Maybelline Badminton Racket",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 113520.74,
+    "ratings": 3.4,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 322,
+    "brand": "Nike",
+    "title": "Nike Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 55529.67,
+    "ratings": 3.2,
+    "subcategories": [
+      "Electronics",
+      "Fitness"
+    ]
+  },
+  {
+    "id": 323,
+    "brand": "Sony",
+    "title": "Sony Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 106976.25,
+    "ratings": 3.0,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 324,
+    "brand": "Zara",
+    "title": "Zara Bedsheet",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 127268.07,
+    "ratings": 3.3,
+    "subcategories": [
+      "Cotton",
+      "Eco-friendly"
+    ]
+  },
+  {
+    "id": 325,
+    "brand": "LG",
+    "title": "LG Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 18565.58,
+    "ratings": 3.2,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 326,
+    "brand": "Asus",
+    "title": "Asus Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 120817.09,
+    "ratings": 4.1,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 327,
+    "brand": "H&M",
+    "title": "H&M Running Shoes",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 114707.17,
+    "ratings": 3.5,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 328,
+    "brand": "Lakme",
+    "title": "Lakme Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 34490.33,
+    "ratings": 4.9,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 329,
+    "brand": "Yonex",
+    "title": "Yonex Air Conditioner",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 64106.91,
+    "ratings": 3.0,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 330,
+    "brand": "Zara",
+    "title": "Zara Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 45054.43,
+    "ratings": 4.0,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 331,
+    "brand": "LG",
+    "title": "LG Bedsheet",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 152568.84,
+    "ratings": 2.8,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 332,
+    "brand": "Samsung",
+    "title": "Samsung T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 53705.19,
+    "ratings": 4.7,
+    "subcategories": [
+      "Casual",
+      "Formal"
+    ]
+  },
+  {
+    "id": 333,
+    "brand": "Samsung",
+    "title": "Samsung Foundation",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 2669.31,
+    "ratings": 4.6,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 334,
+    "brand": "Asus",
+    "title": "Asus Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 158904.69,
+    "ratings": 4.8,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 335,
+    "brand": "Yonex",
+    "title": "Yonex Rug",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 149394.97,
+    "ratings": 3.4,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 336,
+    "brand": "HP",
+    "title": "HP Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 12891.62,
+    "ratings": 3.8,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 337,
+    "brand": "OnePlus",
+    "title": "OnePlus Refrigerator",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 84582.33,
+    "ratings": 2.6,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 338,
+    "brand": "Nivia",
+    "title": "Nivia 5G Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 35841.27,
+    "ratings": 3.4,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 339,
+    "brand": "Cosco",
+    "title": "Cosco Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 108416.98,
+    "ratings": 3.8,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 340,
+    "brand": "Sony",
+    "title": "Sony Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 15023.15,
+    "ratings": 3.5,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 341,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 43990.68,
+    "ratings": 4.3,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 342,
+    "brand": "Asus",
+    "title": "Asus Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 69191.68,
+    "ratings": 3.4,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 343,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 58039.83,
+    "ratings": 4.0,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 344,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Refrigerator",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 131844.34,
+    "ratings": 4.5,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 345,
+    "brand": "Cosco",
+    "title": "Cosco Yoga Mat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 30494.33,
+    "ratings": 3.7,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 346,
+    "brand": "Realme",
+    "title": "Realme Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 84179.67,
+    "ratings": 4.7,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 347,
+    "brand": "H&M",
+    "title": "H&M Running Shoes",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 124511.89,
+    "ratings": 4.4,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 348,
+    "brand": "Realme",
+    "title": "Realme Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 10767.14,
+    "ratings": 3.9,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 349,
+    "brand": "Canon",
+    "title": "Canon Jacket",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 107321.16,
+    "ratings": 3.6,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 350,
+    "brand": "H&M",
+    "title": "H&M Bedsheet",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 6815.92,
+    "ratings": 2.9,
+    "subcategories": [
+      "Cotton",
+      "Eco-friendly"
+    ]
+  },
+  {
+    "id": 351,
+    "brand": "Yonex",
+    "title": "Yonex Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 128641.83,
+    "ratings": 4.0,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 352,
+    "brand": "SG",
+    "title": "SG Washing Machine",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 67618.61,
+    "ratings": 3.8,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 353,
+    "brand": "Yonex",
+    "title": "Yonex Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 144077.2,
+    "ratings": 3.7,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 354,
+    "brand": "Nivia",
+    "title": "Nivia Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 52639.32,
+    "ratings": 2.9,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 355,
+    "brand": "Puma",
+    "title": "Puma Foundation",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 159306.63,
+    "ratings": 3.1,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 356,
+    "brand": "Cosco",
+    "title": "Cosco Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 105434.74,
+    "ratings": 3.6,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 357,
+    "brand": "Nivia",
+    "title": "Nivia Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 103132.5,
+    "ratings": 2.9,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 358,
+    "brand": "Whirlpool",
+    "title": "Whirlpool Washing Machine",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 8484.64,
+    "ratings": 2.9,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 359,
+    "brand": "HP",
+    "title": "HP Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 105234.93,
+    "ratings": 3.9,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 360,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 150083.89,
+    "ratings": 4.1,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 361,
+    "brand": "Apple",
+    "title": "Apple Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 76040.41,
+    "ratings": 4.7,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 362,
+    "brand": "H&M",
+    "title": "H&M Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 5868.03,
+    "ratings": 3.0,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 363,
+    "brand": "Asus",
+    "title": "Asus Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 156611.9,
+    "ratings": 3.8,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 364,
+    "brand": "Asus",
+    "title": "Asus Water Purifier",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 123675.22,
+    "ratings": 4.9,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 365,
+    "brand": "Nivia",
+    "title": "Nivia Business Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 16061.25,
+    "ratings": 3.1,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 366,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 119456.31,
+    "ratings": 3.5,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 367,
+    "brand": "Nivia",
+    "title": "Nivia Mobile Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 121495.67,
+    "ratings": 3.9,
+    "subcategories": [
+      "5G",
+      "Dual SIM"
+    ]
+  },
+  {
+    "id": 368,
+    "brand": "Biotique",
+    "title": "Biotique T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 38937.35,
+    "ratings": 3.2,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 369,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Headphones",
+    "category": "others",
+    "description": "High-quality product from trusted brand.",
+    "price": 35068.35,
+    "ratings": 3.6,
+    "subcategories": [
+      "Accessories",
+      "Travel"
+    ]
+  },
+  {
+    "id": 370,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 144505.38,
+    "ratings": 2.7,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 371,
+    "brand": "Maybelline",
+    "title": "Maybelline Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 33897.88,
+    "ratings": 3.1,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 372,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 129934.31,
+    "ratings": 3.0,
+    "subcategories": [
+      "Designer",
+      "Combo"
+    ]
+  },
+  {
+    "id": 373,
+    "brand": "SG",
+    "title": "SG T-Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 56256.27,
+    "ratings": 4.3,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 374,
+    "brand": "Puma",
+    "title": "Puma Lipstick",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 73460.41,
+    "ratings": 3.6,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 375,
+    "brand": "LG",
+    "title": "LG Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 74326.11,
+    "ratings": 5.0,
+    "subcategories": [
+      "16GB RAM",
+      "RTX"
+    ]
+  },
+  {
+    "id": 376,
+    "brand": "Canon",
+    "title": "Canon Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 31688.46,
+    "ratings": 2.7,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 377,
+    "brand": "Dell",
+    "title": "Dell Kids Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 27344.69,
+    "ratings": 3.2,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 378,
+    "brand": "Lakme",
+    "title": "Lakme Ultrabook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 149744.77,
+    "ratings": 4.7,
+    "subcategories": [
+      "Touchscreen",
+      "i7"
+    ]
+  },
+  {
+    "id": 379,
+    "brand": "OnePlus",
+    "title": "OnePlus Designer Rakhi",
+    "category": "rakhi",
+    "description": "High-quality product from trusted brand.",
+    "price": 136012.23,
+    "ratings": 4.4,
+    "subcategories": [
+      "Kids",
+      "Premium"
+    ]
+  },
+  {
+    "id": 380,
+    "brand": "HP",
+    "title": "HP Cricket Bat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 10270.67,
+    "ratings": 4.3,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 381,
+    "brand": "Samsung",
+    "title": "Samsung Notebook",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 105784.02,
+    "ratings": 3.1,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 382,
+    "brand": "Dell",
+    "title": "Dell Android Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 33475.53,
+    "ratings": 3.2,
+    "subcategories": [
+      "5G",
+      "Dual SIM"
+    ]
+  },
+  {
+    "id": 383,
+    "brand": "Asus",
+    "title": "Asus Kajal",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 91901.47,
+    "ratings": 4.3,
+    "subcategories": [
+      "Natural",
+      "Premium"
+    ]
+  },
+  {
+    "id": 384,
+    "brand": "SG",
+    "title": "SG Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 22245.32,
+    "ratings": 3.3,
+    "subcategories": [
+      "Skincare",
+      "Haircare"
+    ]
+  },
+  {
+    "id": 385,
+    "brand": "Apple",
+    "title": "Apple 5G Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 85776.02,
+    "ratings": 4.7,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 386,
+    "brand": "Canon",
+    "title": "Canon Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 91073.07,
+    "ratings": 3.7,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 387,
+    "brand": "Puma",
+    "title": "Puma Football",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 59709.72,
+    "ratings": 3.2,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 388,
+    "brand": "Dell",
+    "title": "Dell 5G Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 72584.5,
+    "ratings": 3.4,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
+  },
+  {
+    "id": 389,
+    "brand": "Samsung",
+    "title": "Samsung Shampoo",
+    "category": "beauty",
+    "description": "High-quality product from trusted brand.",
+    "price": 20953.2,
+    "ratings": 4.2,
+    "subcategories": [
+      "Makeup",
+      "Foundation"
+    ]
+  },
+  {
+    "id": 390,
+    "brand": "Biotique",
+    "title": "Biotique Lamp",
+    "category": "home_decor",
+    "description": "High-quality product from trusted brand.",
+    "price": 8725.89,
+    "ratings": 3.9,
+    "subcategories": [
+      "Traditional",
+      "Modern"
+    ]
+  },
+  {
+    "id": 391,
+    "brand": "SG",
+    "title": "SG Mobile Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 151140.03,
+    "ratings": 3.8,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 392,
+    "brand": "Biotique",
+    "title": "Biotique Basketball",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 120020.64,
+    "ratings": 3.6,
+    "subcategories": [
+      "Kids",
+      "Indoor"
+    ]
+  },
+  {
+    "id": 393,
+    "brand": "Sony",
+    "title": "Sony Mobile Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 155067.34,
+    "ratings": 4.9,
+    "subcategories": [
+      "AMOLED",
+      "Flagship"
+    ]
+  },
+  {
+    "id": 394,
+    "brand": "Philips",
+    "title": "Philips Gaming Laptop",
+    "category": "laptops",
+    "description": "High-quality product from trusted brand.",
+    "price": 154782.59,
+    "ratings": 3.7,
+    "subcategories": [
+      "SSD",
+      "Ultrabook"
+    ]
+  },
+  {
+    "id": 395,
+    "brand": "Biotique",
+    "title": "Biotique Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 51452.34,
+    "ratings": 3.9,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 396,
+    "brand": "Dell",
+    "title": "Dell Microwave Oven",
+    "category": "appliances",
+    "description": "High-quality product from trusted brand.",
+    "price": 131460.06,
+    "ratings": 4.2,
+    "subcategories": [
+      "Front Load",
+      "Top Load"
+    ]
+  },
+  {
+    "id": 397,
+    "brand": "Canon",
+    "title": "Canon Yoga Mat",
+    "category": "sports",
+    "description": "High-quality product from trusted brand.",
+    "price": 28170.99,
+    "ratings": 2.6,
+    "subcategories": [
+      "Outdoor",
+      "Professional"
+    ]
+  },
+  {
+    "id": 398,
+    "brand": "OnePlus",
+    "title": "OnePlus Shirt",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 51390.36,
+    "ratings": 3.6,
+    "subcategories": [
+      "Men",
+      "Women"
+    ]
+  },
+  {
+    "id": 399,
+    "brand": "L'Oreal",
+    "title": "L'Oreal Running Shoes",
+    "category": "fashion",
+    "description": "High-quality product from trusted brand.",
+    "price": 108378.25,
+    "ratings": 3.6,
+    "subcategories": [
+      "Unisex",
+      "Sportswear"
+    ]
+  },
+  {
+    "id": 400,
+    "brand": "Mamaearth",
+    "title": "Mamaearth Flagship Phone",
+    "category": "smartphones",
+    "description": "High-quality product from trusted brand.",
+    "price": 121367.75,
+    "ratings": 3.9,
+    "subcategories": [
+      "Android",
+      "iOS"
+    ]
   }
 ]
