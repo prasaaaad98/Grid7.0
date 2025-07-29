@@ -155,9 +155,11 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
   const [query, setQuery] = useState("")
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
 
   useEffect(() => {
-    if (!query.trim()) {
+    // Only fetch suggestions if focused or if there's a query
+    if (!isFocused && !query.trim()) {
       setSuggestions([])
       setShowSuggestions(false)
       return
@@ -168,7 +170,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       .then(res => res.json())
       .then(data => {
         setSuggestions(data)
-    setShowSuggestions(true)
+        setShowSuggestions(true)
       })
       .catch(error => {
         console.error('Error fetching suggestions:', error)
@@ -176,7 +178,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
         setSuggestions([])
         setShowSuggestions(false)
       })
-  }, [query])
+  }, [query, isFocused])
 
   function handleSelect(selectedQuery: string) {
     const recents = JSON.parse(localStorage.getItem("recentSearches") || "[]")
@@ -199,7 +201,14 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
               handleSelect(query)
             }
           }}
-          onFocus={() => query && setShowSuggestions(true)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => {
+            // Delay hiding suggestions to allow clicking on them
+            setTimeout(() => {
+              setIsFocused(false)
+              setShowSuggestions(false)
+            }, 200)
+          }}
           className="flex-1 px-4 py-2 text-gray-800 outline-none rounded-l"
         />
         <button onClick={() => handleSelect(query)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
