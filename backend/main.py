@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Query
 from typing import List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 import uvicorn
 import json
 import faiss
@@ -12,69 +12,37 @@ from rapidfuzz import process, fuzz
 import spacy
 from metaphone import doublemetaphone
 import pygtrie
+import networkx as nx
+from collections import defaultdict
 
 # ------------------------- Setup -------------------------
-data = json.load(open("data/products.json", encoding='utf-8'))
+# Load product data with extended schema
+with open("data/products.json", encoding='utf-8') as f:
+    data = json.load(f)
 
-# Transform data to align with new schema
+# Align fields and defaults
 for item in data:
-    # Rename ratings to rating
     if 'ratings' in item:
         item['rating'] = item.pop('ratings')
-    
-    # Add missing fields with defaults
-    if 'images' not in item:
-        item['images'] = []
-    if 'retail_price' not in item:
-        item['retail_price'] = item.get('price', 0.0)
-    if 'subcategories' not in item:
-        item['subcategories'] = []
+    item.setdefault('images', [])
+    item.setdefault('retail_price', item.get('price', 0.0))
+    item.setdefault('subcategories', [])
+    item.setdefault('synonyms', [])
+    item.setdefault('attributes', {})
+    item.setdefault('tags', [])
+    item.setdefault('related_ids', [])
 
-# Define hierarchical categories and keywords
-category_rules = [
-    ("electronics/heater/water heater/aquarium heater", ["aquarium heater"]),
-    ("electronics/heater/water heater", ["water heater", "heater"]),
-    ("electronics/heater", ["heater"]),
-    ("electronics/smartphone", ["smartphone", "phone", "mobile"]),
-    ("electronics/headphones", ["headphones", "earbuds", "earphones"]),
-    ("sports/cricket/bat", ["cricket bat", "bat"]),
-    ("sports/cricket/ball", ["cricket ball", "ball"]),
-    ("sports/cricket/net", ["cricket net", "net"]),
-    ("sports/badminton/racquet", ["badminton racquet", "racquet"]),
-    ("sports/badminton/shuttlecock", ["shuttlecock", "shuttle"]),    
-    ("other", [])
-]
-
+# NLP setup and normalization
+nlp = spacy.load("en_core_web_sm")
 def normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
-
-def categorize_product(title: str) -> str:
-    text = title.lower()
-    for category, keywords in category_rules:
-        for kw in keywords:
-            if kw in text:
-                return category
-    return "other"
-
-# Assign category hierarchy and top-level category
-for item in data:
-    hierarchy = categorize_product(item.get('title',""))
-    item['category_hierarchy'] = hierarchy
-    item['category'] = hierarchy.split('/')[0] if '/' in hierarchy else hierarchy
-
-product_titles = [item['title'] for item in data]
-
-nlp = spacy.load("en_core_web_sm")
-
-# Translation helper (stub) and normalization
-
 def translate_hindi_to_english(text: str) -> str:
     return normalize(text)
 
-# Phrase extraction for suggestions
-def extract_phrases(title: str):
-    doc = nlp(title)
+# Phrase extraction from title and description
+def extract_phrases(text: str) -> List[str]:
     phrases = []
+    doc = nlp(text or "")
     for chunk in doc.noun_chunks:
         phrase = normalize(chunk.text)
         if 1 <= len(chunk.text.split()) <= 4 and len(phrase) >= 2:
@@ -82,26 +50,96 @@ def extract_phrases(title: str):
     return phrases
 
 # Build suggestion phrases set
-all_phrases = set()
-for title in product_titles:
-    all_phrases.update(extract_phrases(title))
-for title in product_titles:
-    for token in normalize(title).split():
-        if len(token) > 1:
-            all_phrases.add(token)
-suggestion_phrases = sorted(all_phrases)
+suggestion_phrases = set()
+for item in data:
+    title = item.get('title', '')
+    desc = item.get('description', '')
+    suggestion_phrases.update(extract_phrases(title))
+    suggestion_phrases.update(extract_phrases(desc))
+    for tok in normalize(title).split():
+        if len(tok) > 1:
+            suggestion_phrases.add(tok)
+    for syn in item.get('synonyms', []):
+        ph = normalize(syn)
+        if ph: suggestion_phrases.add(ph)
+    for tag in item.get('tags', []):
+        ph = normalize(tag)
+        if ph: suggestion_phrases.add(ph)
+    for val in item.get('attributes', {}).values():
+        ph = normalize(str(val))
+        if ph: suggestion_phrases.add(ph)
+suggestion_phrases = sorted(suggestion_phrases)
 
-# Trie for prefix matching
+# Prefix Trie
 phrase_trie = pygtrie.CharTrie()
-for phrase in suggestion_phrases:
-    phrase_trie[phrase] = None
+for ph in suggestion_phrases:
+    phrase_trie[ph] = None
 
-# Phonetics map
-phrase_phonetics = {phrase: doublemetaphone(phrase)[0] for phrase in suggestion_phrases}
-product_titles_norm = [normalize(t) for t in product_titles]
-product_titles_phonetic = [doublemetaphone(normalize(t))[0] for t in product_titles]
+# Phonetic map
+phrase_phonetics = {ph: doublemetaphone(ph)[0] for ph in suggestion_phrases}
 
-# Hardcoded trending product titles map per alphabet
+# Semantic models and FAISS indexes
+model = SentenceTransformer("all-MiniLM-L6-v2")
+# Title embeddings for search
+titles = [item['title'] for item in data]
+title_embs = model.encode(titles)
+dim = title_embs.shape[1]
+title_index = faiss.IndexFlatL2(dim)
+title_index.add(np.array(title_embs))
+# Phrase embeddings for autosuggest
+phrase_embs = model.encode(suggestion_phrases)
+ph_dim = phrase_embs.shape[1]
+phrase_index = faiss.IndexFlatL2(ph_dim)
+phrase_index.add(np.array(phrase_embs))
+
+# Build phrase->product mapping for fast KG edges
+phrase_to_products = defaultdict(list)
+for idx, item in enumerate(data):
+    text = normalize(item.get('title','')) + ' ' + normalize(item.get('description',''))
+    for ph in suggestion_phrases:
+        if ph in text:
+            phrase_to_products[ph].append(idx)
+
+# Build simple knowledge graph
+G = nx.Graph()
+# Add phrase nodes
+for ph in suggestion_phrases:
+    G.add_node(ph, type='phrase')
+# Add category, synonyms, tags, attributes nodes and edges
+for ph, idxs in phrase_to_products.items():
+    for idx in idxs:
+        item = data[idx]
+        # category_path edges
+        for parent, child in zip(item.get('category_path', []), item.get('category_path', [])[1:]):
+            G.add_node(parent, type='category')
+            G.add_node(child, type='category')
+            G.add_edge(parent, child)
+            G.add_edge(ph, parent)
+        # synonyms
+        for syn in item.get('synonyms', []):
+            psyn = normalize(syn)
+            G.add_node(psyn, type='synonym')
+            G.add_edge(ph, psyn)
+        # tags
+        for tag in item.get('tags', []):
+            t = normalize(tag)
+            G.add_node(t, type='tag')
+            G.add_edge(ph, t)
+        # attributes
+        for val in item.get('attributes', {}).values():
+            av = normalize(str(val))
+            G.add_node(av, type='attribute')
+            G.add_edge(ph, av)
+
+# When user hasn't typed anything yet, show these top‐level trends:
+global_trending = [
+    "mobiles", "shoes", "t shirts", "laptops",
+    "watches", "tv", "sarees", "earbuds"
+]
+
+# Hardcoded trending per letter (define for A-Z)
+import string
+trending_map = {c: [] for c in string.ascii_lowercase}
 trending_map = {
     'a': [
         "Ai nova 5g",
@@ -364,25 +402,11 @@ trending_map = {
     ],
 }
 
-# Create trending keywords set from trending_map
-trending_keywords = set()
-for letter_products in trending_map.values():
-    trending_keywords.update([normalize(product) for product in letter_products])
-
-# Semantic model and FAISS index
-model = SentenceTransformer("all-MiniLM-L6-v2")
-embeddings = model.encode(product_titles)
-dim = embeddings[0].shape[0]
-index = faiss.IndexFlatL2(dim)
-index.add(np.array(embeddings))
-
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"], allow_credentials=True,
+    allow_methods=["*"], allow_headers=["*"],
 )
 
 class Product(BaseModel):
@@ -391,59 +415,96 @@ class Product(BaseModel):
     brand: str
     category: str
     price: float
-    retail_price: Optional[float] = None
-    images: List[str] = []
+    retail_price: Optional[float]
+    images: List[str]
     rating: float
     description: str
-    category_hierarchy: str
-    subcategories: List[str] = []
-    
+    category_path: List[str]
+    subcategories: List[str]
+    synonyms: List[str]
+    tags: List[str]
+    attributes: dict
+    related_ids: List[int]
     class Config:
         allow_population_by_field_name = True
 
 @app.get("/autosuggest", response_model=List[str])
-def autosuggest(q: str = Query(..., min_length=1)):
-    q_norm = normalize(q)
-    q_translated = translate_hindi_to_english(q)
-    if q_translated != q_norm:
-        q_norm = q_translated
+def autosuggest(q: str = Query("", min_length=0)):
+    qn = normalize(q)
+    qt = translate_hindi_to_english(qn)
+    if qt != qn:
+        qn = qt
 
-    # For single letter queries, return only trending products
-    if len(q_norm) == 1:
-        return trending_map.get(q_norm, [])
-    
-    # For queries with 2 or more characters, use all algorithms
+    # 0-char: show global trending
+    if qn == "":
+        return global_trending
+
+    # 1-char: per-letter trending
+    if len(qn) == 1:
+        return trending_map.get(qn, [])[:8]
     suggestions = []
-    
-    # Trending products that start with the prefix
-    suggestions = [t for t in trending_map.get(q_norm[0], []) if normalize(t).startswith(q_norm)]
-    
-    # Trie-based prefix matches
-    starts = []
+    # trending for prefix
+    suggestions += [t for t in trending_map.get(qn[0], []) if normalize(t).startswith(qn)]
+    # trie
     try:
-        starts = list(phrase_trie.keys(prefix=q_norm))
-    except Exception:
-        starts = []
-    suggestions.extend([p for p in starts if p not in suggestions])
-    
-    # Fuzzy matching
-    fuzzy = process.extract(q_norm, suggestion_phrases, scorer=(fuzz.token_set_ratio if ' ' in q_norm else fuzz.partial_ratio), limit=10)
-    suggestions.extend([m[0] for m in fuzzy if m[1]>=60 and m[0] not in suggestions])
-    
-    # Substring matching
-    suggestions.extend([p for p in suggestion_phrases if q_norm in p and p not in suggestions])
-    
-    # Phonetic matching
-    code = doublemetaphone(q_norm)[0]
-    suggestions.extend([p for p,c in phrase_phonetics.items() if c==code and p not in suggestions])
-    
-    # Dedupe & return top 5
+        suggestions += [ph for ph in phrase_trie.keys(prefix=qn) if ph not in suggestions]
+    except KeyError:
+        pass
+    # fuzzy
+    fam = process.extract(qn, suggestion_phrases,
+                          scorer=(fuzz.token_set_ratio if ' ' in qn else fuzz.partial_ratio), limit=10)
+    suggestions += [m[0] for m in fam if m[1] >= 60 and m[0] not in suggestions]
+    # substring (whole-word match)
+    substr_hits = []
+    for ph in suggestion_phrases:
+        if re.search(rf"\b{re.escape(qn)}\b", ph) and ph not in suggestions:
+            substr_hits.append(ph)
+    suggestions += substr_hits
+    # phonetic
+    code = doublemetaphone(qn)[0]
+    suggestions += [ph for ph,c in phrase_phonetics.items() if c == code and ph not in suggestions]
+    # semantic phrase neighbors
+    q_emb = model.encode([qn])
+    _, idx = phrase_index.search(np.array(q_emb), 5)
+    suggestions += [suggestion_phrases[i] for i in idx[0] if suggestion_phrases[i] not in suggestions]
+    # graph expansions (expand only from top candidates, and only on‑prefix neighbors)
+    seed = suggestions[:5].copy()
+    added = 0
+    for seed_ph in seed:
+        if not G.has_node(seed_ph):
+            continue
+        for neigh in G.neighbors(seed_ph):
+            # only add if it starts with the same prefix and isn’t already in suggestions
+            if neigh.startswith(qn) and neigh not in suggestions:
+                suggestions.append(neigh)
+                added += 1
+                if added >= 2:
+                    break
+        if added >= 2:
+            break
+
+    # brand-prefix expansions (bring in `<brand> <prefix>`)
+    brands_seen = set()
+    for item in data:
+        if qn in normalize(item['title']):
+            bp = f"{item['brand'].lower()} {qn}"
+            if bp not in suggestions and bp not in brands_seen:
+                suggestions.append(bp)
+                brands_seen.add(bp)
+            if len(brands_seen) >= 3:
+                break
+
+    # dedupe (case-insensitive) & limit
+    seen_norm = set()
     res = []
     for s in suggestions:
-        if s not in res and len(s) > 1:
+        sn = normalize(s)
+        if sn not in seen_norm and len(s) > 1:
+            seen_norm.add(sn)
             res.append(s)
-    
-    return res[:5]
+        if len(res) >= 8:
+            break
+    return res
 
 @app.get("/search", response_model=List[Product])
 def search(
@@ -454,53 +515,63 @@ def search(
     brand: str = "",
     category: str = ""
 ):
+    # normalize & translate
+    q_orig = q
     q_norm = normalize(q)
-    q_translated = translate_hindi_to_english(q)
-    if q_translated!=q_norm:
-        q_norm = q_translated
-    # NER for price/brand/category
-    doc = nlp(q)
-    for ent in doc.ents:
-        if ent.label_=="MONEY":
-            num = re.sub(r"\D","",ent.text)
-            if num.isdigit(): max_price=float(num)
-        if ent.label_=="ORG": brand=ent.text.lower()
-        if ent.label_ in ["PRODUCT","NORP"]: category=ent.text.lower()
-    # Typo correction
-    best = process.extractOne(q_norm, product_titles_norm, scorer=fuzz.partial_ratio)
-    if best and best[1]>=70:
-        q_norm = normalize(best[0])
+    qt = translate_hindi_to_english(q_norm)
+    if qt != q_norm:
+        q_norm = qt
+    # fuzzy correction
+    best = process.extractOne(q_norm, [normalize(t) for t in titles], scorer=fuzz.partial_ratio)
+    if best and best[1] >= 70:
+        corrected = titles[[normalize(t) for t in titles].index(best[0])]
+        q_norm = normalize(corrected)
     else:
         code = doublemetaphone(q_norm)[0]
-        for i,c in enumerate(product_titles_phonetic):
-            if c==code:
-                q_norm = normalize(product_titles[i])
+        for i, pcode in enumerate([doublemetaphone(normalize(t))[0] for t in titles]):
+            if pcode == code:
+                q_norm = normalize(titles[i])
                 break
-    # Semantic search
-    vec = model.encode([q_norm])
-    _, idx = index.search(np.array(vec),50)
-    candidates=[data[i] for i in idx[0]]
-    # Filters
-    filtered=[]
+    # semantic search
+    q_emb = model.encode([q_norm])
+    D, I = title_index.search(np.array(q_emb), 50)
+    candidates = [data[i] for i in I[0]]
+    # apply filters
+    filtered = []
     for item in candidates:
-        if not(min_price<=item.get('price', 0)<=max_price): continue
-        if item.get('rating', 0)<min_rating: continue
-        if brand and brand not in normalize(item.get('title', '')): continue
-        if category and category not in normalize(item.get('title', '')): continue
+        if not (min_price <= item['price'] <= max_price): continue
+        if item['rating'] < min_rating: continue
+        if brand and brand.lower() not in normalize(item['brand']): continue
+        if category and category.lower() not in normalize(item['category']): continue
         filtered.append(item)
-    # Rank
-    def score_item(item):
-        tv=model.encode([item.get('title', '')])[0]
-        sim=np.dot(vec,tv)/(np.linalg.norm(vec)*np.linalg.norm(tv))
-        rating_score = item.get('rating', 0) / 5
-        trending_bonus = 0.2 if normalize(item.get('title', '')) in trending_keywords else 0
-        return 0.5*sim + 0.3*rating_score + trending_bonus
-    ranked=sorted(filtered, key=score_item, reverse=True)
-    # Response
-    return [
-        {**item, 'category_hierarchy': item.get('category_hierarchy', 'other')}
-        for item in ranked[:10]
-    ]
+    # ranking
+    def score(item):
+        tv = model.encode([item['title']])[0]
+        sim = np.dot(q_emb, tv) / (np.linalg.norm(q_emb) * np.linalg.norm(tv))
+        return 0.5 * sim + 0.3 * (item['rating'] / 5) + 0.2 * (1 if normalize(item['title']) in trending_map.get(q_norm[0], []) else 0)
+    ranked = sorted(filtered, key=score, reverse=True)
+    # format response
+    result = []
+    for item in ranked[:10]:
+        result.append({
+            'id': item['id'],
+            'title': item['title'],
+            'brand': item['brand'],
+            'category': item['category'],
+            'price': item['price'],
+            'retail_price': item['retail_price'],
+            'images': item['images'],
+            'rating': item['rating'],
+            'description': item['description'],
+            'category_path': item.get('category_path', []),
+            'subcategories': item.get('subcategories', []),
+            'synonyms': item.get('synonyms', []),
+            'tags': item.get('tags', []),
+            'attributes': item.get('attributes', {}),
+            'related_ids': item.get('related_ids', [])
+        })
+    return result
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+#test commwnt
