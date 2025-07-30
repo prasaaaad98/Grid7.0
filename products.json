@@ -365,7 +365,7 @@
   {
     "id": 10,
     "brand": "Apple",
-    "title": "Apple Android Phone",
+    "title": "iPhone 16 Pro Max",
     "category": "smartphones",
     "description": "A feature-rich smartphone with the latest technology.",
     "price": 117577.52,
@@ -1648,7 +1648,8 @@
     "category_path": [
       "electronics",
       "mobile_phones",
-      "smartphones"
+      "smartphones",
+      "phone"
     ],
     "synonyms": [],
     "attributes": {},
@@ -14245,8 +14246,8 @@
   },
   {
     "id": 379,
-    "brand": "OnePlus",
-    "title": "OnePlus Designer Rakhi",
+    "brand": "darkshri",
+    "title": "Designer 315.AL puchY Kundan Rakhi Set",
     "category": "rakhi",
     "description": "High-quality product from trusted brand.",
     "price": 136012.23,
@@ -14967,8 +14968,8 @@
   },
   {
     "id": 398,
-    "brand": "OnePlus",
-    "title": "OnePlus Shirt",
+    "brand": "H&M",
+    "title": "H&M Shirt",
     "category": "fashion",
     "description": "High-quality product from trusted brand.",
     "price": 51390.36,
