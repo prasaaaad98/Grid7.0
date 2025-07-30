@@ -450,16 +450,30 @@ def autosuggest(q: str = Query("", min_length=0)):
         suggestions += [ph for ph in phrase_trie.keys(prefix=qn) if ph not in suggestions]
     except KeyError:
         pass
-    # fuzzy
-    fam = process.extract(qn, suggestion_phrases,
-                          scorer=(fuzz.token_set_ratio if ' ' in qn else fuzz.partial_ratio), limit=10)
-    suggestions += [m[0] for m in fam if m[1] >= 60 and m[0] not in suggestions]
     # substring (whole-word match)
     substr_hits = []
     for ph in suggestion_phrases:
         if re.search(rf"\b{re.escape(qn)}\b", ph) and ph not in suggestions:
             substr_hits.append(ph)
     suggestions += substr_hits
+    # fuzzy (only if trie and substring didn't find enough)
+    fuzzy_hits = []
+    if len(suggestions) < 3:  # Only run fuzzy if we need more suggestions
+        if len(qn.split()) == 1:
+            fuzzy_scorer = fuzz.token_set_ratio  # less partial-match friendly
+            fuzzy_threshold = 80
+        else:
+            fuzzy_scorer = fuzz.token_set_ratio
+            fuzzy_threshold = 60
+            
+        fam = process.extract(qn, suggestion_phrases, scorer=fuzzy_scorer, limit=10)
+        fuzzy_hits = [m[0] for m in fam if m[1] >= fuzzy_threshold and m[0] not in suggestions]
+        
+        # Require word-boundary matches in fuzzy hits
+        fuzzy_hits = [ph for ph in fuzzy_hits
+                      if re.search(rf"\b{re.escape(qn)}\b", ph)]
+        
+        suggestions += fuzzy_hits
     # phonetic
     code = doublemetaphone(qn)[0]
     suggestions += [ph for ph,c in phrase_phonetics.items() if c == code and ph not in suggestions]
@@ -482,6 +496,25 @@ def autosuggest(q: str = Query("", min_length=0)):
                     break
         if added >= 2:
             break
+
+    # Prefix→Query templating (emit "{qn} for <tag>" or "{qn} in <category>")
+    templated = []
+    if G.has_node(qn):
+        for neigh in G.neighbors(qn):
+            ntype = G.nodes[neigh]['type']
+            # only from relevant node‑types
+            if ntype == 'tag':
+                cand = f"{qn} for {neigh}"
+            elif ntype == 'category':
+                cand = f"{qn} in {neigh}"
+            elif ntype == 'attribute':
+                cand = f"{qn} with {neigh}"
+            else:
+                continue
+            if cand not in suggestions and cand not in templated:
+                templated.append(cand)
+    # inject up to 2 new templates
+    suggestions += templated[:2]
 
     # brand-prefix expansions (bring in `<brand> <prefix>`)
     brands_seen = set()
