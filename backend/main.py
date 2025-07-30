@@ -516,6 +516,30 @@ def autosuggest(q: str = Query("", min_length=0)):
     # inject up to 2 new templates
     suggestions += templated[:2]
 
+    # price‑range templates for “under”
+    # e.g. prefix qn = "shirt under"
+    # price‑range templates for “under”
+    # Trigger these suggestions earlier based on prefixes of "under"
+    under_prefixes = ["u", "un", "und", "unde", "under"]
+    
+    # Check if the query ends with any of the "under" prefixes
+    matched_under_prefix = None
+    for prefix in under_prefixes:
+        if qn.endswith(prefix):
+            matched_under_prefix = prefix
+            break
+
+    if matched_under_prefix:
+        # Strip off the matched prefix to get the base query
+        base = qn[: -len(matched_under_prefix)].strip()
+        
+        # Define the buckets you care about
+        for bucket in [500, 1000, 2000, 5000]:
+            # Construct the suggestion with the full "under" word for clarity
+            cand = f"{base} under {bucket}"
+            if cand not in suggestions:
+                suggestions.append(cand)
+
     # brand-prefix expansions (bring in `<brand> <prefix>`)
     brands_seen = set()
     for item in data:
