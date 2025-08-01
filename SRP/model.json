@@ -1,0 +1,251 @@
+{
+  "model": {
+    "name": "smartsearch_linear_model",
+    "feature_set":{
+      "name": "smartsearch_ltr_features",
+      "features": [
+        {
+          "name": "title_query_match",
+          "params": ["keywords"],
+          "template_language": "mustache",
+        "template": {
+          "match": { "title": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "description_query_match",
+        "params": ["keywords"],
+        "template_language": "mustache",
+        "template": {
+          "match": { "description": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "brand_match",
+        "params": ["keywords"],
+        "template_language": "mustache",
+        "template": {
+          "match": { "brand": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "category_match",
+        "params": ["keywords"],
+        "template_language": "mustache",
+        "template": {
+          "match": { "category": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "tag_match",
+        "params": ["keywords"],
+        "template_language": "mustache",
+        "template": {
+          "match": { "tags": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "contextual_material_match",
+        "params": ["keywords"],
+        "template_language": "mustache",
+        "template": {
+          "match": { "contextual_data.material": "{{keywords}}" }
+        }
+      },
+      {
+        "name": "price_score",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "1.0 / (doc['price'].value + 1.0)"
+            }
+          }
+        }
+      },
+     {
+        "name": "discount_percentage",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "if (doc['retail_price'].size() > 0 && doc['price'].size() > 0 && doc['retail_price'].value > 0) { return (doc['retail_price'].value - doc['price'].value) / doc['retail_price'].value; } else { return 0.0; }"
+            }
+          }
+        }
+      },
+      {
+        "name": "rating",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['rating'].size() > 0 ? doc['rating'].value : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "review_count",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['review_count'].size() > 0 ? Math.log(1 + doc['review_count'].value) : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "how_many_purchased",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['how_many_purchased'].size() > 0 ? Math.log(1 + doc['how_many_purchased'].value) : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "stock_score",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['stock'].size() > 0 && doc['stock'].value > 0 ? 1.0 : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "search_boost",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['search_boost'].size() > 0 ? doc['search_boost'].value : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "is_best_seller",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['is_best_seller'].size() > 0 && doc['is_best_seller'].value ? 1.0 : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "plus_eligible",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['plus_eligible'].size() > 0 && doc['plus_eligible'].value ? 1.0 : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "assured_badge",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['assured_badge'].size() > 0 && doc['assured_badge'].value ? 1.0 : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "delivery_time_score",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['delivery_time'].size() > 0 ? 1.0 / (1 + doc['delivery_time'].value) : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "exchange_available",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "doc['exchange_available'].size() > 0 && doc['exchange_available'].value ? 1.0 : 0.0"
+            }
+          }
+        }
+      },
+      {
+        "name": "offer_count_score",
+        "params": [],
+        "template_language": "mustache",
+        "template": {
+          "script_score": {
+            "query": { "match_all": {} },
+            "script": {
+              "source": "return doc['offers'].size();"
+            }
+          }
+        }
+      }
+    ]
+  },
+    "model": {
+      "type": "model/linear",
+      "definition": {
+          "title_query_match": 2.0,
+          "description_query_match": 1.5,
+          "brand_match": 1.2,
+          "category_match": 1.1,
+          "tag_match": 1.0,
+          "contextual_material_match": 1.0,
+          "price_score": 1.0,
+          "discount_percentage": 1.5,
+          "rating": 2.0,
+          "review_count": 1.5,
+          "how_many_purchased": 1.2,
+          "stock_score": 1.0,
+          "search_boost": 1.5,
+          "is_best_seller": 1.3,
+          "plus_eligible": 1.1,
+          "assured_badge": 1.0,
+          "delivery_time_score": 1.3,
+          "exchange_available": 0.8,
+          "offer_count_score": 1.0
+      }
+    }
+  }
+}

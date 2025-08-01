@@ -1,0 +1,6 @@
+elasticsearch=9.0.1
+sentence-transformers>=2.2.2
+fastapi
+uvicorn
+elasticsearch
+sentence-transformers
