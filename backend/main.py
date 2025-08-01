@@ -31,6 +31,11 @@ for item in data:
     item.setdefault('attributes', {})
     item.setdefault('tags', [])
     item.setdefault('related_ids', [])
+    item.setdefault('contextual_data', {})
+    item.setdefault('color', None)
+    item.setdefault('material', None)
+    item.setdefault('finish', None)
+    item.setdefault('search_boost', 0.0)
 
 # NLP setup and normalization
 nlp = spacy.load("en_core_web_sm")
@@ -68,6 +73,17 @@ for item in data:
     for val in item.get('attributes', {}).values():
         ph = normalize(str(val))
         if ph: suggestion_phrases.add(ph)
+    # Add contextual_data values
+    for val in item.get('contextual_data', {}).values():
+        ph = normalize(val)
+        if ph:
+            suggestion_phrases.add(ph)
+    # Add color, material, and finish
+    for extra in ('color', 'material', 'finish'):
+        value = item.get(extra)
+        if value:
+            ph = normalize(str(value))
+            suggestion_phrases.add(ph)
 suggestion_phrases = sorted(suggestion_phrases)
 
 # Prefix Trie
@@ -95,7 +111,16 @@ phrase_index.add(np.array(phrase_embs))
 # Build phrase->product mapping for fast KG edges
 phrase_to_products = defaultdict(list)
 for idx, item in enumerate(data):
-    text = normalize(item.get('title','')) + ' ' + normalize(item.get('description',''))
+    text = " ".join([
+        normalize(item.get('title','')),
+        normalize(item.get('description','')),
+        *[normalize(s) for s in item.get('synonyms', [])],
+        *item.get('tags', []),
+        *[str(v) for v in item.get('attributes', {}).values()],
+        *[str(v) for v in item.get('contextual_data', {}).values()],
+        str(item.get('color','')),
+        str(item.get('finish',''))
+    ])
     for ph in suggestion_phrases:
         if ph in text:
             phrase_to_products[ph].append(idx)
@@ -130,6 +155,18 @@ for ph, idxs in phrase_to_products.items():
             av = normalize(str(val))
             G.add_node(av, type='attribute')
             G.add_edge(ph, av)
+        # contextual_data nodes
+        for val in item.get('contextual_data', {}).values():
+            node = normalize(val)
+            G.add_node(node, type='contextual')
+            G.add_edge(ph, node)
+        # color & finish nodes
+        for field in ('color', 'finish'):
+            val = item.get(field)
+            if val:
+                node = normalize(str(val))
+                G.add_node(node, type=field)
+                G.add_edge(ph, node)
 
 # When user hasn't typed anything yet, show these top‐level trends:
 global_trending = [
@@ -424,6 +461,11 @@ class Product(BaseModel):
     synonyms: List[str]
     tags: List[str]
     attributes: dict
+    contextual_data: Optional[dict] = {}
+    color: Optional[str] = None
+    material: Optional[str] = None
+    finish: Optional[str] = None
+    search_boost: Optional[float] = 0.0
     related_ids: List[int]
     class Config:
         allow_population_by_field_name = True
@@ -509,6 +551,12 @@ def autosuggest(q: str = Query("", min_length=0)):
                 cand = f"{qn} in {neigh}"
             elif ntype == 'attribute':
                 cand = f"{qn} with {neigh}"
+            elif ntype == 'contextual':
+                cand = f"{qn} for {neigh}"
+            elif ntype == 'color':
+                cand = f"{qn} in {neigh}"
+            elif ntype == 'finish':
+                cand = f"{qn} with {neigh}"
             else:
                 continue
             if cand not in suggestions and cand not in templated:
@@ -520,18 +568,9 @@ def autosuggest(q: str = Query("", min_length=0)):
     # e.g. prefix qn = "shirt under"
     # price‑range templates for “under”
     # Trigger these suggestions earlier based on prefixes of "under"
-    under_prefixes = ["u", "un", "und", "unde", "under"]
-    
-    # Check if the query ends with any of the "under" prefixes
-    matched_under_prefix = None
-    for prefix in under_prefixes:
-        if qn.endswith(prefix):
-            matched_under_prefix = prefix
-            break
-
-    if matched_under_prefix:
-        # Strip off the matched prefix to get the base query
-        base = qn[: -len(matched_under_prefix)].strip()
+    tokens = qn.split()
+    if tokens and tokens[-1] == "under":
+        base = " ".join(tokens[:-1]).strip()
         
         # Define the buckets you care about
         for bucket in [500, 1000, 2000, 5000]:
@@ -551,6 +590,18 @@ def autosuggest(q: str = Query("", min_length=0)):
             if len(brands_seen) >= 3:
                 break
 
+    # Boost by search_boost
+    # compute highest boost per phrase
+    boost_map = {}
+    for ph in suggestions:
+        product_indices = phrase_to_products.get(ph, [])
+        if product_indices:
+            boost_map[ph] = max(data[i].get('search_boost', 0) for i in product_indices)
+        else:
+            boost_map[ph] = 0
+    # stable re-ordering
+    suggestions.sort(key=lambda ph: boost_map.get(ph, 0), reverse=True)
+
     # dedupe (case-insensitive) & limit
     seen_norm = set()
     res = []
@@ -561,6 +612,7 @@ def autosuggest(q: str = Query("", min_length=0)):
             res.append(s)
         if len(res) >= 8:
             break
+    res = [s.title() for s in res]
     return res
 
 @app.get("/search", response_model=List[Product])
@@ -593,6 +645,24 @@ def search(
     q_emb = model.encode([q_norm])
     D, I = title_index.search(np.array(q_emb), 50)
     candidates = [data[i] for i in I[0]]
+    
+    # For trending queries, also add direct text matches
+    if q_norm in global_trending or any(q_norm in normalize(trend) for trend in trending_map.get(q_norm[0], [])):
+        # Add direct text matches for trending queries
+        direct_matches = []
+        for idx, item in enumerate(data):
+            title_norm = normalize(item['title'])
+            desc_norm = normalize(item.get('description', ''))
+            category_norm = normalize(item.get('category', ''))
+            
+            # Check if trending term appears in title, description, or category
+            if (q_norm in title_norm or q_norm in desc_norm or q_norm in category_norm):
+                direct_matches.append(item)
+        
+        # Combine semantic and direct matches, prioritizing direct matches
+        all_candidates = direct_matches + [item for item in candidates if item not in direct_matches]
+        candidates = all_candidates[:100]  # Limit to avoid too many results
+    
     # apply filters
     filtered = []
     for item in candidates:
@@ -605,7 +675,23 @@ def search(
     def score(item):
         tv = model.encode([item['title']])[0]
         sim = np.dot(q_emb, tv) / (np.linalg.norm(q_emb) * np.linalg.norm(tv))
-        return 0.5 * sim + 0.3 * (item['rating'] / 5) + 0.2 * (1 if normalize(item['title']) in trending_map.get(q_norm[0], []) else 0)
+        
+        # Enhanced scoring for trending queries
+        title_norm = normalize(item['title'])
+        desc_norm = normalize(item.get('description', ''))
+        category_norm = normalize(item.get('category', ''))
+        
+        # Direct match bonus for trending queries
+        direct_match_bonus = 0
+        if q_norm in global_trending or any(q_norm in normalize(trend) for trend in trending_map.get(q_norm[0], [])):
+            if q_norm in title_norm:
+                direct_match_bonus = 0.3  # High bonus for title match
+            elif q_norm in desc_norm or q_norm in category_norm:
+                direct_match_bonus = 0.2  # Medium bonus for desc/category match
+        
+        base_score = 0.5 * sim + 0.3 * (item['rating'] / 5) + 0.2 * (1 if normalize(item['title']) in trending_map.get(q_norm[0], []) else 0)
+        boost = item.get('search_boost', 0) / 100.0  # normalize as needed
+        return base_score + 0.1 * boost + direct_match_bonus
     ranked = sorted(filtered, key=score, reverse=True)
     # format response
     result = []
@@ -625,6 +711,11 @@ def search(
             'synonyms': item.get('synonyms', []),
             'tags': item.get('tags', []),
             'attributes': item.get('attributes', {}),
+            'contextual_data': item.get('contextual_data', {}),
+            'color': item.get('color'),
+            'material': item.get('material'),
+            'finish': item.get('finish'),
+            'search_boost': item.get('search_boost', 0.0),
             'related_ids': item.get('related_ids', [])
         })
     return result
