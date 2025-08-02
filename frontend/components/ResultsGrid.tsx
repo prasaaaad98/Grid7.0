@@ -48,8 +48,11 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
     fetch(`http://localhost:8000/search?${searchParams}`)
       .then(res => res.json())
       .then(data => {
+        // Handle new backend response format with results, total_hits, and facets
+        const products = data.results || data // Fallback to old format if needed
+        
         // Transform backend data to match frontend Product interface
-        const transformedProducts: Product[] = data.map((item: any, index: number) => ({
+        const transformedProducts: Product[] = products.map((item: any, index: number) => ({
           id: item.id || index + 1,
           title: item.title,
           brand: item.brand,
@@ -175,9 +178,9 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
   return (
     <div className="p-2 sm:p-4">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-        {products.map((product) => {
+        {products.map((product, index) => {
           return (
-            <div key={product.id} className="bg-white rounded shadow hover:shadow-lg transition-shadow p-2 sm:p-4">
+            <div key={`${product.id}-${index}`} className="bg-white rounded shadow hover:shadow-lg transition-shadow p-2 sm:p-4">
               <div className="relative mb-2 sm:mb-4">
                 <img
                   src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.svg"}
