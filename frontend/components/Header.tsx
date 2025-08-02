@@ -16,6 +16,15 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
   const [showCart, setShowCart] = useState(false)
   const [currentUser, setCurrentUser] = useState<any>(null)
 
+  const handleHomeClick = () => {
+    // Clear search and go home
+    if (onHomeClick) {
+      onHomeClick()
+    }
+    // Force re-render of search component by dispatching custom event
+    window.dispatchEvent(new CustomEvent('clearSearch'))
+  }
+
   useEffect(() => {
     const updateCartCount = () => {
       const cart = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -55,13 +64,13 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
         <div className="md:hidden">
           {/* Top row - Logo and icons */}
           <div className="flex items-center justify-between mb-2">
-                      <div 
-            className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={onHomeClick}
-          >
-            <div className="text-lg font-bold">Flipkart</div>
-            <div className="text-xs text-yellow-300 ml-1">Plus</div>
-          </div>
+            <div 
+              className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
+              onClick={handleHomeClick}
+            >
+              <div className="text-lg font-bold">Flipkart</div>
+              <div className="text-xs text-yellow-300 ml-1">Plus</div>
+            </div>
 
             <div className="flex items-center space-x-4">
               {currentUser ? (
@@ -100,7 +109,7 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
           {/* Logo */}
           <div 
             className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-            onClick={onHomeClick}
+            onClick={handleHomeClick}
           >
             <div className="text-xl font-bold">Flipkart</div>
             <div className="text-xs text-yellow-300 ml-1">Plus</div>
@@ -165,14 +174,46 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
   const [isFocused, setIsFocused] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
+  // Listen for clear search event from home button
   useEffect(() => {
-    if (!query.trim()) {
+    const handleClearSearch = () => {
+      setQuery("")
       setSuggestions([])
       setShowSuggestions(false)
+      setSelectedIndex(-1)
+    }
+
+    window.addEventListener('clearSearch', handleClearSearch)
+    
+    return () => {
+      window.removeEventListener('clearSearch', handleClearSearch)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!query.trim()) {
+      // Show trending products when search is empty but focused
+      if (isFocused) {
+        const trendingProducts = [
+          "iPhone 15",
+          "Samsung Galaxy S24",
+          "AirPods Pro",
+          "MacBook Air",
+          "iPad",
+          "Sony WH-1000XM5",
+          "Google Pixel 8",
+          "OnePlus 12"
+        ]
+        setSuggestions(trendingProducts)
+        setShowSuggestions(true)
+      } else {
+        setSuggestions([])
+        setShowSuggestions(false)
+      }
       return
     }
 
-    // Get suggestions from backend
+    // Get suggestions from backend when user types
     fetch(`http://localhost:8000/autosuggest?q=${encodeURIComponent(query)}`)
       .then(res => res.json())
       .then(data => {
@@ -185,24 +226,50 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
         setSuggestions([])
         setShowSuggestions(false)
       })
-  }, [query])
+  }, [query, isFocused])
 
-  function handleSelect(selectedQuery: string, shouldSearch: boolean = true) {
+  // Updated handleSelect function to handle both cases consistently
+  function handleSelect(selectedQuery: string) {
+    // Save to recent searches
     const recents = JSON.parse(localStorage.getItem("recentSearches") || "[]")
     localStorage.setItem("recentSearches", JSON.stringify([selectedQuery, ...recents].slice(0, 10)))
+    
+    // Update query state
     setQuery(selectedQuery)
+    
+    // Hide suggestions
     setShowSuggestions(false)
     setSelectedIndex(-1)
+    setIsFocused(false)
+  }
+
+  // Separate function to trigger search
+  function triggerSearch(searchQuery: string = query) {
+    if (!searchQuery.trim()) return
     
-    if (shouldSearch) {
-      onSearch(selectedQuery)
+    // Save to recent searches if not already there
+    const recents = JSON.parse(localStorage.getItem("recentSearches") || "[]")
+    if (!recents.includes(searchQuery)) {
+      localStorage.setItem("recentSearches", JSON.stringify([searchQuery, ...recents].slice(0, 10)))
     }
+    
+    // Trigger the search
+    onSearch(searchQuery)
+  }
+
+  // Handle mouse click on suggestions
+  function handleSuggestionClick(suggestion: string) {
+    handleSelect(suggestion)
+    // Small delay to ensure state is updated before triggering search
+    setTimeout(() => {
+      triggerSearch(suggestion)
+    }, 0)
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (!showSuggestions || suggestions.length === 0) {
       if (e.key === "Enter") {
-        handleSelect(query, true) // Search when Enter is pressed without suggestions
+        triggerSearch() // Just trigger search with current query
       }
       return
     }
@@ -221,9 +288,13 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       case "Enter":
         e.preventDefault()
         if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
-          handleSelect(suggestions[selectedIndex], true) // Search when Enter is pressed with selection
+          const selectedSuggestion = suggestions[selectedIndex]
+          handleSelect(selectedSuggestion)
+          setTimeout(() => {
+            triggerSearch(selectedSuggestion)
+          }, 0)
         } else {
-          handleSelect(query, true) // Search current query when Enter is pressed
+          triggerSearch() // Search current query when Enter is pressed
         }
         break
       case "Escape":
@@ -256,17 +327,22 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
           }}
           className="flex-1 px-4 py-2 text-gray-800 outline-none rounded-l"
         />
-        <button onClick={() => handleSelect(query, true)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
+        <button onClick={() => triggerSearch()} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
           <Search size={20} />
         </button>
       </div>
 
       {showSuggestions && suggestions.length > 0 && (
         <div className="absolute top-full left-0 bg-white border border-gray-200 rounded-b shadow-lg z-50" style={{ width: 'calc(100% - 48px)' }}>
+          {!query.trim() && (
+            <div className="px-4 py-2 text-xs text-gray-500 border-b bg-gray-50">
+              Trending Searches
+            </div>
+          )}
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              onClick={() => handleSelect(suggestion, false)} // Don't search when clicking
+              onClick={() => handleSuggestionClick(suggestion)}
               className={`px-4 py-2 cursor-pointer text-gray-800 border-b last:border-b-0 ${
                 index === selectedIndex 
                   ? 'bg-blue-100 text-blue-800' 
