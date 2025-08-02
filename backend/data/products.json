@@ -16180,5 +16180,779 @@
         80.2707
       ]
     }
+  },
+  {
+    "id": 210,
+    "brand": "Apple",
+    "title": "Apple iPhone 15",
+    "category": "mobile",
+    "description": "The Apple iPhone 15 features the latest A17 Pro chip for exceptional performance. With a 6.1-inch Super Retina XDR display and advanced camera system including a 48MP main camera, this smartphone delivers stunning photos and videos. The device comes with 128GB storage and features the innovative Dynamic Island. With 5G connectivity and all-day battery life, the iPhone 15 offers a premium smartphone experience with cutting-edge technology and seamless integration with the Apple ecosystem.",
+    "price": 79999.0,
+    "subcategories": [
+      "5g smartphones",
+      "premium phones",
+      "apple phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "iphone 15",
+      "apple iphone",
+      "5g smartphone",
+      "premium phone"
+    ],
+    "attributes": {
+      "display": "6.1-inch Super Retina XDR",
+      "processor": "A17 Pro chip",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    "tags": [
+      "iphone 15",
+      "apple",
+      "5g",
+      "premium",
+      "smartphone"
+    ],
+    "related_ids": [
+      211,
+      213
+    ],
+    "retail_price": 89999.0,
+    "review_count": 2345,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.7,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 100,
+    "how_many_purchased": 5670,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "premium users, photography enthusiasts, apple ecosystem users",
+      "material": "Glass, Metal",
+      "origin": "China"
+    },
+    "search_boost": 5,
+    "color": "black",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 211,
+    "brand": "Samsung",
+    "title": "Samsung Galaxy S24",
+    "category": "mobile",
+    "description": "The Samsung Galaxy S24 is a flagship smartphone featuring a 6.2-inch Dynamic AMOLED 2X display with 120Hz refresh rate. Powered by the Snapdragon 8 Gen 3 processor, it delivers exceptional performance for gaming and multitasking. Comes with 8GB RAM and 256GB storage. Features a 50MP main camera with OIS, 12MP ultra-wide, and 10MP telephoto camera. The 4000mAh battery supports 25W fast charging and 15W wireless charging. With 5G connectivity and premium build quality, this phone offers a premium Android experience.",
+    "price": 89999.0,
+    "subcategories": [
+      "5g smartphones",
+      "premium phones",
+      "samsung phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "samsung galaxy",
+      "samsung galaxy s24",
+      "5g smartphone",
+      "premium phone"
+    ],
+    "attributes": {
+      "display": "6.2-inch Dynamic AMOLED 2X",
+      "processor": "Snapdragon 8 Gen 3",
+      "ram": "8GB",
+      "storage": "256GB"
+    },
+    "tags": [
+      "samsung galaxy",
+      "samsung",
+      "5g",
+      "premium",
+      "smartphone"
+    ],
+    "related_ids": [
+      210
+    ],
+    "retail_price": 99999.0,
+    "review_count": 1890,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.6,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 75,
+    "how_many_purchased": 4230,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "premium users, gamers, photography enthusiasts",
+      "material": "Glass, Metal",
+      "origin": "South Korea"
+    },
+    "search_boost": 5,
+    "color": "phantom black",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.7041,
+        77.1025
+      ]
+    }
+  },
+  {
+    "id": 212,
+    "brand": "Ethnic Wear",
+    "title": "Traditional Kurta for Men",
+    "category": "ethnic",
+    "description": "Elegant traditional kurta for men, perfect for festive occasions and formal events. Made from premium cotton fabric, this kurta features intricate embroidery and traditional designs. The comfortable fit and breathable material make it ideal for long hours of wear. Available in various colors and sizes, this kurta pairs beautifully with churidar pants or dhoti. The detailed workmanship and quality fabric ensure durability and style. Perfect for weddings, festivals, and cultural celebrations.",
+    "price": 1499.0,
+    "subcategories": [
+      "men's ethnic wear",
+      "traditional clothing",
+      "festival wear"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Ethnic Wear",
+      "Kurtas"
+    ],
+    "synonyms": [
+      "kurta",
+      "traditional kurta",
+      "ethnic wear",
+      "men's kurta"
+    ],
+    "attributes": {
+      "fit": "regular fit",
+      "material": "cotton",
+      "sleeve": "full sleeve",
+      "neck": "round neck"
+    },
+    "tags": [
+      "kurta",
+      "ethnic",
+      "traditional",
+      "men's fashion",
+      "festival wear"
+    ],
+    "related_ids": [
+      
+    ],
+    "retail_price": 1999.0,
+    "review_count": 567,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "festive",
+      "wedding"
+    ],
+    "stock": 200,
+    "how_many_purchased": 3450,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "festivals, weddings, traditional occasions",
+      "material": "Cotton",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "white",
+    "material": "cotton",
+    "finish": "embroidered",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "20% off on ethnic wear",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Jaipur",
+      "coords": [
+        26.9124,
+        75.7873
+      ]
+    }
+  },
+  {
+    "id": 213,
+    "brand": "Apple",
+    "title": "Apple AirPods Pro",
+    "category": "audio",
+    "description": "Experience premium audio with the Apple AirPods Pro wireless earbuds. These sleek, in-ear earbuds deliver crystal-clear sound with active noise cancellation and transparency mode. Features include spatial audio, up to 30 hours of total playback time, and IPX4 water resistance. The earbuds come with a MagSafe charging case that provides multiple charges. With force sensor controls for music playback and calls, these earbuds are perfect for workouts, commuting, or daily use. The ergonomic design ensures a comfortable fit for extended listening sessions.",
+    "price": 24999.0,
+    "subcategories": [
+      "wireless earbuds",
+      "bluetooth headphones",
+      "audio accessories"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Earbuds",
+      "Wireless Earbuds"
+    ],
+    "synonyms": [
+      "airpods",
+      "apple airpods pro",
+      "wireless earbuds",
+      "bluetooth earbuds"
+    ],
+    "attributes": {
+      "connectivity": "bluetooth 5.0",
+      "battery_life": "30 hours total",
+      "water_resistance": "IPX4",
+      "noise_cancellation": "active"
+    },
+    "tags": [
+      "airpods",
+      "apple",
+      "wireless earbuds",
+      "bluetooth",
+      "noise cancellation"
+    ],
+    "related_ids": [
+      210,
+      211
+    ],
+    "retail_price": 29999.0,
+    "review_count": 3456,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.5,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 150,
+    "how_many_purchased": 8900,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "music lovers, commuters, fitness enthusiasts",
+      "material": "Plastic, Silicon",
+      "origin": "China"
+    },
+    "search_boost": 5,
+    "color": "white",
+    "material": "plastic",
+    "finish": "matte",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "10% off with Apple card",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 214,
+    "brand": "Dell",
+    "title": "Dell Inspiron 15 Laptop",
+    "category": "laptop",
+    "description": "The Dell Inspiron 15 is a powerful laptop featuring a 15.6-inch FHD display with anti-glare technology. Powered by Intel Core i5 processor with 8GB RAM and 512GB SSD storage. The laptop comes with Windows 11 pre-installed and features a backlit keyboard for comfortable typing. With integrated Intel graphics and a 3-cell battery, it's perfect for work, study, and entertainment. The slim design and lightweight build make it portable and easy to carry.",
+    "price": 45999.0,
+    "subcategories": [
+      "business laptops",
+      "student laptops",
+      "dell laptops"
+    ],
+    "category_path": [
+      "Electronics",
+      "Computers",
+      "Laptops",
+      "Business Laptops"
+    ],
+    "synonyms": [
+      "laptop",
+      "dell laptop",
+      "inspiron laptop",
+      "business laptop"
+    ],
+    "attributes": {
+      "display": "15.6-inch FHD",
+      "processor": "Intel Core i5",
+      "ram": "8GB",
+      "storage": "512GB SSD"
+    },
+    "tags": [
+      "laptop",
+      "dell",
+      "business",
+      "student",
+      "computer"
+    ],
+    "related_ids": [
+    ],
+    "retail_price": 52999.0,
+    "review_count": 1234,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": [
+      "allTime",
+      "back to school"
+    ],
+    "stock": 80,
+    "how_many_purchased": 2340,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "students, professionals, business users",
+      "material": "Plastic, Metal",
+      "origin": "USA"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "plastic",
+    "finish": "matte",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Bangalore",
+      "coords": [
+        12.9716,
+        77.5946
+      ]
+    }
+  },
+  {
+    "id": 215,
+    "brand": "Nike",
+    "title": "Nike Air Max Running Shoes",
+    "category": "shoes",
+    "description": "The Nike Air Max running shoes feature innovative Air technology for maximum comfort and cushioning. Made from breathable mesh upper with synthetic overlays, these shoes provide excellent support and flexibility. The Air Max unit in the heel delivers responsive cushioning with every step. The rubber outsole offers excellent traction on various surfaces. Perfect for running, walking, and daily wear, these shoes combine style and performance for the ultimate athletic experience.",
+    "price": 8999.0,
+    "subcategories": [
+      "running shoes",
+      "sports shoes",
+      "athletic footwear"
+    ],
+    "category_path": [
+      "Footwear",
+      "Sports",
+      "Running Shoes"
+    ],
+    "synonyms": [
+      "shoes",
+      "nike shoes",
+      "running shoes",
+      "sports shoes"
+    ],
+    "attributes": {
+      "type": "running",
+      "material": "mesh upper",
+      "sole": "rubber",
+      "closure": "lace-up"
+    },
+    "tags": [
+      "shoes",
+      "nike",
+      "running",
+      "sports",
+      "athletic"
+    ],
+    "related_ids": [
+    
+    ],
+    "retail_price": 10999.0,
+    "review_count": 2345,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "allTime",
+      "fitness"
+    ],
+    "stock": 300,
+    "how_many_purchased": 8900,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "runners, athletes, fitness enthusiasts",
+      "material": "Mesh, Rubber",
+      "origin": "USA"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "mesh",
+    "finish": "textured",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "15% off on sports shoes",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [
+        13.0827,
+        80.2707
+      ]
+    }
+  },
+  {
+    "id": 216,
+    "brand": "Apple",
+    "title": "Apple Watch Series 9",
+    "category": "watch",
+    "description": "The Apple Watch Series 9 is the most advanced smartwatch featuring a stunning Always-On Retina display and powerful S9 chip. With health monitoring features including heart rate, blood oxygen, and ECG, it helps you stay on top of your wellness. The watch includes GPS, cellular connectivity, and water resistance up to 50m. Features include fitness tracking, notifications, and seamless integration with iPhone. The customizable watch faces and bands make it a perfect companion for both fitness and style.",
+    "price": 39999.0,
+    "subcategories": [
+      "smartwatches",
+      "fitness trackers",
+      "apple watch"
+    ],
+    "category_path": [
+      "Electronics",
+      "Wearables",
+      "Smartwatches"
+    ],
+    "synonyms": [
+      "watch",
+      "apple watch",
+      "smartwatch",
+      "fitness tracker"
+    ],
+    "attributes": {
+      "display": "Always-On Retina",
+      "processor": "S9 chip",
+      "connectivity": "GPS, Cellular",
+      "water_resistance": "50m"
+    },
+    "tags": [
+      "watch",
+      "apple",
+      "smartwatch",
+      "fitness",
+      "health"
+    ],
+    "related_ids": [
+      210,
+      211,
+      213
+    ],
+    "retail_price": 44999.0,
+    "review_count": 1890,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.6,
+    "best_time_to_buy": [
+      "allTime",
+      "fitness"
+    ],
+    "stock": 120,
+    "how_many_purchased": 4560,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "fitness enthusiasts, health conscious users, apple ecosystem",
+      "material": "Aluminum, Glass",
+      "origin": "China"
+    },
+    "search_boost": 5,
+    "color": "midnight",
+    "material": "aluminum",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 217,
+    "brand": "Sony",
+    "title": "Sony WH-1000XM5 Wireless Headphones",
+    "category": "audio",
+    "description": "The Sony WH-1000XM5 wireless headphones deliver exceptional sound quality with industry-leading noise cancellation. Features include 30-hour battery life, quick charge, and touch controls. The headphones come with a premium carrying case and support for multiple audio codecs. With comfortable ear cushions and adjustable headband, they provide long-lasting comfort for extended listening sessions. Perfect for music lovers, travelers, and professionals who demand the best audio experience.",
+    "price": 29999.0,
+    "subcategories": [
+      "wireless headphones",
+      "noise cancelling headphones",
+      "premium audio"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Headphones",
+      "Wireless Headphones"
+    ],
+    "synonyms": [
+      "headphones",
+      "sony headphones",
+      "wireless headphones",
+      "noise cancelling"
+    ],
+    "attributes": {
+      "connectivity": "bluetooth 5.2",
+      "battery_life": "30 hours",
+      "noise_cancellation": "industry-leading",
+      "type": "over-ear"
+    },
+    "tags": [
+      "headphones",
+      "sony",
+      "wireless",
+      "noise cancellation",
+      "premium audio"
+    ],
+    "related_ids": [
+      213,
+      214
+    ],
+    "retail_price": 34999.0,
+    "review_count": 2345,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.7,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 80,
+    "how_many_purchased": 3450,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "music lovers, travelers, professionals",
+      "material": "Plastic, Leather",
+      "origin": "Japan"
+    },
+    "search_boost": 5,
+    "color": "black",
+    "material": "plastic",
+    "finish": "matte",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "10% off on premium audio",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.7041,
+        77.1025
+      ]
+    }
+  },
+  {
+    "id": 218,
+    "brand": "Spigen",
+    "title": "Spigen Ultra Hybrid Mobile Cover",
+    "category": "accessories",
+    "description": "The Spigen Ultra Hybrid mobile cover provides ultimate protection for your smartphone with a clear back design that showcases your phone's beauty. Made from TPU and polycarbonate, this case offers military-grade drop protection. The raised bezel design protects your screen and camera from scratches. The precise cutouts ensure easy access to all ports and buttons. Available for various phone models, this case combines style and protection perfectly.",
+    "price": 999.0,
+    "subcategories": [
+      "mobile covers",
+      "phone protection",
+      "clear cases"
+    ],
+    "category_path": [
+      "Electronics",
+      "Accessories",
+      "Mobile Covers"
+    ],
+    "synonyms": [
+      "mobile cover",
+      "phone case",
+      "spigen case",
+      "protective cover"
+    ],
+    "attributes": {
+      "material": "TPU and Polycarbonate",
+      "protection": "military-grade",
+      "design": "clear back",
+      "compatibility": "universal"
+    },
+    "tags": [
+      "mobile cover",
+      "spigen",
+      "protection",
+      "clear case",
+      "phone accessories"
+    ],
+    "related_ids": [
+      210,
+      211,
+      212,
+      213,
+      214
+    ],
+    "retail_price": 1499.0,
+    "review_count": 4567,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 500,
+    "how_many_purchased": 12340,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "all smartphone users, protection seekers",
+      "material": "TPU, Polycarbonate",
+      "origin": "South Korea"
+    },
+    "search_boost": 4,
+    "color": "clear",
+    "material": "tpu",
+    "finish": "transparent",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Buy 2 Get 1 Free",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [
+        13.0827,
+        80.2707
+      ]
+    }
+  },
+  {
+    "id": 219,
+    "brand": "JBL",
+    "title": "JBL Flip 6 Bluetooth Speaker",
+    "category": "audio",
+    "description": "The JBL Flip 6 portable Bluetooth speaker delivers powerful sound with deep bass and crisp highs. Features include 12 hours of playtime, IPX7 waterproof rating, and PartyBoost for connecting multiple speakers. The speaker comes with a durable fabric design and integrated carrying strap for easy portability. Perfect for outdoor activities, parties, and home entertainment. With JBL's signature sound quality, this speaker provides an immersive audio experience wherever you go.",
+    "price": 7999.0,
+    "subcategories": [
+      "bluetooth speakers",
+      "portable speakers",
+      "wireless audio"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Speakers",
+      "Bluetooth Speakers"
+    ],
+    "synonyms": [
+      "bluetooth speaker",
+      "jbl speaker",
+      "portable speaker",
+      "wireless speaker"
+    ],
+    "attributes": {
+      "connectivity": "bluetooth 5.1",
+      "battery_life": "12 hours",
+      "water_resistance": "IPX7",
+      "size": "portable"
+    },
+    "tags": [
+      "bluetooth speaker",
+      "jbl",
+      "portable",
+      "wireless",
+      "audio"
+    ],
+    "related_ids": [
+      
+    ],
+    "retail_price": 9999.0,
+    "review_count": 3456,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 200,
+    "how_many_purchased": 8900,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "music lovers, outdoor enthusiasts, party organizers",
+      "material": "Plastic, Fabric",
+      "origin": "USA"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "plastic",
+    "finish": "textured",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "15% off on audio products",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
   }
 ]

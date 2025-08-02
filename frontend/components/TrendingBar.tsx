@@ -22,7 +22,7 @@ export default function TrendingBar({ onTrendingClick }: TrendingBarProps) {
     <div className="bg-white border-b shadow-sm">
       <div className="px-4 py-3">
         <div className="flex items-center space-x-3">
-          <span className="text-xs md:text-sm font-semibold text-gray-700 whitespace-nowrap">🔥 Trending:</span>
+          <span className="text-xs md:text-sm font-semibold text-gray-700 whitespace-nowrap"> Popular Products:</span>
           <div className="flex space-x-2 md:space-x-3 overflow-x-auto scrollbar-hide">
             {trendingItems.map((item) => (
               <button
