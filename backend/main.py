@@ -6,6 +6,7 @@ import json
 import faiss
 import numpy as np
 import re
+import math
 from sentence_transformers import SentenceTransformer
 from fastapi.middleware.cors import CORSMiddleware
 from rapidfuzz import process, fuzz
@@ -19,6 +20,9 @@ from collections import defaultdict
 # Load product data with extended schema
 with open("data/products.json", encoding='utf-8') as f:
     data = json.load(f)
+
+# Calculate max review count for normalization
+MAX_REVIEWS = max(p.get('review_count', 0) for p in data) or 1
 
 # Align fields and defaults
 for item in data:
@@ -502,8 +506,8 @@ def autosuggest(q: str = Query("", min_length=0)):
     fuzzy_hits = []
     if len(suggestions) < 3:  # Only run fuzzy if we need more suggestions
         if len(qn.split()) == 1:
-            fuzzy_scorer = fuzz.token_set_ratio  # less partial-match friendly
-            fuzzy_threshold = 80
+            fuzzy_scorer = fuzz.partial_ratio  # more forgiving for single tokens
+            fuzzy_threshold = 60
         else:
             fuzzy_scorer = fuzz.token_set_ratio
             fuzzy_threshold = 60
@@ -511,9 +515,12 @@ def autosuggest(q: str = Query("", min_length=0)):
         fam = process.extract(qn, suggestion_phrases, scorer=fuzzy_scorer, limit=10)
         fuzzy_hits = [m[0] for m in fam if m[1] >= fuzzy_threshold and m[0] not in suggestions]
         
-        # Require word-boundary matches in fuzzy hits
-        fuzzy_hits = [ph for ph in fuzzy_hits
-                      if re.search(rf"\b{re.escape(qn)}\b", ph)]
+        # only keep phonetically similar terms
+        q_phonetic = doublemetaphone(qn)[0]
+        fuzzy_hits = [
+            ph for ph in fuzzy_hits
+            if phrase_phonetics.get(ph) == q_phonetic
+        ]
         
         suggestions += fuzzy_hits
     # phonetic
@@ -539,34 +546,38 @@ def autosuggest(q: str = Query("", min_length=0)):
         if added >= 2:
             break
 
-    # Prefix→Query templating (emit "{qn} for <tag>" or "{qn} in <category>")
+    # ===== KG expansions & templating (seed-based) =====
+    # Extract the "seed" word (first token) from the normalized prefix
+    tokens = qn.split()
+    seed = tokens[0] if tokens else qn
+
     templated = []
-    if G.has_node(qn):
-        for neigh in G.neighbors(qn):
+    if G.has_node(seed):
+        for neigh in G.neighbors(seed):
             ntype = G.nodes[neigh]['type']
-            # only from relevant node‑types
-            if ntype == 'tag':
-                cand = f"{qn} for {neigh}"
+            # Build the appropriate template
+            if ntype in ('tag', 'contextual'):
+                cand = f"{seed} for {neigh}"
+            elif ntype in ('attribute', 'material', 'finish'):
+                cand = f"{seed} with {neigh}"
             elif ntype == 'category':
-                cand = f"{qn} in {neigh}"
-            elif ntype == 'attribute':
-                cand = f"{qn} with {neigh}"
-            elif ntype == 'contextual':
-                cand = f"{qn} for {neigh}"
-            elif ntype == 'color':
-                cand = f"{qn} in {neigh}"
-            elif ntype == 'finish':
-                cand = f"{qn} with {neigh}"
+                cand = f"{seed} in {neigh}"
             else:
                 continue
-            if cand not in suggestions and cand not in templated:
-                templated.append(cand)
-    # inject up to 2 new templates
-    suggestions += templated[:2]
 
-    # price‑range templates for “under”
+            # Only include templates that match what the user has typed so far
+            if cand.startswith(qn) and cand not in templated:
+                templated.append(cand)
+
+    # Inject up to two templates
+    suggestions.extend(templated[:2])
+
+    # Mark all template suggestions for bonus scoring
+    template_set = set(templated[:2])
+
+    # price‑range templates for "under"
     # e.g. prefix qn = "shirt under"
-    # price‑range templates for “under”
+    # price‑range templates for "under"
     # Trigger these suggestions earlier based on prefixes of "under"
     tokens = qn.split()
     if tokens and tokens[-1] == "under":
@@ -590,29 +601,51 @@ def autosuggest(q: str = Query("", min_length=0)):
             if len(brands_seen) >= 3:
                 break
 
-    # Boost by search_boost
-    # compute highest boost per phrase
-    boost_map = {}
+    # Compute comprehensive quality scores for suggestions
+    scores = {}
     for ph in suggestions:
-        product_indices = phrase_to_products.get(ph, [])
-        if product_indices:
-            boost_map[ph] = max(data[i].get('search_boost', 0) for i in product_indices)
-        else:
-            boost_map[ph] = 0
-    # stable re-ordering
-    suggestions.sort(key=lambda ph: boost_map.get(ph, 0), reverse=True)
+        prod_ids = phrase_to_products.get(ph, [])
+        if not prod_ids:
+            scores[ph] = 0
+            continue
 
-    # dedupe (case-insensitive) & limit
+        # take the max boost among them
+        boost_val = max(data[i].get('search_boost', 0) for i in prod_ids)
+        # best rating normalized to 0–1
+        rating_val = max(data[i].get('rating', 0) for i in prod_ids) / 5.0
+        # most-reviewed product, log-scaled 0–1
+        reviews = max(data[i].get('review_count', 0) for i in prod_ids)
+        review_val = math.log1p(reviews) / math.log1p(MAX_REVIEWS)
+
+        # combine with w1+w2+w3 = 1 (boosted search_boost for brand-driven corrections)
+        scores[ph] = 0.7 * boost_val + 0.2 * rating_val + 0.1 * review_val
+
+        # *** TEMPLATE BOOST ***
+        if ph in template_set:
+            scores[ph] += 1.0   # give a flat +1 score boost
+
+    # 1) Separate out the templates
+    templates = [ph for ph in suggestions if ph in template_set]
+
+    # 2) Collect all other suggestions
+    others = [ph for ph in suggestions if ph not in template_set]
+
+    # 3) Sort the "others" by quality score
+    others.sort(key=lambda ph: scores.get(ph, 0), reverse=True)
+
+    # 4) Build the final list: templates first, then top-ranked others
+    max_suggestions = 8
+    final = templates[:2] + others[: (max_suggestions - len(templates[:2]))]
+
+    # 5) Dedupe & Title-case
     seen_norm = set()
     res = []
-    for s in suggestions:
+    for s in final:
         sn = normalize(s)
         if sn not in seen_norm and len(s) > 1:
             seen_norm.add(sn)
-            res.append(s)
-        if len(res) >= 8:
-            break
-    res = [s.title() for s in res]
+            res.append(s.title())
+
     return res
 
 @app.get("/search", response_model=List[Product])
