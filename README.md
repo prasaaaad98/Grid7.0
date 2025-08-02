@@ -50,6 +50,10 @@ source venv/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
+b.1 After above installations, run this as well
+```sh
+python -m spacy download en_core_web_sm
+```
 
 #### c. Prepare the product data
 - The backend uses `backend/data/products.json` as its database.
