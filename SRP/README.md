@@ -74,20 +74,16 @@ curl -XPOST -H "Content-Type: application/json" ^
 
 
 Windows (CMD or PowerShell):
-curl -X POST "http://localhost:9200/_ltr/_featureset/smartsearch_ltr_features" `
-  -H "Content-Type: application/json" `
-  --data-binary "@featureset.json"
+curl -X POST "http://localhost:9200/_ltr/_featureset/smartsearch_ltr_features" -H "Content-Type: application/json" --data-binary "@featureset.json"
 
 
 ✅ Upload Model
 Linux/macOS:
 curl -XPOST -H "Content-Type: application/json" ^
   --data-binary @model.json ^
-  http://localhost:9200/_ltr/_model/smartsearch_ltr_model
+  http://localhost:9200/_ltr/_model/smartsearch_linear_model
 Windows (CMD or PowerShell):
-curl -X POST "http://localhost:9200/_ltr/_model/smartsearch_ltr_model" `
-  -H "Content-Type: application/json" `
-  --data-binary "@model.json"
+curl -X POST "http://localhost:9200/_ltr/_model/smartsearch_linear_model" -H "Content-Type: application/json"  --data-binary "@model.json"
 
   
 ✅ Done!
