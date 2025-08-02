@@ -685,8 +685,8 @@ def autosuggest(q: str = Query("", min_length=0)):
 
     return res
 
-@lru_cache(maxsize=256)
-def _compute_search(q_norm, min_price, max_price, min_rating, brand, category):
+# Remove caching for now to debug sorting
+def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, sort_by="relevance"):
     # 1. Encode normalized query
     q_emb = model.encode([q_norm])
 
@@ -729,6 +729,24 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category):
         score = 0.4 * sim + 0.2 * rating_norm + 0.2 * boost_norm + 0.2 * review_norm
         scored.append((score, item))
 
+    # Apply sorting based on sort_by parameter
+    print(f"Sorting by: {sort_by}")
+    print(f"Before sorting - first 3 products: {[(item[1]['title'], item[1]['price']) for item in scored[:3]]}")
+    
+    if sort_by == "price_low_high":
+        scored.sort(key=lambda x: x[1]["price"])
+    elif sort_by == "price_high_low":
+        scored.sort(key=lambda x: x[1]["price"], reverse=True)
+    elif sort_by == "rating":
+        scored.sort(key=lambda x: x[1]["rating"], reverse=True)
+    elif sort_by == "newest":
+        # Assuming newer products have higher IDs (you might need to adjust this based on your data)
+        scored.sort(key=lambda x: x[1]["id"], reverse=True)
+    else:  # relevance (default)
+        scored.sort(key=lambda x: x[0], reverse=True)  # Sort by relevance score
+    
+    print(f"After sorting - first 3 products: {[(item[1]['title'], item[1]['price']) for item in scored[:3]]}")
+
     # Related-IDs interleaving
     final_list = []
     for score, item in sorted(scored, key=lambda x: x[0], reverse=True):
@@ -739,6 +757,35 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category):
                 final_list.append(related)
         if len(final_list) >= 10:
             break
+
+    # Identify sponsored product (highest search_boost, or least related if tied)
+    # Exclude the first product (most relevant) from sponsored consideration
+    sponsored_id = None
+    if len(final_list) > 1:  # Need at least 2 products to have a sponsored one
+        # Consider all products except the first one (most relevant)
+        remaining_products = final_list[1:]
+        
+        # Find products with highest search_boost among remaining products
+        max_boost = max(item.get("search_boost", 0) for item in remaining_products)
+        high_boost_items = [item for item in remaining_products if item.get("search_boost", 0) == max_boost]
+        
+        if len(high_boost_items) == 1:
+            # Only one product with highest boost
+            sponsored_id = high_boost_items[0]["id"]
+        elif len(high_boost_items) > 1:
+            # Multiple products with same boost, find least related to query
+            q_emb = model.encode([q_norm])
+            least_related = None
+            lowest_sim = 1.0
+            
+            for item in high_boost_items:
+                title_vec = model.encode([item["title"]])[0]
+                sim = np.dot(q_emb, title_vec) / (np.linalg.norm(q_emb) * np.linalg.norm(title_vec))
+                if sim < lowest_sim:
+                    lowest_sim = sim
+                    least_related = item
+            
+            sponsored_id = least_related["id"] if least_related else None
 
     # Facets & total-hits
     total_hits = len(filtered)
@@ -771,6 +818,7 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category):
 
     return {
         "total_hits": total_hits,
+        "sponsored_id": sponsored_id,
         "results": [serialize(p) for p in final_list[:10]],
         "facets": {
             "brands": brand_facet.most_common(),
@@ -785,7 +833,8 @@ def search(
     max_price: float = 1e6,
     min_rating: float = 0,
     brand: str = "",
-    category: str = ""
+    category: str = "",
+    sort: str = "relevance"
 ):
     # normalize & translate
     q_orig = q
@@ -795,7 +844,7 @@ def search(
         q_norm = qt
     
     # Call the cached search function
-    result = _compute_search(q_norm, min_price, max_price, min_rating, brand, category)
+    result = _compute_search(q_norm, min_price, max_price, min_rating, brand, category, sort)
     
     # Return the enhanced response with facets
     return result
