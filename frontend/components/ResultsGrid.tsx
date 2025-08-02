@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Star, Heart } from "lucide-react"
+import { getEstimatedDeliveryDays } from "@/lib/deliveryUtils"
 
 interface Product {
   id: number
@@ -15,6 +16,11 @@ interface Product {
   description: string
   assured_badge?: boolean
   isSponsored?: boolean
+  warehouse_loc?: {
+    name: string
+    coords: [number, number]
+  }
+  calculatedDeliveryDays?: number
 }
 
 interface ResultsGridProps {
@@ -23,13 +29,20 @@ interface ResultsGridProps {
   sort: string
   userLat: number | null
   userLon: number | null
+  onLoadingChange?: (loading: boolean) => void
 }
 
-export default function ResultsGrid({ query, filters, sort, userLat, userLon }: ResultsGridProps) {
+export default function ResultsGrid({ query, filters, sort, userLat, userLon, onLoadingChange }: ResultsGridProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
   
   console.log('ResultsGrid render - sort:', sort, 'query:', query)
+
+  // Update parent loading state when our loading state changes
+  const updateLoading = (isLoading: boolean) => {
+    setLoading(isLoading)
+    onLoadingChange?.(isLoading)
+  }
 
   useEffect(() => {
     if (!query.trim()) {
@@ -37,7 +50,7 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
       return
     }
 
-    setLoading(true)
+    updateLoading(true)
 
     // Real backend call
     const searchParams = new URLSearchParams({
@@ -60,27 +73,67 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
         const sponsoredId = data.sponsored_id // Get sponsored product ID
         
         // Transform backend data to match frontend Product interface
-        const transformedProducts: Product[] = products.map((item: any, index: number) => ({
-          id: item.id || index + 1,
-          title: item.title,
-          brand: item.brand,
-          category: item.category,
-          price: item.price,
-          retail_price: item.retail_price,
-          images: item.images,
-          rating: item.rating,
-          description: item.description,
-          assured_badge: item.assured_badge,
-          isSponsored: item.id === 1, // Simple logic - first product could be sponsored
-        }))
-        console.log('Setting products:', transformedProducts.slice(0, 3).map(p => ({ title: p.title, price: p.price })))
+        let transformedProducts: Product[] = products.map((item: any, index: number) => {
+          const product: Product = {
+            id: item.id || index + 1,
+            title: item.title,
+            brand: item.brand,
+            category: item.category,
+            price: item.price,
+            retail_price: item.retail_price,
+            images: item.images,
+            rating: item.rating,
+            description: item.description,
+            assured_badge: item.assured_badge,
+            isSponsored: item.id === 1, // Simple logic - first product could be sponsored
+            warehouse_loc: item.warehouse_loc
+          }
+
+          // Calculate delivery days - ONLY use coordinates, no hardcoded fallbacks
+          if (item.warehouse_loc?.coords && userLat && userLon) {
+            // Dynamic calculation based on distance
+            const [warehouseLat, warehouseLon] = item.warehouse_loc.coords
+            product.calculatedDeliveryDays = getEstimatedDeliveryDays(
+              userLat, 
+              userLon, 
+              warehouseLat, 
+              warehouseLon
+            )
+            console.log(`🚚 Product ${item.title}: User(${userLat.toFixed(2)}, ${userLon.toFixed(2)}) -> ${item.warehouse_loc.name}(${warehouseLat}, ${warehouseLon}) = ${product.calculatedDeliveryDays} days`)
+          } else {
+            // Skip products without coordinates or user location
+            if (!item.warehouse_loc?.coords) {
+              console.log(`❌ Product ${item.title}: No warehouse coordinates - skipping`)
+              return null // Skip this product
+            }
+            if (!userLat || !userLon) {
+              console.log(`⚠️ Product ${item.title}: No user location available yet`)
+              product.calculatedDeliveryDays = 5 // Temporary placeholder until location is available
+            }
+          }
+
+          return product
+        }).filter(Boolean) // Remove null products)
+
+        // Apply delivery filter
+        if (filters.deliveryDays < 7) {
+          transformedProducts = transformedProducts.filter(product => 
+            (product.calculatedDeliveryDays || 7) <= filters.deliveryDays
+          )
+        }
+
+        console.log('Setting products:', transformedProducts.slice(0, 3).map(p => ({ 
+          title: p.title, 
+          price: p.price, 
+          deliveryDays: p.calculatedDeliveryDays 
+        })))
         setProducts(transformedProducts)
       })
       .catch(error => {
         console.error('Error fetching search results:', error)
         setProducts([]) // Just set empty array on error
       })
-      .finally(() => setLoading(false))
+      .finally(() => updateLoading(false))
   }, [query, filters, sort, userLat, userLon])
 
   const addToCart = (product: Product) => {
@@ -185,6 +238,18 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
                   </span>
                 )}
               </div>
+
+              {/* Delivery Information */}
+              {product.calculatedDeliveryDays && (
+                <div className="mb-1 sm:mb-2">
+                  <span className="text-xs text-green-600 font-medium">
+                    📦 Delivery in {product.calculatedDeliveryDays} day{product.calculatedDeliveryDays > 1 ? 's' : ''}
+                    {product.warehouse_loc?.name && (
+                      <span className="text-gray-500 ml-1">from {product.warehouse_loc.name}</span>
+                    )}
+                  </span>
+                </div>
+              )}
 
               <div className="space-y-1 sm:space-y-2">
                 <button

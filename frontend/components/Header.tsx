@@ -173,6 +173,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
+  const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null)
 
   // Listen for clear search event from home button
   useEffect(() => {
@@ -189,6 +190,30 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       window.removeEventListener('clearSearch', handleClearSearch)
     }
   }, [])
+
+  // Global ESC key handler
+  useEffect(() => {
+    const handleGlobalEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        // Close suggestions and blur input
+        setShowSuggestions(false)
+        setSelectedIndex(-1)
+        setIsFocused(false)
+        
+        // Blur the input if it's focused
+        if (inputRef && document.activeElement === inputRef) {
+          inputRef.blur()
+        }
+      }
+    }
+
+    // Add global listener
+    document.addEventListener('keydown', handleGlobalEscape)
+    
+    return () => {
+      document.removeEventListener('keydown', handleGlobalEscape)
+    }
+  }, [inputRef])
 
   useEffect(() => {
     if (!query.trim()) {
@@ -298,8 +323,14 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
         }
         break
       case "Escape":
+        e.preventDefault()
         setShowSuggestions(false)
         setSelectedIndex(-1)
+        setIsFocused(false)
+        // Blur the input field
+        if (e.target instanceof HTMLInputElement) {
+          e.target.blur()
+        }
         break
     }
   }
@@ -308,6 +339,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
     <div className="relative">
       <div className="flex bg-white rounded">
         <input
+          ref={(el) => setInputRef(el)}
           type="text"
           placeholder="Search for products, brands and more"
           value={query}

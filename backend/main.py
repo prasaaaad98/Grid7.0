@@ -816,7 +816,9 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, s
             'finish': item.get('finish'),
             'search_boost': item.get('search_boost', 0.0),
             'related_ids': item.get('related_ids', []),
-            'assured_badge': item.get('assured_badge', False)
+            'assured_badge': item.get('assured_badge', False),
+            'warehouse_loc': item.get('warehouse_loc')
+            # Only warehouse coordinates - delivery calculated dynamically on frontend
         }
 
     return {
