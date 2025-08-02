@@ -15557,5 +15557,628 @@
         72.58
       ]
     }
+  },
+  {
+    "id": 202,
+    "brand": "Puma",
+    "title": "Puma Men's Cotton T-Shirt",
+    "category": "tshirts",
+    "description": "Comfortable and stylish cotton t-shirt from Puma, perfect for casual wear. Made from 100% premium cotton, this t-shirt offers breathability and comfort throughout the day. Features a classic round neck design with short sleeves, ideal for everyday wear, gym sessions, or casual outings. The fabric is soft against the skin and maintains its shape after multiple washes. Available in multiple colors, this versatile t-shirt pairs well with jeans, shorts, or track pants. The Puma logo is subtly embroidered on the chest, adding a sporty touch to your casual wardrobe.",
+    "price": 899.0,
+    "subcategories": [
+      "men's t-shirts",
+      "casual wear",
+      "cotton t-shirts"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "T-Shirts",
+      "Casual T-Shirts"
+    ],
+    "synonyms": [
+      "tshirt",
+      "t-shirt",
+      "cotton shirt",
+      "casual shirt"
+    ],
+    "attributes": {
+      "fit": "regular fit",
+      "material": "100% cotton",
+      "sleeve": "short sleeve",
+      "neck": "round neck"
+    },
+    "tags": [
+      "tshirts",
+      "puma",
+      "men's fashion",
+      "casual wear",
+      "cotton t-shirt"
+    ],
+    "related_ids": [
+      207
+    ],
+    "retail_price": 1199.0,
+    "review_count": 456,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime",
+      "summer"
+    ],
+    "stock": 200,
+    "how_many_purchased": 8900,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "casual wear, gym, everyday use",
+      "material": "100% Cotton",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "black",
+    "material": "cotton",
+    "finish": "smooth",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "20% off on first purchase",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 203,
+    "brand": "OnePlus",
+    "title": "OnePlus Buds Z2 Wireless Earbuds",
+    "category": "earbuds",
+    "description": "Experience premium audio with the OnePlus Buds Z2 wireless earbuds. These sleek, in-ear earbuds deliver crystal-clear sound with deep bass and crisp highs. Features include active noise cancellation, up to 38 hours of total playback time, and IPX4 water resistance. The earbuds come with a compact charging case that provides multiple charges. With touch controls for music playback and calls, these earbuds are perfect for workouts, commuting, or daily use. The ergonomic design ensures a comfortable fit for extended listening sessions.",
+    "price": 2999.0,
+    "subcategories": [
+      "wireless earbuds",
+      "bluetooth headphones",
+      "audio accessories"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Earbuds",
+      "Wireless Earbuds"
+    ],
+    "synonyms": [
+      "oneplus ear buds",
+      "wireless earbuds",
+      "bluetooth earbuds",
+      "in-ear headphones"
+    ],
+    "attributes": {
+      "connectivity": "bluetooth 5.2",
+      "battery_life": "38 hours total",
+      "water_resistance": "IPX4",
+      "noise_cancellation": "active"
+    },
+    "tags": [
+      "oneplus ear buds",
+      "wireless earbuds",
+      "bluetooth",
+      "noise cancellation",
+      "audio"
+    ],
+    "related_ids": [
+      204,
+      205
+    ],
+    "retail_price": 3999.0,
+    "review_count": 1234,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 150,
+    "how_many_purchased": 5670,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "music lovers, commuters, fitness enthusiasts",
+      "material": "Plastic, Silicon",
+      "origin": "China"
+    },
+    "search_boost": 5,
+    "color": "white",
+    "material": "plastic",
+    "finish": "matte",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "10% off with OnePlus card",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.7041,
+        77.1025
+      ]
+    }
+  },
+  {
+    "id": 204,
+    "brand": "Motorola",
+    "title": "Motorola Moto G86 5G Mobile",
+    "category": "mobile",
+    "description": "The Motorola Moto G86 5G is a powerful smartphone featuring a 6.7-inch FHD+ display with 120Hz refresh rate. Powered by the MediaTek Dimensity 7020 processor, it offers smooth performance for gaming and multitasking. The device comes with 8GB RAM and 128GB storage, expandable up to 1TB. Features a 50MP main camera with OIS, 8MP ultra-wide, and 2MP macro camera. The 5000mAh battery supports 30W fast charging. With 5G connectivity, this phone is future-ready and perfect for heavy users who need speed and reliability.",
+    "price": 18999.0,
+    "subcategories": [
+      "5g smartphones",
+      "android phones",
+      "motorola phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "moto g86 5g mobile",
+      "motorola g86",
+      "5g smartphone",
+      "android phone"
+    ],
+    "attributes": {
+      "display": "6.7-inch FHD+",
+      "processor": "MediaTek Dimensity 7020",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    "tags": [
+      "moto g86 5g mobile",
+      "motorola",
+      "5g",
+      "smartphone",
+      "android"
+    ],
+    "related_ids": [
+      203,
+      205
+    ],
+    "retail_price": 21999.0,
+    "review_count": 890,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 75,
+    "how_many_purchased": 2340,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "heavy users, gamers, photography enthusiasts",
+      "material": "Glass, Metal",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [
+        13.0827,
+        80.2707
+      ]
+    }
+  },
+  {
+    "id": 205,
+    "brand": "Motorola",
+    "title": "Motorola Moto G86 Power 5G Mobile",
+    "category": "mobile",
+    "description": "The Motorola Moto G86 Power 5G is the enhanced version with extended battery life. Features a massive 6000mAh battery that lasts up to 2 days on a single charge. The 6.7-inch FHD+ display with 120Hz refresh rate provides an immersive viewing experience. Powered by MediaTek Dimensity 7020 processor with 8GB RAM and 128GB storage. The camera setup includes a 50MP main camera with OIS, 8MP ultra-wide, and 2MP macro camera. With 33W fast charging, this phone is perfect for users who need extended battery life without compromising on performance.",
+    "price": 20999.0,
+    "subcategories": [
+      "5g smartphones",
+      "power phones",
+      "long battery phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "moto g86 power 5g",
+      "motorola g86 power",
+      "long battery phone",
+      "5g smartphone"
+    ],
+    "attributes": {
+      "display": "6.7-inch FHD+",
+      "processor": "MediaTek Dimensity 7020",
+      "ram": "8GB",
+      "storage": "128GB",
+      "battery": "6000mAh"
+    },
+    "tags": [
+      "moto g86 power 5g",
+      "motorola",
+      "5g",
+      "power phone",
+      "long battery"
+    ],
+    "related_ids": [
+      203,
+      204
+    ],
+    "retail_price": 23999.0,
+    "review_count": 567,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 50,
+    "how_many_purchased": 1230,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "heavy users, travelers, long battery life seekers",
+      "material": "Glass, Metal",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "blue",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Bangalore",
+      "coords": [
+        12.9716,
+        77.5946
+      ]
+    }
+  },
+  {
+    "id": 206,
+    "brand": "Traditional",
+    "title": "Traditional Rakhi 1 Piece",
+    "category": "festival",
+    "description": "Beautiful traditional rakhi for the sacred bond between brothers and sisters. This handcrafted rakhi features intricate designs with colorful threads, beads, and decorative elements. Made from high-quality materials, it symbolizes love, protection, and the eternal bond of siblings. Perfect for Raksha Bandhan celebrations, this rakhi comes in an elegant packaging making it an ideal gift. The design is traditional yet modern, suitable for all age groups. Each rakhi is carefully crafted to ensure quality and durability.",
+    "price": 199.0,
+    "subcategories": [
+      "rakhi",
+      "festival items",
+      "traditional gifts"
+    ],
+    "category_path": [
+      "Festival",
+      "Raksha Bandhan",
+      "Rakhi"
+    ],
+    "synonyms": [
+      "rakhi 1 piece",
+      "traditional rakhi",
+      "festival rakhi",
+      "brother sister gift"
+    ],
+    "attributes": {
+      "type": "traditional",
+      "material": "thread, beads, decorative elements",
+      "design": "handcrafted",
+      "occasion": "Raksha Bandhan"
+    },
+    "tags": [
+      "rakhi 1 piece",
+      "traditional",
+      "festival",
+      "rakhi",
+      "gift"
+    ],
+    "related_ids": [
+      
+    ],
+    "retail_price": 299.0,
+    "review_count": 234,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.5,
+    "best_time_to_buy": [
+      "festive",
+      "rakhi"
+    ],
+    "stock": 500,
+    "how_many_purchased": 8900,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "Raksha Bandhan celebrations, traditional gifts",
+      "material": "Thread, Beads, Decorative elements",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "multicolor",
+    "material": "thread",
+    "finish": "decorative",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Buy 2 Get 1 Free",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Jaipur",
+      "coords": [
+        26.9124,
+        75.7873
+      ]
+    }
+  },
+  {
+    "id": 207,
+    "brand": "Cotton Comfort",
+    "title": "Cotton Comfort Bedsheet Set",
+    "category": "home",
+    "description": "Premium cotton bedsheet set for ultimate comfort and breathability. Made from 100% pure cotton, these bedsheets are soft, durable, and perfect for all seasons. The set includes a fitted sheet, flat sheet, and pillow covers. Available in various sizes and colors to match your bedroom decor. The high thread count ensures smooth texture and long-lasting quality. These bedsheets are hypoallergenic and suitable for sensitive skin. Easy to maintain and machine washable.",
+    "price": 1299.0,
+    "subcategories": [
+      "bedsheets",
+      "cotton bedding",
+      "bedroom essentials"
+    ],
+    "category_path": [
+      "Home",
+      "Bedding",
+      "Bedsheets",
+      "Cotton Bedsheets"
+    ],
+    "synonyms": [
+      "bedsheet cotton",
+      "cotton bedsheet",
+      "bedding set",
+      "cotton sheets"
+    ],
+    "attributes": {
+      "material": "100% cotton",
+      "thread_count": "300",
+      "size": "king size",
+      "pieces": "4 piece set"
+    },
+    "tags": [
+      "bedsheet cotton",
+      "cotton",
+      "bedding",
+      "home",
+      "comfort"
+    ],
+    "related_ids": [
+      
+    ],
+    "retail_price": 1799.0,
+    "review_count": 678,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 300,
+    "how_many_purchased": 4560,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "bedroom, home comfort, daily use",
+      "material": "100% Cotton",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "white",
+    "material": "cotton",
+    "finish": "smooth",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "15% off on bedding",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 208,
+    "brand": "Vivo",
+    "title": "Vivo T4x 5G Pro Mobile",
+    "category": "mobile",
+    "description": "The Vivo T4x 5G Pro is a flagship smartphone featuring a 6.78-inch AMOLED display with 120Hz refresh rate. Powered by the MediaTek Dimensity 9200+ processor, it delivers exceptional performance for gaming and multitasking. Comes with 12GB RAM and 256GB storage. Features a 50MP main camera with OIS, 12MP ultra-wide, and 50MP telephoto camera. The 5000mAh battery supports 120W fast charging. With 5G connectivity and premium build quality, this phone offers a premium smartphone experience with cutting-edge technology.",
+    "price": 29999.0,
+    "subcategories": [
+      "5g smartphones",
+      "premium phones",
+      "vivo phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "vivo t4x 5g pro",
+      "vivo t4x pro",
+      "5g smartphone",
+      "premium phone"
+    ],
+    "attributes": {
+      "display": "6.78-inch AMOLED",
+      "processor": "MediaTek Dimensity 9200+",
+      "ram": "12GB",
+      "storage": "256GB"
+    },
+    "tags": [
+      "vivo t4x 5g pro",
+      "vivo",
+      "5g",
+      "premium",
+      "smartphone"
+    ],
+    "related_ids": [
+      203,
+      204,
+      205
+    ],
+    "retail_price": 34999.0,
+    "review_count": 445,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.6,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 40,
+    "how_many_purchased": 890,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "premium users, gamers, photography enthusiasts",
+      "material": "Glass, Metal",
+      "origin": "China"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.7041,
+        77.1025
+      ]
+    }
+  },
+  {
+    "id": 209,
+    "brand": "Motorola",
+    "title": "Motorola G86 5G Mobile",
+    "category": "mobile",
+    "description": "The Motorola G86 5G is a feature-packed smartphone designed for modern users. Features a 6.7-inch FHD+ display with 120Hz refresh rate for smooth visuals. Powered by MediaTek Dimensity 7020 processor with 8GB RAM and 128GB storage. The camera system includes a 50MP main camera with OIS, 8MP ultra-wide, and 2MP macro camera for versatile photography. With 5000mAh battery and 30W fast charging, it ensures all-day usage. 5G connectivity makes it future-ready for high-speed internet and gaming.",
+    "price": 17999.0,
+    "subcategories": [
+      "5g smartphones",
+      "android phones",
+      "motorola phones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "g86 motorola",
+      "motorola g86",
+      "5g smartphone",
+      "android phone"
+    ],
+    "attributes": {
+      "display": "6.7-inch FHD+",
+      "processor": "MediaTek Dimensity 7020",
+      "ram": "8GB",
+      "storage": "128GB"
+    },
+    "tags": [
+      "g86 motorola",
+      "motorola",
+      "5g",
+      "smartphone",
+      "android"
+    ],
+    "related_ids": [
+      203,
+      204,
+      205
+    ],
+    "retail_price": 19999.0,
+    "review_count": 567,
+    "images": [
+      "https://m.media-amazon.com/images/I/71HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/81HhKqKqKqL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/91HhKqKqKqL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 60,
+    "how_many_purchased": 1890,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "daily users, gamers, photography enthusiasts",
+      "material": "Glass, Metal",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "blue",
+    "material": "glass",
+    "finish": "glossy",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [
+        13.0827,
+        80.2707
+      ]
+    }
   }
 ]

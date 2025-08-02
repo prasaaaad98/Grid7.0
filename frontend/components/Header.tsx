@@ -220,14 +220,14 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       // Show trending products when search is empty but focused
       if (isFocused) {
         const trendingProducts = [
-          "iPhone 15",
-          "Samsung Galaxy S24",
-          "AirPods Pro",
-          "MacBook Air",
-          "iPad",
-          "Sony WH-1000XM5",
-          "Google Pixel 8",
-          "OnePlus 12"
+          "Tshirts",
+          "oneplus ear buds",
+          "Moto g86 5g mobile",
+          "Moto g86 power 5g",
+          "Rakhi 1 piece",
+          "Bedsheet cotton",
+          "Vivo t4x 5g pro",
+          "G86 motorola"
         ]
         setSuggestions(trendingProducts)
         setShowSuggestions(true)
