@@ -40,6 +40,7 @@ for item in data:
     item.setdefault('material', None)
     item.setdefault('finish', None)
     item.setdefault('search_boost', 0.0)
+    item.setdefault('assured_badge', False)
 
 # NLP setup and normalization
 nlp = spacy.load("en_core_web_sm")
@@ -471,6 +472,7 @@ class Product(BaseModel):
     finish: Optional[str] = None
     search_boost: Optional[float] = 0.0
     related_ids: List[int]
+    assured_badge: Optional[bool] = False
     class Config:
         allow_population_by_field_name = True
 
@@ -749,7 +751,8 @@ def search(
             'material': item.get('material'),
             'finish': item.get('finish'),
             'search_boost': item.get('search_boost', 0.0),
-            'related_ids': item.get('related_ids', [])
+            'related_ids': item.get('related_ids', []),
+            'assured_badge': item.get('assured_badge', False)
         })
     return result
 

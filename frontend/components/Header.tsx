@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 import { Search, ShoppingCart, User } from "lucide-react"
 import LoginModal from "./LoginModal"
 import CartModal from "./CartModal"
@@ -162,37 +162,56 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
   const [query, setQuery] = useState("")
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
-  const [isFocused, setIsFocused] = useState(false)
+  const [selectedIndex, setSelectedIndex] = useState(-1)
 
   useEffect(() => {
-    // Only fetch suggestions if focused or if there's a query
-    if (!isFocused && !query.trim()) {
+    if (!query.trim()) {
       setSuggestions([])
       setShowSuggestions(false)
       return
     }
 
-    // Real backend call for autosuggest
+    // Get suggestions from backend
     fetch(`http://localhost:8000/autosuggest?q=${encodeURIComponent(query)}`)
       .then(res => res.json())
       .then(data => {
         setSuggestions(data)
         setShowSuggestions(true)
+        setSelectedIndex(-1)
       })
       .catch(error => {
-        console.error('Error fetching suggestions:', error)
-        // No fallback - just show empty suggestions if backend fails
+        console.error('Error:', error)
         setSuggestions([])
         setShowSuggestions(false)
       })
-  }, [query, isFocused])
+  }, [query])
 
-  function handleSelect(selectedQuery: string) {
-    const recents = JSON.parse(localStorage.getItem("recentSearches") || "[]")
-    localStorage.setItem("recentSearches", JSON.stringify([selectedQuery, ...recents].slice(0, 10)))
-    setQuery(selectedQuery)
-    setShowSuggestions(false)
-    onSearch(selectedQuery)
+  const doSearch = (searchQuery: string) => {
+    if (searchQuery.trim()) {
+      setShowSuggestions(false)
+      onSearch(searchQuery)
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      if (selectedIndex >= 0 && suggestions[selectedIndex]) {
+        setQuery(suggestions[selectedIndex])
+        doSearch(suggestions[selectedIndex])
+      } else {
+        doSearch(query)
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setSelectedIndex(prev => prev < suggestions.length - 1 ? prev + 1 : 0)
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setSelectedIndex(prev => prev > 0 ? prev - 1 : suggestions.length - 1)
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false)
+      setSelectedIndex(-1)
+    }
   }
 
   return (
@@ -203,22 +222,11 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
           placeholder="Search for products, brands and more"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSelect(query)
-            }
-          }}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => {
-            // Delay hiding suggestions to allow clicking on them
-            setTimeout(() => {
-              setIsFocused(false)
-              setShowSuggestions(false)
-            }, 200)
-          }}
+          onKeyDown={handleKeyDown}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           className="flex-1 px-4 py-2 text-gray-800 outline-none rounded-l"
         />
-        <button onClick={() => handleSelect(query)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
+        <button onClick={() => doSearch(query)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
           <Search size={20} />
         </button>
       </div>
@@ -228,8 +236,14 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              onClick={() => handleSelect(suggestion)}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-gray-800 border-b last:border-b-0"
+              onClick={() => {
+                setQuery(suggestion)
+                doSearch(suggestion)
+              }}
+              onMouseEnter={() => setSelectedIndex(index)}
+              className={`px-4 py-2 cursor-pointer text-gray-800 border-b last:border-b-0 ${
+                index === selectedIndex ? 'bg-blue-50' : 'hover:bg-gray-100'
+              }`}
             >
               <Search size={16} className="inline mr-2 text-gray-400" />
               {suggestion}
