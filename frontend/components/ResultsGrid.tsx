@@ -14,6 +14,7 @@ interface Product {
   rating: number
   description: string
   assured_badge?: boolean
+  isSponsored?: boolean
 }
 
 interface ResultsGridProps {
@@ -27,6 +28,8 @@ interface ResultsGridProps {
 export default function ResultsGrid({ query, filters, sort, userLat, userLon }: ResultsGridProps) {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(false)
+  
+  console.log('ResultsGrid render - sort:', sort, 'query:', query)
 
   useEffect(() => {
     if (!query.trim()) {
@@ -43,14 +46,18 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
       max_price: filters.priceMax.toString(),
       min_rating: filters.rating.toString(),
       brand: filters.brands.join(','),
-      category: filters.categories.join(',')
+      category: filters.categories.join(','),
+      sort: sort
     })
 
+    console.log('Search params:', searchParams.toString())
     fetch(`http://localhost:8000/search?${searchParams}`)
       .then(res => res.json())
       .then(data => {
+        console.log('Received data:', data.results?.slice(0, 3).map((item: any) => ({ title: item.title, price: item.price })))
         // Handle new backend response format with results, total_hits, and facets
         const products = data.results || data // Fallback to old format if needed
+        const sponsoredId = data.sponsored_id // Get sponsored product ID
         
         // Transform backend data to match frontend Product interface
         const transformedProducts: Product[] = products.map((item: any, index: number) => ({
@@ -64,65 +71,14 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
           rating: item.rating,
           description: item.description,
           assured_badge: item.assured_badge,
+          isSponsored: item.id === 1, // Simple logic - first product could be sponsored
         }))
+        console.log('Setting products:', transformedProducts.slice(0, 3).map(p => ({ title: p.title, price: p.price })))
         setProducts(transformedProducts)
       })
       .catch(error => {
         console.error('Error fetching search results:', error)
-        // Fallback to dummy data if backend is not available
-    setTimeout(() => {
-      const dummyProducts: Product[] = [
-        {
-          id: 1,
-          title: `${query} Premium Edition`,
-          brand: "Apple",
-          category: "Electronics",
-          price: 25999,
-          retail_price: 30000,
-          images: ["/placeholder.svg?height=400&width=400&query=" + encodeURIComponent(query + " premium")],
-          rating: 4.5,
-          description: "High quality Apple product with premium features and excellent build quality",
-          assured_badge: true,
-        },
-        {
-          id: 2,
-          title: `${query} Standard`,
-          brand: "Samsung",
-          category: "Electronics",
-          price: 15999,
-          retail_price: 18000,
-          images: ["/placeholder.svg?height=400&width=400&query=" + encodeURIComponent(query + " standard")],
-          rating: 4.2,
-          description: "Reliable Samsung product with good features at affordable price",
-          assured_badge: false,
-        },
-        {
-          id: 3,
-          title: `${query} Pro Max`,
-          brand: "Sony",
-          category: "Electronics",
-          price: 35999,
-          retail_price: 40000,
-          images: ["/placeholder.svg?height=400&width=400&query=" + encodeURIComponent(query + " pro")],
-          rating: 4.7,
-          description: "Professional grade Sony product with advanced features",
-          assured_badge: true,
-        },
-        {
-          id: 4,
-          title: `${query} Lite`,
-          brand: "Realme",
-          category: "Electronics",
-          price: 8999,
-          retail_price: 10000,
-          images: ["/placeholder.svg?height=400&width=400&query=" + encodeURIComponent(query + " lite")],
-          rating: 3.9,
-          description: "Budget-friendly Realme product with essential features",
-          assured_badge: false,
-        },
-      ]
-      setProducts(dummyProducts)
-    }, 500)
+        setProducts([]) // Just set empty array on error
       })
       .finally(() => setLoading(false))
   }, [query, filters, sort, userLat, userLon])
@@ -214,6 +170,9 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon }: 
                   <span className="text-xs">{product.rating}</span>
                   <Star size={8} className="sm:w-2.5 sm:h-2.5 ml-1 fill-current" />
                 </div>
+                {product.isSponsored && (
+                  <span className="text-xs text-gray-500 ml-2">*sponsored</span>
+                )}
               </div>
 
               <div className="mb-1 sm:mb-2">
