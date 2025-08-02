@@ -162,6 +162,7 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
   const [query, setQuery] = useState("")
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
   useEffect(() => {
@@ -186,31 +187,49 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
       })
   }, [query])
 
-  const doSearch = (searchQuery: string) => {
-    if (searchQuery.trim()) {
-      setShowSuggestions(false)
-      onSearch(searchQuery)
+  function handleSelect(selectedQuery: string, shouldSearch: boolean = true) {
+    const recents = JSON.parse(localStorage.getItem("recentSearches") || "[]")
+    localStorage.setItem("recentSearches", JSON.stringify([selectedQuery, ...recents].slice(0, 10)))
+    setQuery(selectedQuery)
+    setShowSuggestions(false)
+    setSelectedIndex(-1)
+    
+    if (shouldSearch) {
+      onSearch(selectedQuery)
     }
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      if (selectedIndex >= 0 && suggestions[selectedIndex]) {
-        setQuery(suggestions[selectedIndex])
-        doSearch(suggestions[selectedIndex])
-      } else {
-        doSearch(query)
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (!showSuggestions || suggestions.length === 0) {
+      if (e.key === "Enter") {
+        handleSelect(query, true) // Search when Enter is pressed without suggestions
       }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setSelectedIndex(prev => prev < suggestions.length - 1 ? prev + 1 : 0)
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setSelectedIndex(prev => prev > 0 ? prev - 1 : suggestions.length - 1)
-    } else if (e.key === 'Escape') {
-      setShowSuggestions(false)
-      setSelectedIndex(-1)
+      return
+    }
+
+    switch (e.key) {
+      case "ArrowDown":
+        e.preventDefault()
+        setSelectedIndex(prev => 
+          prev < suggestions.length - 1 ? prev + 1 : prev
+        )
+        break
+      case "ArrowUp":
+        e.preventDefault()
+        setSelectedIndex(prev => prev > 0 ? prev - 1 : -1)
+        break
+      case "Enter":
+        e.preventDefault()
+        if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
+          handleSelect(suggestions[selectedIndex], true) // Search when Enter is pressed with selection
+        } else {
+          handleSelect(query, true) // Search current query when Enter is pressed
+        }
+        break
+      case "Escape":
+        setShowSuggestions(false)
+        setSelectedIndex(-1)
+        break
     }
   }
 
@@ -221,12 +240,23 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
           type="text"
           placeholder="Search for products, brands and more"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setSelectedIndex(-1) // Reset selection when typing
+          }}
           onKeyDown={handleKeyDown}
-          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => {
+            // Delay hiding suggestions to allow clicking on them
+            setTimeout(() => {
+              setIsFocused(false)
+              setShowSuggestions(false)
+              setSelectedIndex(-1)
+            }, 200)
+          }}
           className="flex-1 px-4 py-2 text-gray-800 outline-none rounded-l"
         />
-        <button onClick={() => doSearch(query)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
+        <button onClick={() => handleSelect(query, true)} className="bg-[#2874f0] px-4 py-2 rounded-r hover:bg-blue-600">
           <Search size={20} />
         </button>
       </div>
@@ -236,13 +266,11 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              onClick={() => {
-                setQuery(suggestion)
-                doSearch(suggestion)
-              }}
-              onMouseEnter={() => setSelectedIndex(index)}
+              onClick={() => handleSelect(suggestion, false)} // Don't search when clicking
               className={`px-4 py-2 cursor-pointer text-gray-800 border-b last:border-b-0 ${
-                index === selectedIndex ? 'bg-blue-50' : 'hover:bg-gray-100'
+                index === selectedIndex 
+                  ? 'bg-blue-100 text-blue-800' 
+                  : 'hover:bg-gray-100'
               }`}
             >
               <Search size={16} className="inline mr-2 text-gray-400" />

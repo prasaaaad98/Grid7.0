@@ -14,15 +14,59 @@ import spacy
 from metaphone import doublemetaphone
 import pygtrie
 import networkx as nx
-from collections import defaultdict
+from collections import defaultdict, Counter
+from functools import lru_cache
 
 # ------------------------- Setup -------------------------
+# NLP setup and normalization (define functions first)
+nlp = spacy.load("en_core_web_sm")
+def normalize(text: str) -> str:
+    return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
+def translate_hindi_to_english(text: str) -> str:
+    return normalize(text)
+
 # Load product data with extended schema
 with open("data/products.json", encoding='utf-8') as f:
     data = json.load(f)
 
 # Calculate max review count for normalization
 MAX_REVIEWS = max(p.get('review_count', 0) for p in data) or 1
+
+# ─── Build composite texts & embeddings ───
+full_texts = []
+for item in data:
+    parts = [
+        item["title"],
+        item.get("description", ""),
+        *item.get("synonyms", []),
+        *item.get("tags", []),
+        *item.get("subcategories", []),
+        *item.get("category_path", [])
+    ]
+    full_texts.append(" ".join(parts))
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+title_embs = model.encode([item["title"] for item in data])
+full_embs  = model.encode(full_texts)
+
+dim = title_embs.shape[1]
+title_index = faiss.IndexFlatL2(dim)
+full_index  = faiss.IndexFlatL2(dim)
+title_index.add(np.array(title_embs))
+full_index.add(np.array(full_embs))
+
+# ─── Build inverted index for lexical lookup ───
+inv_index = defaultdict(set)
+for idx, item in enumerate(data):
+    text = normalize(item["title"]) + " " + normalize(item.get("description",""))
+    for tok in text.split():
+        inv_index[tok].add(idx)
+    for syn in item.get("synonyms", []):
+        for tok in normalize(syn).split():
+            inv_index[tok].add(idx)
+
+# ─── Build data map for related items ───
+data_map = {item["id"]: item for item in data}
 
 # Align fields and defaults
 for item in data:
@@ -41,13 +85,6 @@ for item in data:
     item.setdefault('finish', None)
     item.setdefault('search_boost', 0.0)
     item.setdefault('assured_badge', False)
-
-# NLP setup and normalization
-nlp = spacy.load("en_core_web_sm")
-def normalize(text: str) -> str:
-    return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
-def translate_hindi_to_english(text: str) -> str:
-    return normalize(text)
 
 # Phrase extraction from title and description
 def extract_phrases(text: str) -> List[str]:
@@ -650,88 +687,68 @@ def autosuggest(q: str = Query("", min_length=0)):
 
     return res
 
-@app.get("/search", response_model=List[Product])
-def search(
-    q: str = Query(..., min_length=1),
-    min_price: float = 0,
-    max_price: float = 1e6,
-    min_rating: float = 0,
-    brand: str = "",
-    category: str = ""
-):
-    # normalize & translate
-    q_orig = q
-    q_norm = normalize(q)
-    qt = translate_hindi_to_english(q_norm)
-    if qt != q_norm:
-        q_norm = qt
-    # fuzzy correction
-    best = process.extractOne(q_norm, [normalize(t) for t in titles], scorer=fuzz.partial_ratio)
-    if best and best[1] >= 70:
-        corrected = titles[[normalize(t) for t in titles].index(best[0])]
-        q_norm = normalize(corrected)
-    else:
-        code = doublemetaphone(q_norm)[0]
-        for i, pcode in enumerate([doublemetaphone(normalize(t))[0] for t in titles]):
-            if pcode == code:
-                q_norm = normalize(titles[i])
-                break
-    # semantic search
+@lru_cache(maxsize=256)
+def _compute_search(q_norm, min_price, max_price, min_rating, brand, category):
+    # 1. Encode normalized query
     q_emb = model.encode([q_norm])
-    D, I = title_index.search(np.array(q_emb), 50)
-    candidates = [data[i] for i in I[0]]
-    
-    # For trending queries, also add direct text matches
-    if q_norm in global_trending or any(q_norm in normalize(trend) for trend in trending_map.get(q_norm[0], [])):
-        # Add direct text matches for trending queries
-        direct_matches = []
-        for idx, item in enumerate(data):
-            title_norm = normalize(item['title'])
-            desc_norm = normalize(item.get('description', ''))
-            category_norm = normalize(item.get('category', ''))
-            
-            # Check if trending term appears in title, description, or category
-            if (q_norm in title_norm or q_norm in desc_norm or q_norm in category_norm):
-                direct_matches.append(item)
-        
-        # Combine semantic and direct matches, prioritizing direct matches
-        all_candidates = direct_matches + [item for item in candidates if item not in direct_matches]
-        candidates = all_candidates[:100]  # Limit to avoid too many results
-    
-    # apply filters
+
+    # 2. FAISS on title and full texts
+    _, I1 = title_index.search(np.array(q_emb), 50)
+    _, I2 = full_index.search(np.array(q_emb), 50)
+    faiss_ids = set(I1[0]) | set(I2[0])
+
+    # 3. Lexical hits via inverted index
+    lex_ids = set()
+    for tok in q_norm.split():
+        lex_ids |= inv_index.get(tok, set())
+
+    cand_ids = faiss_ids | lex_ids
+    candidates = [data[i] for i in cand_ids]
+
+    # Filters
     filtered = []
     for item in candidates:
-        if not (min_price <= item['price'] <= max_price): continue
-        if item['rating'] < min_rating: continue
-        if brand and brand.lower() not in normalize(item['brand']): continue
-        if category and category.lower() not in normalize(item['category']): continue
+        if not (min_price <= item["price"] <= max_price): continue
+        if item["rating"] < min_rating: continue
+        if brand and brand.lower() not in normalize(item["brand"]): continue
+        if category and category.lower() not in normalize(item["category"]): continue
         filtered.append(item)
-    # ranking
-    def score(item):
-        tv = model.encode([item['title']])[0]
-        sim = np.dot(q_emb, tv) / (np.linalg.norm(q_emb) * np.linalg.norm(tv))
-        
-        # Enhanced scoring for trending queries
-        title_norm = normalize(item['title'])
-        desc_norm = normalize(item.get('description', ''))
-        category_norm = normalize(item.get('category', ''))
-        
-        # Direct match bonus for trending queries
-        direct_match_bonus = 0
-        if q_norm in global_trending or any(q_norm in normalize(trend) for trend in trending_map.get(q_norm[0], [])):
-            if q_norm in title_norm:
-                direct_match_bonus = 0.3  # High bonus for title match
-            elif q_norm in desc_norm or q_norm in category_norm:
-                direct_match_bonus = 0.2  # Medium bonus for desc/category match
-        
-        base_score = 0.5 * sim + 0.3 * (item['rating'] / 5) + 0.2 * (1 if normalize(item['title']) in trending_map.get(q_norm[0], []) else 0)
-        boost = item.get('search_boost', 0) / 100.0  # normalize as needed
-        return base_score + 0.1 * boost + direct_match_bonus
-    ranked = sorted(filtered, key=score, reverse=True)
-    # format response
-    result = []
-    for item in ranked[:10]:
-        result.append({
+
+    # Precompute for scoring
+    MAX_REVIEWS = max(it.get("review_count",0) for it in data) or 1
+
+    # Score each
+    scored = []
+    for item in filtered:
+        # semantic sim (title only)
+        title_vec = model.encode([item["title"]])[0]
+        sim = np.dot(q_emb, title_vec) / (np.linalg.norm(q_emb) * np.linalg.norm(title_vec))
+
+        rating_norm = item["rating"] / 5.0
+        boost_norm = item.get("search_boost", 0) / 100.0
+        review_norm = math.log1p(item.get("review_count",0)) / math.log1p(MAX_REVIEWS)
+
+        score = 0.4 * sim + 0.2 * rating_norm + 0.2 * boost_norm + 0.2 * review_norm
+        scored.append((score, item))
+
+    # Related-IDs interleaving
+    final_list = []
+    for score, item in sorted(scored, key=lambda x: x[0], reverse=True):
+        final_list.append(item)
+        for rid in item.get("related_ids", [])[:2]:
+            related = data_map.get(rid)
+            if related and related not in final_list:
+                final_list.append(related)
+        if len(final_list) >= 10:
+            break
+
+    # Facets & total-hits
+    total_hits = len(filtered)
+    brand_facet = Counter(it["brand"] for it in filtered)
+    cat_facet   = Counter(it["category"] for it in filtered)
+
+    def serialize(item):
+        return {
             'id': item['id'],
             'title': item['title'],
             'brand': item['brand'],
@@ -753,7 +770,37 @@ def search(
             'search_boost': item.get('search_boost', 0.0),
             'related_ids': item.get('related_ids', []),
             'assured_badge': item.get('assured_badge', False)
-        })
+        }
+
+    return {
+        "total_hits": total_hits,
+        "results": [serialize(p) for p in final_list[:10]],
+        "facets": {
+            "brands": brand_facet.most_common(),
+            "categories": cat_facet.most_common()
+        }
+    }
+
+@app.get("/search")
+def search(
+    q: str = Query(..., min_length=1),
+    min_price: float = 0,
+    max_price: float = 1e6,
+    min_rating: float = 0,
+    brand: str = "",
+    category: str = ""
+):
+    # normalize & translate
+    q_orig = q
+    q_norm = normalize(q)
+    qt = translate_hindi_to_english(q_norm)
+    if qt != q_norm:
+        q_norm = qt
+    
+    # Call the cached search function
+    result = _compute_search(q_norm, min_price, max_price, min_rating, brand, category)
+    
+    # Return the enhanced response with facets
     return result
 
 if __name__ == "__main__":
