@@ -18,7 +18,7 @@ Grid7.0 is a sophisticated e-commerce search system inspired by Flipkart, featur
          ▼                       ▼                       ▼
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │ React/TypeScript│    │  Python ML Stack │    │ Product Database│
-│ Tailwind CSS    │    │  FAISS Vector DB │    │ 15K+ Products   │
+│ Tailwind CSS    │    │  FAISS Vector DB │    │ ~500 Products   │
 │ Radix UI        │    │  Sentence Trans. │    │ Real Flipkart   │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
