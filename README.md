@@ -61,6 +61,10 @@ flipkartSearchSystem/
 
 ---
 
+## Technical Documentation
+
+For more detailed technical requirements and implementation details, please refer to our [Technical Documentation](./DOCUMENTATION.md).
+
 ## Setup Instructions
 
 ### Quick Start (Recommended)
