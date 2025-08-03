@@ -9,6 +9,7 @@ interface Filters {
   priceMin: number
   priceMax: number
   deliveryDays: number
+  deliveryFilterEnabled: boolean
 }
 
 interface FiltersSidebarProps {
@@ -49,39 +50,57 @@ export default function FiltersSidebar({ filters, onChange, isLoading = false }:
       <div className="space-y-4 lg:space-y-6">
         {/* Delivery Days - First Priority */}
         <div className="lg:mb-6">
-          <h4 className="font-medium mb-3 text-sm lg:text-base flex items-center">
-            🚚 Delivery 
-            {(isLoading || isDeliveryChanging) && (
-              <div className="ml-2 w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-            )}
-          </h4>
-          <div className="mb-2">
-            <label className={`text-xs lg:text-sm transition-all duration-300 ${isDeliveryChanging ? 'text-blue-600 font-medium' : 'text-gray-700'}`}>
-              Within {filters.deliveryDays} day{filters.deliveryDays > 1 ? 's' : ''}
-            </label>
-            <div className="relative">
-              <input
-                type="range"
-                min="1"
-                max="7"
-                value={filters.deliveryDays}
-                onChange={(e) => handleDeliveryChange(Number(e.target.value))}
-                className="w-full mt-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb transition-all duration-200 hover:bg-gray-300"
-                style={{
-                  background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${((filters.deliveryDays - 1) / 6) * 100}%, #e5e7eb ${((filters.deliveryDays - 1) / 6) * 100}%, #e5e7eb 100%)`
-                }}
-              />
-              {isDeliveryChanging && (
-                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded animate-pulse">
-                  {filters.deliveryDays} day{filters.deliveryDays > 1 ? 's' : ''}
-                </div>
+          <h4 className="font-medium mb-3 text-sm lg:text-base flex items-center justify-between">
+            <span className="flex items-center">
+              🚚 Delivery 
+              {(isLoading || isDeliveryChanging) && (
+                <div className="ml-2 w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
               )}
+            </span>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                checked={filters.deliveryFilterEnabled}
+                onChange={(e) => onChange({ ...filters, deliveryFilterEnabled: e.target.checked })}
+                className="sr-only peer"
+              />
+              <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+          </h4>
+          
+          {filters.deliveryFilterEnabled && (
+            <div className="mb-2">
+              <label className={`text-xs lg:text-sm transition-all duration-300 ${isDeliveryChanging ? 'text-blue-600 font-medium' : 'text-gray-700'}`}>
+                Within {filters.deliveryDays} day{filters.deliveryDays > 1 ? 's' : ''}
+              </label>
+              <div className="relative">
+                <input
+                  type="range"
+                  min="1"
+                  max="7"
+                  value={filters.deliveryDays}
+                  onChange={(e) => handleDeliveryChange(Number(e.target.value))}
+                  className="w-full mt-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider-thumb transition-all duration-200 hover:bg-gray-300"
+                  style={{
+                    background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${((filters.deliveryDays - 1) / 6) * 100}%, #e5e7eb ${((filters.deliveryDays - 1) / 6) * 100}%, #e5e7eb 100%)`
+                  }}
+                />
+                {isDeliveryChanging && (
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-1 rounded animate-pulse">
+                    {filters.deliveryDays} day{filters.deliveryDays > 1 ? 's' : ''}
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <span className="transition-colors duration-200 hover:text-gray-700">1 day</span>
+                <span className="transition-colors duration-200 hover:text-gray-700">7 days</span>
+              </div>
             </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span className="transition-colors duration-200 hover:text-gray-700">1 day</span>
-              <span className="transition-colors duration-200 hover:text-gray-700">7 days</span>
-            </div>
-          </div>
+          )}
+          
+          {!filters.deliveryFilterEnabled && (
+            <p className="text-xs text-gray-500 italic">Toggle to filter by delivery time</p>
+          )}
         </div>
 
         {/* Categories */}

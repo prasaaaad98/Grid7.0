@@ -239,7 +239,15 @@ function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {
     }
 
     // Get suggestions from backend when user types
-    fetch(`http://localhost:8000/autosuggest?q=${encodeURIComponent(query)}`)
+    const previousCategoryPaths = JSON.parse(localStorage.getItem("previousCategoryPaths") || "[]")
+    const contextCategoryPath = previousCategoryPaths.length > 0 ? previousCategoryPaths[0] : null
+    
+    let url = `http://localhost:8000/autosuggest?q=${encodeURIComponent(query)}`
+    if (contextCategoryPath) {
+      url += `&context_category_path=${encodeURIComponent(JSON.stringify(contextCategoryPath))}`
+    }
+    
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         setSuggestions(data)

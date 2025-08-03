@@ -15,7 +15,8 @@ export default function App() {
     rating: 0,
     priceMin: 0,
     priceMax: 50000,
-    deliveryDays: 5,
+    deliveryDays: 7,
+    deliveryFilterEnabled: false,
   })
   const [sort, setSort] = useState("relevance")
   const [userLat, setUserLat] = useState<number | null>(null)
