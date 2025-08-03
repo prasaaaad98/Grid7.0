@@ -174,6 +174,9 @@ with open("data/products.json", encoding='utf-8') as f:
 # Calculate max review count for normalization
 MAX_REVIEWS = max(p.get('review_count', 0) for p in data) or 1
 
+# Build set of all brands for exact brand matching
+all_brands = {normalize(item["brand"]) for item in data}
+
 # ─── Build composite texts & embeddings ───
 full_texts = []
 for item in data:
@@ -297,6 +300,23 @@ for item in data:
         if value:
             ph = normalize(str(value))
             suggestion_phrases.add(ph)
+suggestion_phrases = sorted(suggestion_phrases)
+
+# Add Hindi translated terms to suggestion_phrases for autosuggest
+hindi_translated_terms = [
+    "footwear", "shoes", "sandals", "socks",  # from chappal, joota, etc.
+    "broom", "cleaning", "cleaning supplies",  # from jhadu, safai, etc.
+    "clothing", "shirt", "pants", "jeans", "tshirt", "kurta", "saree", "salwar", "suit",  # from kapde, etc.
+    "mobile", "phone", "laptop", "computer", "tv", "television", "headphones", "earphones", "watch", "smartwatch",  # from mobile, etc.
+    "utensils", "cooker", "pan", "bowl", "plate", "glass", "cup", "mug",  # from bartan, etc.
+    "shampoo", "soap", "cream", "lotion", "powder", "makeup", "lipstick", "kajal",  # from shampoo, etc.
+    "tea", "coffee", "milk", "biscuits", "chocolate", "sweets", "snacks"  # from chai, etc.
+]
+
+for term in hindi_translated_terms:
+    suggestion_phrases.append(term)
+
+# Re-sort after adding Hindi translated terms
 suggestion_phrases = sorted(suggestion_phrases)
 
 # Prefix Trie
@@ -705,6 +725,7 @@ def autosuggest(
     qt = translate_hindi_to_english(qn)
     if qt != qn:
         qn = qt
+        print(f"DEBUG: Hindi translation in autosuggest: '{q}' -> '{qn}'")
 
     # Parse context category path
     previous_category_path = []
@@ -724,6 +745,13 @@ def autosuggest(
         return trending_map.get(qn, [])[:8]
     
     suggestions = []
+    
+    # Debug: Check if translated terms are in suggestion_phrases
+    if q != qn:  # If translation happened
+        print(f"DEBUG: Checking if '{qn}' is in suggestion_phrases: {qn in suggestion_phrases}")
+        if qn not in suggestion_phrases:
+            print(f"DEBUG: '{qn}' not found in suggestion_phrases, adding it")
+            suggestions.append(qn)  # Add the translated term as a suggestion
     context_suggestions = []
     # trending for prefix
     suggestions += [t for t in trending_map.get(qn[0], []) if normalize(t).startswith(qn)]
@@ -742,32 +770,27 @@ def autosuggest(
         if stemmed_qn != qn and re.search(rf"\b{re.escape(stemmed_qn)}\b", ph) and ph not in suggestions:
             substr_hits.append(ph)
     suggestions += substr_hits
-    # fuzzy (only if trie and substring didn't find enough)
-    fuzzy_hits = []
-    if len(suggestions) < 3:  # Only run fuzzy if we need more suggestions
-        if len(qn.split()) == 1:
-            fuzzy_scorer = fuzz.partial_ratio  # more forgiving for single tokens
-            fuzzy_threshold = 60
-        else:
-            fuzzy_scorer = fuzz.token_set_ratio
-            fuzzy_threshold = 60
-            
-        fam = process.extract(qn, suggestion_phrases, scorer=fuzzy_scorer, limit=10)
-        fuzzy_hits = [m[0] for m in fam if m[1] >= fuzzy_threshold and m[0] not in suggestions]
-        
-        # only keep phonetically similar terms
-        q_phonetic = doublemetaphone(qn)[0]
-        fuzzy_hits = [
-            ph for ph in fuzzy_hits
-            if phrase_phonetics.get(ph) == q_phonetic
-        ]
-        
-        suggestions += fuzzy_hits
+    # ── Fuzzy fallback (always run for single tokens)
+    if len(qn.split()) == 1:
+        # pick your best fuzzy match above threshold
+        best = process.extractOne(qn, suggestion_phrases, scorer=fuzz.partial_ratio)
+        if best and best[1] >= 60:
+            corrected = best[0]
+            if corrected not in suggestions:
+                suggestions.insert(0, corrected)
     # phonetic
     code = doublemetaphone(qn)[0]
     suggestions += [ph for ph,c in phrase_phonetics.items() if c == code and ph not in suggestions]
-    # semantic phrase neighbors—but only true extensions when user typed >1 word
-    q_emb = model.encode([qn])
+    # If we ran a single-word fuzzy correction, use that corrected term for semantic expansion
+    semantic_query = qn
+    if len(qn.split()) == 1:
+        # process.extractOne called 'corrected' above
+        try:
+            corrected  # noqa: F821
+            semantic_query = corrected
+        except NameError:
+            pass
+    q_emb = model.encode([semantic_query])
     _, idx = phrase_index.search(np.array(q_emb), 10)
     sem_hits = []
     prefix_tokens = qn.split()
@@ -829,6 +852,10 @@ def autosuggest(
 
     # Mark all template suggestions for bonus scoring
     template_set = set(templated[:2])
+    
+    # Debug: Print templates for visibility
+    if templated:
+        print(f"DEBUG: Generated templates: {templated[:2]}")
 
     # Enhanced price-range templates and detection
     tokens = qn.split()
@@ -991,7 +1018,7 @@ def autosuggest(
 
         # *** TEMPLATE BOOST ***
         if ph in template_set:
-            scores[ph] += 1.0   # give a flat +1 score boost
+            scores[ph] += 2.0   # give a flat +2 score boost for higher priority
 
     # 1) Separate out the templates
     templates = [ph for ph in suggestions if ph in template_set]
@@ -1004,7 +1031,13 @@ def autosuggest(
 
     # 4) Build the final list: templates first, then top-ranked others
     max_suggestions = 8
+    # Always include templates first, then fill remaining slots with others
     final = templates[:2] + others[: (max_suggestions - len(templates[:2]))]
+    
+    # Ensure templates are always at the top if they exist
+    if templates:
+        # Move templates to the very beginning
+        final = templates[:2] + [s for s in final if s not in templates[:2]]
 
     # ===== CONTEXT-AWARE PRIORITIZATION =====
     # If we have previous category path, prioritize suggestions from same hierarchy
@@ -1080,6 +1113,48 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, s
 
     cand_ids = faiss_ids | lex_ids
     candidates = [data[i] for i in cand_ids]
+    
+    # Debug: Check what products we have for the query
+    print(f"DEBUG: Query: '{q_norm}', Found {len(candidates)} initial candidates")
+    if len(candidates) > 0:
+        print(f"DEBUG: Sample candidates: {[item['title'][:50] for item in candidates[:3]]}")
+
+    # ─── BRAND DETECTION & FILTER ───
+    # If **any** token in the query matches a known brand, force-filter by that brand
+    tokens = q_norm.split()
+    for tok in tokens:
+        if tok in all_brands:
+            brand = tok
+            break
+
+    if brand:
+        candidates = [
+            item for item in candidates
+            if normalize(item["brand"]) == brand
+        ]
+
+    # ─── enforce literal contain for single-word queries ───
+    if len(q_norm.split()) == 1:
+        print(f"DEBUG: Applying literal containment filter for '{q_norm}'")
+        before_count = len(candidates)
+        candidates = [
+            item for item in candidates
+            if q_norm in normalize(item["title"])
+        ]
+        after_count = len(candidates)
+        print(f"DEBUG: Literal containment: {before_count} -> {after_count} candidates")
+        
+        # If too few results, also check description and synonyms
+        if after_count < 5:
+            print(f"DEBUG: Too few results, expanding search to description/synonyms")
+            expanded_candidates = []
+            for item in data:
+                if (q_norm in normalize(item["title"]) or 
+                    q_norm in normalize(item.get("description", "")) or
+                    any(q_norm in normalize(syn) for syn in item.get("synonyms", []))):
+                    expanded_candidates.append(item)
+            candidates = expanded_candidates
+            print(f"DEBUG: After expansion: {len(candidates)} candidates")
 
     # Filters
     filtered = []
@@ -1228,6 +1303,16 @@ def search(
     qt = translate_hindi_to_english(q_norm)
     if qt != q_norm:
         q_norm = qt
+        print(f"DEBUG: Hindi translation: '{q}' -> '{q_norm}'")
+    
+    # ─── Fuzzy correction for single-word queries ───
+    if len(q_norm.split()) == 1:
+        # Apply same fuzzy correction logic as autosuggest
+        best = process.extractOne(q_norm, suggestion_phrases, scorer=fuzz.partial_ratio)
+        if best and best[1] >= 60:
+            corrected = best[0]
+            if corrected != q_norm:  # Only use correction if it's different
+                q_norm = corrected
     
     # Enhanced price parsing from query
     
