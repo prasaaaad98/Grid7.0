@@ -19,9 +19,25 @@ export default function CartModal({ onClose }: CartModalProps) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null")
+    const isLoggedIn = !!currentUser
+    
+    // Use sessionStorage for non-logged-in users, localStorage for logged-in users
+    const storage = isLoggedIn ? localStorage : sessionStorage
+    const cartKey = isLoggedIn ? "cart" : "sessionCart"
+    
+    const cart = JSON.parse(storage.getItem(cartKey) || "[]")
     setCartItems(cart)
   }, [])
+
+  const getStorageAndKey = () => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null")
+    const isLoggedIn = !!currentUser
+    const storage = isLoggedIn ? localStorage : sessionStorage
+    const cartKey = isLoggedIn ? "cart" : "sessionCart"
+    return { storage, cartKey }
+  }
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity === 0) {
@@ -29,28 +45,30 @@ export default function CartModal({ onClose }: CartModalProps) {
       return
     }
 
+    const { storage, cartKey } = getStorageAndKey()
     const updatedCart = cartItems.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item))
     setCartItems(updatedCart)
-    localStorage.setItem("cart", JSON.stringify(updatedCart))
+    storage.setItem(cartKey, JSON.stringify(updatedCart))
 
     // Trigger storage event for cart count update
     window.dispatchEvent(
       new StorageEvent("storage", {
-        key: "cart",
+        key: cartKey,
         newValue: JSON.stringify(updatedCart),
       }),
     )
   }
 
   const removeItem = (id: number) => {
+    const { storage, cartKey } = getStorageAndKey()
     const updatedCart = cartItems.filter((item) => item.id !== id)
     setCartItems(updatedCart)
-    localStorage.setItem("cart", JSON.stringify(updatedCart))
+    storage.setItem(cartKey, JSON.stringify(updatedCart))
 
     // Trigger storage event for cart count update
     window.dispatchEvent(
       new StorageEvent("storage", {
-        key: "cart",
+        key: cartKey,
         newValue: JSON.stringify(updatedCart),
       }),
     )
@@ -91,9 +109,10 @@ export default function CartModal({ onClose }: CartModalProps) {
     orders.push(order)
     localStorage.setItem("orders", JSON.stringify(orders))
 
-    // Clear cart
+    // Clear cart from both storages
     setCartItems([])
     localStorage.setItem("cart", JSON.stringify([]))
+    sessionStorage.setItem("sessionCart", JSON.stringify([]))
 
     // Trigger storage event
     window.dispatchEvent(

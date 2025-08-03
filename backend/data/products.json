@@ -17697,5 +17697,784 @@
         77.209
       ]
     }
+  },
+  {
+    "id": 238,
+    "brand": "AI Nova",
+    "title": "AI Nova 5G Smartphone",
+    "category": "mobile",
+    "description": "Experience the future of mobile technology with the AI Nova 5G Smartphone. Powered by advanced AI capabilities and lightning-fast 5G connectivity, this device offers exceptional performance and intelligent features. The sleek design houses a powerful processor, high-resolution camera system, and long-lasting battery. Perfect for gaming, photography, and productivity tasks.",
+    "price": 15999.0,
+    "subcategories": [
+      "5g smartphones",
+      "ai phones",
+      "smartphones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile Phones",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "ai nova 5g",
+      "smartphone",
+      "5g mobile",
+      "ai phone"
+    ],
+    "attributes": {
+      "storage": "128GB",
+      "ram": "8GB",
+      "display": "6.7 inch",
+      "camera": "48MP"
+    },
+    "tags": [
+      "5g",
+      "ai",
+      "smartphone",
+      "mobile",
+      "nova"
+    ],
+    "related_ids": [239, 240, 241],
+    "retail_price": 18999.0,
+    "review_count": 450,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": ["allTime", "festive"],
+    "stock": 85,
+    "how_many_purchased": 3200,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "China"
+    },
+    "search_boost": 8,
+    "color": "Black",
+    "material": "Glass",
+    "finish": "Premium",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "10% off on exchange",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
+  },
+  {
+    "id": 239,
+    "brand": "Anarkali",
+    "title": "Anarkali Suit for Women",
+    "category": "apparel",
+    "description": "Elegant Anarkali suit for women featuring intricate embroidery and traditional design. Perfect for festive occasions and celebrations. Made from premium fabric with comfortable fit and beautiful detailing.",
+    "price": 2499.0,
+    "subcategories": [
+      "ethnic wear",
+      "suits",
+      "women's clothing"
+    ],
+    "category_path": [
+      "Apparel",
+      "Women",
+      "Ethnic Wear",
+      "Suits"
+    ],
+    "synonyms": [
+      "anarkali suit",
+      "ethnic suit",
+      "traditional wear",
+      "festive dress"
+    ],
+    "attributes": {
+      "fit": "Regular",
+      "material": "Silk Blend",
+      "occasion": "Festive"
+    },
+    "tags": [
+      "anarkali",
+      "ethnic",
+      "women",
+      "suit",
+      "traditional"
+    ],
+    "related_ids": [240, 241, 242],
+    "retail_price": 3499.0,
+    "review_count": 320,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.5,
+    "best_time_to_buy": ["festive", "wedding"],
+    "stock": 60,
+    "how_many_purchased": 1800,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 6,
+    "color": "Red",
+    "material": "Silk Blend",
+    "finish": "Embroidered",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Free alteration",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [28.6139, 77.209]
+    }
+  },
+  {
+    "id": 240,
+    "brand": "ASUS",
+    "title": "ASUS VivoBook 15 Laptop",
+    "category": "laptop",
+    "description": "Powerful ASUS VivoBook 15 laptop with Intel processor, 8GB RAM, and 512GB SSD. Perfect for work, study, and entertainment. Features a 15.6-inch Full HD display and lightweight design for portability.",
+    "price": 45999.0,
+    "subcategories": [
+      "laptops",
+      "computers",
+      "gaming laptops"
+    ],
+    "category_path": [
+      "Electronics",
+      "Computers",
+      "Laptops",
+      "Gaming Laptops"
+    ],
+    "synonyms": [
+      "asus vivobook",
+      "laptop",
+      "computer",
+      "gaming laptop"
+    ],
+    "attributes": {
+      "processor": "Intel i5",
+      "ram": "8GB",
+      "storage": "512GB SSD",
+      "display": "15.6 inch"
+    },
+    "tags": [
+      "asus",
+      "laptop",
+      "vivobook",
+      "gaming",
+      "computer"
+    ],
+    "related_ids": [241, 242, 243],
+    "retail_price": 54999.0,
+    "review_count": 280,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": ["allTime", "back to school"],
+    "stock": 45,
+    "how_many_purchased": 950,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "Taiwan"
+    },
+    "search_boost": 9,
+    "color": "Silver",
+    "material": "Aluminum",
+    "finish": "Premium",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Student discount available",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Bangalore",
+      "coords": [12.9716, 77.5946]
+    }
+  },
+  {
+    "id": 241,
+    "brand": "Apple",
+    "title": "Apple AirPods Pro",
+    "category": "headphones",
+    "description": "Premium Apple AirPods Pro with active noise cancellation and spatial audio. Features transparency mode, sweat and water resistance, and up to 4.5 hours of listening time. Perfect for music lovers and professionals.",
+    "price": 24999.0,
+    "subcategories": [
+      "earbuds",
+      "wireless headphones",
+      "audio"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Headphones",
+      "Wireless Earbuds"
+    ],
+    "synonyms": [
+      "airpods pro",
+      "earbuds",
+      "wireless headphones",
+      "apple audio"
+    ],
+    "attributes": {
+      "type": "Wireless",
+      "noise_cancellation": "Active",
+      "battery": "4.5 hours",
+      "water_resistant": "Yes"
+    },
+    "tags": [
+      "apple",
+      "airpods",
+      "earbuds",
+      "wireless",
+      "noise cancellation"
+    ],
+    "related_ids": [242, 243, 244],
+    "retail_price": 29999.0,
+    "review_count": 1200,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.6,
+    "best_time_to_buy": ["allTime", "festive"],
+    "stock": 120,
+    "how_many_purchased": 8500,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "USA"
+    },
+    "search_boost": 10,
+    "color": "White",
+    "material": "Plastic",
+    "finish": "Glossy",
+    "plus_eligible": true,
+    "delivery_time": 1,
+    "offers": "Free AppleCare+",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
+  },
+  {
+    "id": 242,
+    "brand": "Boat",
+    "title": "Boat Earbuds Wireless",
+    "category": "headphones",
+    "description": "Premium Boat wireless earbuds with immersive sound quality and long battery life. Features touch controls, IPX4 water resistance, and up to 6 hours of playback time. Perfect for workouts and daily use.",
+    "price": 1499.0,
+    "subcategories": [
+      "earbuds",
+      "wireless headphones",
+      "sports audio"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Headphones",
+      "Wireless Earbuds"
+    ],
+    "synonyms": [
+      "boat earbuds",
+      "wireless earbuds",
+      "bluetooth earbuds",
+      "sports headphones"
+    ],
+    "attributes": {
+      "type": "Wireless",
+      "battery": "6 hours",
+      "water_resistant": "IPX4",
+      "controls": "Touch"
+    },
+    "tags": [
+      "boat",
+      "earbuds",
+      "wireless",
+      "bluetooth",
+      "sports"
+    ],
+    "related_ids": [243, 244, 245],
+    "retail_price": 1999.0,
+    "review_count": 850,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": ["allTime", "fitness"],
+    "stock": 200,
+    "how_many_purchased": 4200,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 7,
+    "color": "Black",
+    "material": "Plastic",
+    "finish": "Matte",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "20% off on exchange",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [28.6139, 77.209]
+    }
+  },
+  {
+    "id": 243,
+    "brand": "American Tourister",
+    "title": "Bag for Men Travel Backpack",
+    "category": "accessories",
+    "description": "Durable travel backpack for men with multiple compartments and laptop sleeve. Made from water-resistant material with comfortable padded straps. Perfect for office, travel, and daily use.",
+    "price": 899.0,
+    "subcategories": [
+      "bags",
+      "backpacks",
+      "travel accessories"
+    ],
+    "category_path": [
+      "Accessories",
+      "Bags",
+      "Backpacks",
+      "Travel Bags"
+    ],
+    "synonyms": [
+      "bag for men",
+      "travel backpack",
+      "laptop bag",
+      "office bag"
+    ],
+    "attributes": {
+      "capacity": "25L",
+      "material": "Polyester",
+      "water_resistant": "Yes",
+      "laptop_sleeve": "Yes"
+    },
+    "tags": [
+      "bag",
+      "backpack",
+      "travel",
+      "men",
+      "laptop bag"
+    ],
+    "related_ids": [244, 245, 246],
+    "retail_price": 1299.0,
+    "review_count": 420,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.1,
+    "best_time_to_buy": ["allTime", "travel"],
+    "stock": 150,
+    "how_many_purchased": 2800,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "Black",
+    "material": "Polyester",
+    "finish": "Matte",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Free personalization",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Kolkata",
+      "coords": [22.5411, 88.3378]
+    }
+  },
+  {
+    "id": 244,
+    "brand": "JBL",
+    "title": "JBL Bluetooth Headphone",
+    "category": "headphones",
+    "description": "Premium JBL Bluetooth headphones with signature sound and comfortable over-ear design. Features 30-hour battery life, quick charge, and foldable design for easy storage.",
+    "price": 3999.0,
+    "subcategories": [
+      "headphones",
+      "bluetooth audio",
+      "over-ear headphones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Audio",
+      "Headphones",
+      "Over-Ear Headphones"
+    ],
+    "synonyms": [
+      "bluetooth headphone",
+      "jbl headphones",
+      "wireless headphones",
+      "over-ear headphones"
+    ],
+    "attributes": {
+      "type": "Over-Ear",
+      "battery": "30 hours",
+      "bluetooth": "5.0",
+      "foldable": "Yes"
+    },
+    "tags": [
+      "jbl",
+      "bluetooth",
+      "headphones",
+      "wireless",
+      "over-ear"
+    ],
+    "related_ids": [245, 246, 247],
+    "retail_price": 4999.0,
+    "review_count": 680,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": ["allTime", "music"],
+    "stock": 90,
+    "how_many_purchased": 3100,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "USA"
+    },
+    "search_boost": 8,
+    "color": "Black",
+    "material": "Plastic",
+    "finish": "Matte",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free carrying case",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
+  },
+  {
+    "id": 245,
+    "brand": "Poco",
+    "title": "Poco 5G Mobile Phone",
+    "category": "mobile",
+    "description": "High-performance Poco 5G mobile phone with powerful processor and 5G connectivity. Features a high-refresh-rate display, multiple cameras, and fast charging. Perfect for gaming and multitasking.",
+    "price": 18999.0,
+    "subcategories": [
+      "5g smartphones",
+      "gaming phones",
+      "smartphones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile Phones",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "poco 5g mobile",
+      "5g smartphone",
+      "gaming phone",
+      "poco mobile"
+    ],
+    "attributes": {
+      "storage": "128GB",
+      "ram": "8GB",
+      "display": "6.67 inch",
+      "camera": "64MP"
+    },
+    "tags": [
+      "poco",
+      "5g",
+      "mobile",
+      "smartphone",
+      "gaming"
+    ],
+    "related_ids": [246, 247, 248],
+    "retail_price": 22999.0,
+    "review_count": 520,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": ["allTime", "gaming"],
+    "stock": 75,
+    "how_many_purchased": 2100,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "China"
+    },
+    "search_boost": 9,
+    "color": "Blue",
+    "material": "Glass",
+    "finish": "Glossy",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free gaming bundle",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [28.6139, 77.209]
+    }
+  },
+  {
+    "id": 246,
+    "brand": "Parker",
+    "title": "Parker Pens Premium Collection",
+    "category": "accessories",
+    "description": "Premium Parker pens collection featuring elegant design and smooth writing experience. Perfect for professionals and gift occasions. Includes multiple colors and refill options.",
+    "price": 599.0,
+    "subcategories": [
+      "pens",
+      "writing instruments",
+      "office supplies"
+    ],
+    "category_path": [
+      "Accessories",
+      "Office Supplies",
+      "Writing Instruments",
+      "Pens"
+    ],
+    "synonyms": [
+      "parker pens",
+      "premium pens",
+      "writing pens",
+      "office pens"
+    ],
+    "attributes": {
+      "type": "Ballpoint",
+      "ink_color": "Blue",
+      "material": "Metal",
+      "grip": "Rubber"
+    },
+    "tags": [
+      "parker",
+      "pens",
+      "premium",
+      "writing",
+      "office"
+    ],
+    "related_ids": [247, 248, 249],
+    "retail_price": 899.0,
+    "review_count": 380,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.5,
+    "best_time_to_buy": ["allTime", "gifts"],
+    "stock": 200,
+    "how_many_purchased": 4500,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "UK"
+    },
+    "search_boost": 6,
+    "color": "Silver",
+    "material": "Metal",
+    "finish": "Polished",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free gift box",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
+  },
+  {
+    "id": 247,
+    "brand": "Levi's",
+    "title": "Levi's Pants for Men",
+    "category": "apparel",
+    "description": "Classic Levi's pants for men with comfortable fit and durable denim material. Perfect for casual and semi-formal occasions. Features multiple pockets and classic styling.",
+    "price": 2499.0,
+    "subcategories": [
+      "pants",
+      "men's clothing",
+      "casual wear"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Casual Pants"
+    ],
+    "synonyms": [
+      "levi's pants",
+      "men's pants",
+      "casual pants",
+      "denim pants"
+    ],
+    "attributes": {
+      "fit": "Regular",
+      "material": "Denim",
+      "style": "Casual",
+      "pockets": "5"
+    },
+    "tags": [
+      "levi's",
+      "pants",
+      "men",
+      "casual",
+      "denim"
+    ],
+    "related_ids": [248, 249, 250],
+    "retail_price": 3499.0,
+    "review_count": 420,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": ["allTime", "casual"],
+    "stock": 120,
+    "how_many_purchased": 2800,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "USA"
+    },
+    "search_boost": 7,
+    "color": "Blue",
+    "material": "Denim",
+    "finish": "Washed",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Free alteration",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [28.6139, 77.209]
+    }
+  },
+  {
+    "id": 248,
+    "brand": "Pilgrim",
+    "title": "Pilgrim Face Serum",
+    "category": "beauty",
+    "description": "Advanced Pilgrim face serum with natural ingredients for glowing skin. Targets multiple skin concerns including dark spots, uneven texture, and signs of aging. Suitable for all skin types.",
+    "price": 899.0,
+    "subcategories": [
+      "face serum",
+      "skincare",
+      "beauty products"
+    ],
+    "category_path": [
+      "Beauty",
+      "Skincare",
+      "Face Care",
+      "Serums"
+    ],
+    "synonyms": [
+      "pilgrim face serum",
+      "face serum",
+      "skincare",
+      "anti-aging serum"
+    ],
+    "attributes": {
+      "skin_type": "All",
+      "volume": "30ml",
+      "key_ingredients": "Vitamin C",
+      "usage": "Daily"
+    },
+    "tags": [
+      "pilgrim",
+      "face serum",
+      "skincare",
+      "vitamin c",
+      "anti-aging"
+    ],
+    "related_ids": [249, 250, 251],
+    "retail_price": 1299.0,
+    "review_count": 650,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": ["allTime", "beauty"],
+    "stock": 180,
+    "how_many_purchased": 3200,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 8,
+    "color": "Transparent",
+    "material": "Liquid",
+    "finish": "Smooth",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Buy 2 Get 1 Free",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
+  },
+  {
+    "id": 249,
+    "brand": "Samsung",
+    "title": "Samsung 5G Mobiles",
+    "category": "mobile",
+    "description": "Premium Samsung 5G mobile phones with cutting-edge technology and exceptional performance. Features advanced camera systems, powerful processors, and stunning displays. Perfect for photography, gaming, and productivity.",
+    "price": 45999.0,
+    "subcategories": [
+      "5g smartphones",
+      "samsung phones",
+      "smartphones"
+    ],
+    "category_path": [
+      "Electronics",
+      "Mobile Phones",
+      "Smartphones",
+      "5G Phones"
+    ],
+    "synonyms": [
+      "samsung 5g mobiles",
+      "samsung phones",
+      "5g smartphones",
+      "galaxy phones"
+    ],
+    "attributes": {
+      "storage": "256GB",
+      "ram": "12GB",
+      "display": "6.8 inch",
+      "camera": "108MP"
+    },
+    "tags": [
+      "samsung",
+      "5g",
+      "mobile",
+      "smartphone",
+      "galaxy"
+    ],
+    "related_ids": [250, 251, 252],
+    "retail_price": 54999.0,
+    "review_count": 890,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.6,
+    "best_time_to_buy": ["allTime", "festive"],
+    "stock": 65,
+    "how_many_purchased": 3800,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "South Korea"
+    },
+    "search_boost": 10,
+    "color": "Phantom Black",
+    "material": "Glass",
+    "finish": "Premium",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free Galaxy Buds",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [28.6139, 77.209]
+    }
   }
 ]

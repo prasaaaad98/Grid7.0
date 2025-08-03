@@ -152,7 +152,15 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon, on
   }, [query, filters, sort, userLat, userLon])
 
   const addToCart = (product: Product) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+    // Check if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null")
+    const isLoggedIn = !!currentUser
+    
+    // Use sessionStorage for non-logged-in users, localStorage for logged-in users
+    const storage = isLoggedIn ? localStorage : sessionStorage
+    const cartKey = isLoggedIn ? "cart" : "sessionCart"
+    
+    const cart = JSON.parse(storage.getItem(cartKey) || "[]")
     const existingItemIndex = cart.findIndex((item: any) => item.id === product.id)
 
     if (existingItemIndex > -1) {
@@ -165,19 +173,21 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon, on
         title: product.title,
         price: Math.round(product.price),
         quantity: 1,
+        thumbnail: product.images?.[0] || "",
       })
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart))
+    storage.setItem(cartKey, JSON.stringify(cart))
 
     // Trigger storage event for cart count update
     window.dispatchEvent(
       new StorageEvent("storage", {
-        key: "cart",
+        key: cartKey,
         newValue: JSON.stringify(cart),
       }),
     )
 
+    // Show success message
     alert(`${product.title} added to cart!`)
   }
 

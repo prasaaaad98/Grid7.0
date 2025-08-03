@@ -27,7 +27,15 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
 
   useEffect(() => {
     const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+      // Check if user is logged in
+      const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null")
+      const isLoggedIn = !!currentUser
+      
+      // Use sessionStorage for non-logged-in users, localStorage for logged-in users
+      const storage = isLoggedIn ? localStorage : sessionStorage
+      const cartKey = isLoggedIn ? "cart" : "sessionCart"
+      
+      const cart = JSON.parse(storage.getItem(cartKey) || "[]")
       const totalItems = cart.reduce((total: number, item: any) => total + (item.quantity || 1), 0)
       setCartCount(totalItems)
     }
@@ -35,6 +43,49 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
     const updateUser = () => {
       const user = JSON.parse(localStorage.getItem("currentUser") || "null")
       setCurrentUser(user)
+      
+      // Migrate cart data when user logs in/out
+      if (user) {
+        // User logged in - migrate session cart to local cart
+        const sessionCart = JSON.parse(sessionStorage.getItem("sessionCart") || "[]")
+        const localCart = JSON.parse(localStorage.getItem("cart") || "[]")
+        
+        if (sessionCart.length > 0) {
+          // Merge session cart with local cart
+          const mergedCart = [...localCart]
+          sessionCart.forEach((sessionItem: any) => {
+            const existingIndex = mergedCart.findIndex((item: any) => item.id === sessionItem.id)
+            if (existingIndex > -1) {
+              mergedCart[existingIndex].quantity += sessionItem.quantity
+            } else {
+              mergedCart.push(sessionItem)
+            }
+          })
+          
+          localStorage.setItem("cart", JSON.stringify(mergedCart))
+          sessionStorage.removeItem("sessionCart")
+          
+          // Trigger storage event
+          window.dispatchEvent(
+            new StorageEvent("storage", {
+              key: "cart",
+              newValue: JSON.stringify(mergedCart),
+            }),
+          )
+        }
+      } else {
+        // User logged out - clear local cart (session cart will persist for incognito)
+        localStorage.removeItem("cart")
+      }
+    }
+
+    // Clear session cart when browser/tab is closed (for incognito users)
+    const handleBeforeUnload = () => {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null")
+      if (!currentUser) {
+        // Only clear session cart for non-logged-in users
+        sessionStorage.removeItem("sessionCart")
+      }
     }
 
     // Initial load
@@ -44,18 +95,58 @@ export default function Header({ onSearch, onHomeClick }: HeaderProps) {
     // Listen for storage events
     window.addEventListener("storage", updateCartCount)
     window.addEventListener("storage", updateUser)
+    
+    // Listen for page unload to clear session cart
+    window.addEventListener("beforeunload", handleBeforeUnload)
 
     return () => {
       window.removeEventListener("storage", updateCartCount)
       window.removeEventListener("storage", updateUser)
+      window.removeEventListener("beforeunload", handleBeforeUnload)
     }
   }, [])
 
   const handleLogout = () => {
+    // Clear user data
     localStorage.removeItem("currentUser")
+    
+    // Clear persistent cart data (session cart will remain for incognito users)
+    localStorage.removeItem("cart")
+    
+    // Reset cart count
+    setCartCount(0)
+    
+    // Trigger storage events
+    window.dispatchEvent(
+      new StorageEvent("storage", {
+        key: "cart",
+        newValue: null,
+      }),
+    )
+    
     setCurrentUser(null)
     alert("Logged out successfully!")
   }
+
+  // Utility function to clear session cart (for testing)
+  const clearSessionCart = () => {
+    sessionStorage.removeItem("sessionCart")
+    setCartCount(0)
+    window.dispatchEvent(
+      new StorageEvent("storage", {
+        key: "sessionCart",
+        newValue: null,
+      }),
+    )
+  }
+
+  // Expose clearSessionCart globally for testing
+  useEffect(() => {
+    (window as any).clearSessionCart = clearSessionCart
+    return () => {
+      delete (window as any).clearSessionCart
+    }
+  }, [])
 
   return (
     <header className="bg-[#2874f0] text-white sticky top-0 z-50">
