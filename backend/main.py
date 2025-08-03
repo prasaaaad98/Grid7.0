@@ -42,7 +42,130 @@ def normalize_with_stemming(text: str) -> str:
     stemmed_words = [stem_word(word) for word in words]
     return " ".join(stemmed_words)
 def translate_hindi_to_english(text: str) -> str:
-    return normalize(text)
+    """
+    Translate Hindi words to English equivalents for search functionality.
+    This enables Hinglish search where users can search in Hindi and get English products.
+    """
+    # Hindi to English word mappings
+    hindi_to_english = {
+        # Footwear related
+        "chappal": "footwear",
+        "joota": "shoes",
+        "joote": "shoes",
+        "जूता": "shoes",
+        "जूते": "shoes", 
+        "चप्पल": "footwear",
+        "सैंडल": "sandals",
+        "सैंडल्स": "sandals",
+        "मोजे": "socks",
+        "मोज़े": "socks",
+        "जूते": "shoes",
+        "फुटवियर": "footwear",
+        
+        # Cleaning supplies
+        "झाड़ू": "broom",
+        "जाडू": "broom",
+        "जाड़ू": "broom",
+        "झाडू": "broom",
+        "jhaadu": "broom",
+        "jhaadoo": "broom",
+        "jhaaru": "broom",
+        "jharu": "broom",
+        "झाड़ू": "broom",
+        "सफाई": "cleaning",
+        "सफाई का सामान": "cleaning supplies",
+        "safai": "cleaning",
+        
+        # Clothing
+        "कपड़े": "clothing",
+        "kapde": "clothing",
+        "शर्ट": "shirt",
+        "पैंट": "pants",
+        "जींस": "jeans",
+        "टी-शर्ट": "tshirt",
+        "टी शर्ट": "tshirt",
+        "कुर्ता": "kurta",
+        "साड़ी": "saree",
+        "सलवार": "salwar",
+        "सूट": "suit",
+        
+        # Electronics
+        "मोबाइल": "mobile",
+        "फोन": "phone",
+        "लैपटॉप": "laptop",
+        "कंप्यूटर": "computer",
+        "टीवी": "tv",
+        "टेलीविजन": "television",
+        "हेडफोन": "headphones",
+        "इयरफोन": "earphones",
+        "घड़ी": "watch",
+        "स्मार्टवॉच": "smartwatch",
+        
+        # Home & Kitchen
+        "बर्तन": "utensils",
+        "कुकर": "cooker",
+        "पैन": "pan",
+        "कटोरा": "bowl",
+        "प्लेट": "plate",
+        "गिलास": "glass",
+        "कप": "cup",
+        "मग": "mug",
+        
+        # Beauty & Personal Care
+        "शैम्पू": "shampoo",
+        "साबुन": "soap",
+        "क्रीम": "cream",
+        "लोशन": "lotion",
+        "पाउडर": "powder",
+        "मेकअप": "makeup",
+        "लिपस्टिक": "lipstick",
+        "काजल": "kajal",
+        
+        # Food & Beverages
+        "चाय": "tea",
+        "कॉफी": "coffee",
+        "दूध": "milk",
+        "बिस्किट": "biscuits",
+        "चॉकलेट": "chocolate",
+        "मिठाई": "sweets",
+        "नमकीन": "snacks",
+        
+        # Common words
+        "सस्ता": "cheap",
+        "महंगा": "expensive",
+        "अच्छा": "good",
+        "बुरा": "bad",
+        "नया": "new",
+        "पुराना": "old",
+        "बड़ा": "big",
+        "छोटा": "small",
+        "लाल": "red",
+        "नीला": "blue",
+        "हरा": "green",
+        "पीला": "yellow",
+        "काला": "black",
+        "सफेद": "white"
+    }
+    
+    # Normalize the input text
+    normalized_text = normalize(text)
+    
+    # Split into words and translate each word
+    words = normalized_text.split()
+    translated_words = []
+    
+    for word in words:
+        # Check if the word exists in our Hindi to English mapping
+        if word in hindi_to_english:
+            translated_words.append(hindi_to_english[word])
+        else:
+            # Keep the original word if no translation found
+            translated_words.append(word)
+    
+    # Join the translated words back together
+    translated_text = " ".join(translated_words)
+    
+    return translated_text
 
 # Load product data with extended schema
 with open("data/products.json", encoding='utf-8') as f:
@@ -297,6 +420,8 @@ trending_map = {
         "Creatine monohydrate",
         "Clogs for men",
         "Counter name jaap",
+        "Chappal",
+        "चप्पल",
     ],
     'd': [
         "Dermdoc night cream",
@@ -327,6 +452,9 @@ trending_map = {
         "Footwear for women",
         "Fastrack watches men",
         "Fire boltt smartwatch",
+        "फुटवियर",
+        "जूता",
+        "जूते",
     ],
     'g': [
         "Ghar soap",
@@ -365,6 +493,10 @@ trending_map = {
         "Jeans for women",
         "Juicer mixer grinder",
         "Jacket for men",
+        "Jhaadu",
+        "झाड़ू",
+        "Jhaadoo",
+        "जाडू",
         "Jockey underwear",
         "Jewellery set",
     ],
@@ -457,6 +589,8 @@ trending_map = {
         "Saree new design",
         "Shoes for men",
         "Saree",
+        "सफाई",
+        "सफाई का सामान",
     ],
     't': [
         "T shirt",

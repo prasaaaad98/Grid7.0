@@ -18476,5 +18476,234 @@
       "name": "Delhi",
       "coords": [28.6139, 77.209]
     }
+  },
+  {
+    "id": 250,
+    "brand": "Bata",
+    "title": "Bata Comfit Formal Shoes for Men",
+    "category": "footwear",
+    "description": "Step into comfort and style with Bata Comfit Formal Shoes for Men. These premium leather shoes feature advanced comfort technology with cushioned insoles and breathable lining for all-day comfort. The classic Oxford design with perforated detailing offers a sophisticated look perfect for office wear and formal occasions. Crafted from genuine leather with a durable rubber sole, these shoes provide excellent traction and long-lasting wear. The padded collar and tongue ensure a snug, comfortable fit while the moisture-wicking lining keeps feet fresh throughout the day. Available in classic black and brown shades, these shoes are a must-have for every professional's wardrobe.",
+    "price": 2499.0,
+    "subcategories": [
+      "formal shoes",
+      "men's footwear",
+      "leather shoes",
+      "office wear"
+    ],
+    "category_path": [
+      "Footwear",
+      "Men",
+      "Formal Shoes",
+      "Leather Shoes"
+    ],
+    "synonyms": [
+      "bata formal shoes",
+      "men's leather shoes",
+      "office shoes",
+      "dress shoes",
+      "chappal",
+      "जूता",
+      "जूते",
+      "फुटवियर"
+    ],
+    "attributes": {
+      "material": "genuine leather",
+      "sole": "rubber",
+      "closure": "lace-up",
+      "style": "oxford"
+    },
+    "tags": [
+      "bata",
+      "formal shoes",
+      "men's footwear",
+      "leather shoes",
+      "office wear",
+      "chappal",
+      "जूता",
+      "फुटवियर"
+    ],
+    "related_ids": [251, 252, 253],
+    "retail_price": 3299.0,
+    "review_count": 445,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/61GdgIOnQUL._AC_UL320_.jpg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": ["allTime", "festive"],
+    "stock": 85,
+    "how_many_purchased": 2100,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "formal occasions",
+      "material": "genuine leather",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "black",
+    "material": "leather",
+    "finish": "polished",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "10% off on Bata products",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [13.0827, 80.2707]
+    }
+  },
+  {
+    "id": 251,
+    "brand": "Bata",
+    "title": "Bata Comfit Formal Shoes for Women",
+    "category": "footwear",
+    "description": "Elevate your professional look with Bata Comfit Formal Shoes for Women. These elegant leather shoes combine style with exceptional comfort, featuring Bata's signature Comfit technology for superior cushioning and support. The classic pump design with a moderate heel height is perfect for office wear and formal events. Crafted from premium leather with a durable sole, these shoes offer excellent stability and long-lasting wear. The padded insole and breathable lining ensure all-day comfort, while the slip-resistant outsole provides safety on various surfaces. Available in versatile black and brown shades, these shoes are an essential addition to any professional woman's wardrobe.",
+    "price": 2299.0,
+    "subcategories": [
+      "formal shoes",
+      "women's footwear",
+      "leather shoes",
+      "office wear"
+    ],
+    "category_path": [
+      "Footwear",
+      "Women",
+      "Formal Shoes",
+      "Leather Shoes"
+    ],
+    "synonyms": [
+      "bata women's shoes",
+      "formal pumps",
+      "office shoes",
+      "leather pumps",
+      "chappal",
+      "जूता",
+      "जूते",
+      "फुटवियर"
+    ],
+    "attributes": {
+      "material": "genuine leather",
+      "sole": "rubber",
+      "closure": "slip-on",
+      "style": "pump",
+      "heel_height": "2.5 inch"
+    },
+    "tags": [
+      "bata",
+      "women's footwear",
+      "formal shoes",
+      "leather shoes",
+      "office wear",
+      "chappal",
+      "जूता",
+      "फुटवियर"
+    ],
+    "related_ids": [250, 252, 253],
+    "retail_price": 2999.0,
+    "review_count": 320,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg",
+      "https://m.media-amazon.com/images/I/61nNIUhAQ1L._AC_UL320_.jpg"
+    ],
+    "rating": 4.1,
+    "best_time_to_buy": ["allTime", "festive"],
+    "stock": 65,
+    "how_many_purchased": 1800,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "formal occasions",
+      "material": "genuine leather",
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "black",
+    "material": "leather",
+    "finish": "polished",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "10% off on Bata products",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [13.0827, 80.2707]
+    }
+  },
+  {
+    "id": 252,
+    "brand": "Bajaj",
+    "title": "Bajaj Premium Broom with Long Handle",
+    "category": "home_essentials",
+    "description": "Keep your home spotless with the Bajaj Premium Broom featuring a durable long handle and high-quality bristles. This professional-grade broom is designed for efficient cleaning of various surfaces including floors, patios, and outdoor areas. The ergonomic handle provides comfortable grip and extended reach, reducing strain during cleaning tasks. The sturdy bristles effectively collect dust, dirt, and debris while being gentle on surfaces. The broom head is securely attached to prevent loosening during use, ensuring long-lasting performance. Perfect for daily household cleaning, this broom is an essential tool for maintaining a clean and hygienic environment.",
+    "price": 299.0,
+    "subcategories": [
+      "cleaning supplies",
+      "brooms",
+      "household essentials",
+      "cleaning tools"
+    ],
+    "category_path": [
+      "Home & Garden",
+      "Cleaning Supplies",
+      "Brooms & Mops",
+      "Brooms"
+    ],
+    "synonyms": [
+      "bajaj broom",
+      "cleaning broom",
+      "floor broom",
+      "household broom",
+      "jhaadu",
+      "jhaadoo",
+      "झाड़ू",
+      "जाडू",
+      "सफाई"
+    ],
+    "attributes": {
+      "handle_material": "wood",
+      "bristle_material": "natural fiber",
+      "handle_length": "120 cm",
+      "head_width": "25 cm"
+    },
+    "tags": [
+      "bajaj",
+      "broom",
+      "cleaning",
+      "household",
+      "cleaning supplies",
+      "jhaadu",
+      "झाड़ू",
+      "सफाई"
+    ],
+    "related_ids": [253, 254, 255],
+    "retail_price": 399.0,
+    "review_count": 156,
+    "images": [
+      "https://m.media-amazon.com/images/I/71K+QJvQxNL._AC_UL320_.jpg"
+    ],
+    "rating": 4.0,
+    "best_time_to_buy": ["allTime"],
+    "stock": 200,
+    "how_many_purchased": 850,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "household cleaning",
+      "material": "natural fiber bristles, wooden handle",
+      "origin": "India"
+    },
+    "search_boost": 2,
+    "color": "brown",
+    "material": "natural fiber",
+    "finish": "natural",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Buy 2 Get 1 Free",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [19.076, 72.8777]
+    }
   }
 ]
