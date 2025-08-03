@@ -68,6 +68,21 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon, on
       .then(res => res.json())
       .then(data => {
         console.log('Received data:', data.results?.slice(0, 3).map((item: any) => ({ title: item.title, price: item.price })))
+        
+        // Update localStorage with most relevant category path
+        if (data.most_relevant_category_path && data.most_relevant_category_path.length > 0) {
+          const currentPaths = JSON.parse(localStorage.getItem("previousCategoryPaths") || "[]")
+          const newPath = data.most_relevant_category_path
+          
+          // Add new path to beginning, remove duplicates, keep max 6
+          const updatedPaths = [newPath, ...currentPaths.filter((path: any) => 
+            JSON.stringify(path) !== JSON.stringify(newPath)
+          )].slice(0, 6)
+          
+          localStorage.setItem("previousCategoryPaths", JSON.stringify(updatedPaths))
+          console.log('Updated previousCategoryPaths:', updatedPaths)
+        }
+        
         // Handle new backend response format with results, total_hits, and facets
         const products = data.results || data // Fallback to old format if needed
         const sponsoredId = data.sponsored_id // Get sponsored product ID
@@ -115,8 +130,8 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon, on
           return product
         }).filter(Boolean) // Remove null products)
 
-        // Apply delivery filter
-        if (filters.deliveryDays < 7) {
+        // Apply delivery filter only if enabled
+        if (filters.deliveryFilterEnabled && filters.deliveryDays < 7) {
           transformedProducts = transformedProducts.filter(product => 
             (product.calculatedDeliveryDays || 7) <= filters.deliveryDays
           )

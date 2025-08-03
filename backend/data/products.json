@@ -148,7 +148,7 @@
     "finish": "smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹999",
+    "offers": "Free shipping on orders over \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -227,7 +227,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹999",
+    "offers": "Free shipping on orders over \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -305,7 +305,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹1500",
+    "offers": "15% off on orders above \u20b91500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -384,7 +384,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹999",
+    "offers": "Free shipping on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -544,7 +544,7 @@
     "finish": "Smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹2000",
+    "offers": "15% off on orders above \u20b92000",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -784,7 +784,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹2000",
+    "offers": "15% off on orders above \u20b92000",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -864,7 +864,7 @@
     "finish": "Soft",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Special Price: Get 15% off on orders above ₹2000",
+    "offers": "Special Price: Get 15% off on orders above \u20b92000",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -958,7 +958,7 @@
     "brand": "Nike",
     "title": "Nike Denim Shirt",
     "category": "shirts",
-    "description": "Elevate your casual wardrobe with the Nike Denim Shirt. This stylish shirt is crafted from high-quality, durable denim in a classic light blue wash. The robust material ensures both comfort and longevity, making it ideal for everyday wear. Featuring a relaxed fit, this shirt is perfect for layering or wearing on its own. The full-button closure and pointed collar add a touch of timeless sophistication, while the subtle Nike branding on the chest pocket offers a discreet nod to athletic heritage. This shirt caters to individuals seeking a blend of comfort and style, effortlessly transitioning from casual outings to laid-back weekends. The shirt’s durable construction makes it a versatile addition to any wardrobe, providing lasting style and comfort. Its breathable fabric ensures comfort in various climates.",
+    "description": "Elevate your casual wardrobe with the Nike Denim Shirt. This stylish shirt is crafted from high-quality, durable denim in a classic light blue wash. The robust material ensures both comfort and longevity, making it ideal for everyday wear. Featuring a relaxed fit, this shirt is perfect for layering or wearing on its own. The full-button closure and pointed collar add a touch of timeless sophistication, while the subtle Nike branding on the chest pocket offers a discreet nod to athletic heritage. This shirt caters to individuals seeking a blend of comfort and style, effortlessly transitioning from casual outings to laid-back weekends. The shirt\u2019s durable construction makes it a versatile addition to any wardrobe, providing lasting style and comfort. Its breathable fabric ensures comfort in various climates.",
     "price": 2499.0,
     "subcategories": [
       "casual shirts",
@@ -1022,7 +1022,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free delivery on orders above ₹999",
+    "offers": "Free delivery on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -1579,7 +1579,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹499",
+    "offers": "Free shipping on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -1899,7 +1899,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free Shipping on Orders Above ₹500",
+    "offers": "Free Shipping on Orders Above \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -2140,7 +2140,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹499",
+    "offers": "Free shipping on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -2220,7 +2220,7 @@
     "finish": "Matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹500",
+    "offers": "Free shipping on orders over \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -2461,7 +2461,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹500",
+    "offers": "Free shipping on orders above \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -2860,7 +2860,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹499",
+    "offers": "Free shipping on orders over \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -2941,7 +2941,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹500",
+    "offers": "Free shipping on orders over \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -3180,7 +3180,7 @@
     "finish": "glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Exchange offer up to ₹20,000",
+    "offers": "Exchange offer up to \u20b920,000",
     "exchange_available": true,
     "assured_badge": true,
     "warehouse_loc": {
@@ -3578,7 +3578,7 @@
     "finish": "glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Exchange offer available, No Cost EMI starting at ₹2,833",
+    "offers": "Exchange offer available, No Cost EMI starting at \u20b92,833",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -3818,7 +3818,7 @@
     "finish": "Glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Exchange offer available, up to ₹20,000 off",
+    "offers": "Exchange offer available, up to \u20b920,000 off",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -5581,7 +5581,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹500",
+    "offers": "Free shipping on orders over \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -6029,7 +6029,7 @@
         "toasting",
         "grilling"
       ],
-      "temperature_range": "100-250°C"
+      "temperature_range": "100-250\u00b0C"
     },
     "tags": [
       "OTG",
@@ -6153,7 +6153,7 @@
     "finish": "glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free delivery on orders above ₹499",
+    "offers": "Free delivery on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -6388,13 +6388,13 @@
       "material": "stainless steel",
       "origin": "Germany"
     },
-    "search_boost": 3,
+    "search_boost": 5,
     "color": "stainless steel",
     "material": "stainless steel",
     "finish": "stainless steel",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Save up to ₹5,000 with HDFC Bank Credit Cards",
+    "offers": "Save up to \u20b95,000 with HDFC Bank Credit Cards",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -7532,7 +7532,7 @@
     "brand": "Dell",
     "title": "Dell XPS 13 9315",
     "category": "electronics",
-    "description": "The Dell XPS 13 9315 is a marvel of engineering, featuring a stunning, minimalist design in a sophisticated Platinum color. Crafted from machined aluminum, this laptop exudes premium quality and durability. Ideal for professionals, students, and anyone seeking a portable yet powerful computing solution, the XPS 13 offers exceptional performance for everyday tasks, content creation, and entertainment. Its key features include a vibrant display with narrow bezels, a comfortable keyboard, and long battery life. The device’s lightweight design makes it perfect for on-the-go use, while its robust build ensures it can withstand the rigors of daily life. Experience seamless multitasking and immersive visuals with this elegantly designed and highly capable laptop.",
+    "description": "The Dell XPS 13 9315 is a marvel of engineering, featuring a stunning, minimalist design in a sophisticated Platinum color. Crafted from machined aluminum, this laptop exudes premium quality and durability. Ideal for professionals, students, and anyone seeking a portable yet powerful computing solution, the XPS 13 offers exceptional performance for everyday tasks, content creation, and entertainment. Its key features include a vibrant display with narrow bezels, a comfortable keyboard, and long battery life. The device\u2019s lightweight design makes it perfect for on-the-go use, while its robust build ensures it can withstand the rigors of daily life. Experience seamless multitasking and immersive visuals with this elegantly designed and highly capable laptop.",
     "price": 99999.0,
     "subcategories": [
       "laptops",
@@ -7998,7 +7998,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹499",
+    "offers": "Free shipping on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8317,7 +8317,7 @@
     "finish": "matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Special Offer: Get 15% off on orders above ₹1500",
+    "offers": "Special Offer: Get 15% off on orders above \u20b91500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8475,7 +8475,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Extra 5% off on orders above ₹2000",
+    "offers": "Extra 5% off on orders above \u20b92000",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8556,7 +8556,7 @@
     "finish": "smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹999",
+    "offers": "Free shipping on orders over \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8793,7 +8793,7 @@
     "finish": "soft",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders over ₹999",
+    "offers": "Free shipping on orders over \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8872,7 +8872,7 @@
     "finish": "smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Extra 5% off on orders above ₹2000",
+    "offers": "Extra 5% off on orders above \u20b92000",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -8950,7 +8950,7 @@
     "finish": "textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹2999",
+    "offers": "15% off on orders above \u20b92999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -9031,7 +9031,7 @@
     "finish": "Textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free shipping on orders above ₹999",
+    "offers": "Free shipping on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -9191,7 +9191,7 @@
     "finish": "glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Exchange offer available, up to ₹15000 off",
+    "offers": "Exchange offer available, up to \u20b915000 off",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -9845,7 +9845,7 @@
     "brand": "IFB",
     "title": "IFB 7kg Fully Automatic Front Load",
     "category": "appliances",
-    "description": "The IFB 7kg Fully Automatic Front Load washing machine, presented in a sleek silver finish, offers a blend of efficiency and innovation for modern households. Constructed with a durable stainless steel drum and a robust outer body, this appliance ensures longevity and reliability. Ideal for families and individuals with moderate laundry needs, it boasts features like Aqua Energie, which pre-treats water for better detergent dissolution, and a comprehensive wash program selection to handle various fabric types. The machine’s advanced technology ensures thorough cleaning while minimizing water and energy consumption, making it an eco-friendly choice. Its compact design allows for easy integration into diverse laundry spaces. The crescent moon drum design creates a gentle water cushion, preventing damage to fabrics.",
+    "description": "The IFB 7kg Fully Automatic Front Load washing machine, presented in a sleek silver finish, offers a blend of efficiency and innovation for modern households. Constructed with a durable stainless steel drum and a robust outer body, this appliance ensures longevity and reliability. Ideal for families and individuals with moderate laundry needs, it boasts features like Aqua Energie, which pre-treats water for better detergent dissolution, and a comprehensive wash program selection to handle various fabric types. The machine\u2019s advanced technology ensures thorough cleaning while minimizing water and energy consumption, making it an eco-friendly choice. Its compact design allows for easy integration into diverse laundry spaces. The crescent moon drum design creates a gentle water cushion, preventing damage to fabrics.",
     "price": 24999.0,
     "subcategories": [
       "washing machines",
@@ -9884,9 +9884,7 @@
     "retail_price": 32000.0,
     "review_count": 325,
     "images": [
-      "https://m.media-amazon.com/images/I/71Nn52xi20L._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/61QkJg-vgAL._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/61WhG23VnoL._AC_UY218_.jpg"
+      "https://www.bajajmall.in/emistore/media/catalog/product/i/f/ifbserenazssfrontloadwashingmachine_base_1.jpeg"
     ],
     "rating": 4.2,
     "best_time_to_buy": [
@@ -9962,9 +9960,7 @@
     "retail_price": 38500.0,
     "review_count": 325,
     "images": [
-      "https://m.media-amazon.com/images/I/61WBGCyRCKL._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/61aSijIE+JL._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/71IAUZOr-rL._AC_UY218_.jpg"
+      "https://vasanthandco.in/images/productimages/1866__product__Washing%20Machine__bosch-6-5-kg-waj2426hin-fully-automatic-front-load-washing-machine-3.png"
     ],
     "rating": 4.5,
     "best_time_to_buy": [
@@ -10042,9 +10038,7 @@
     "retail_price": 22098.7,
     "review_count": 345,
     "images": [
-      "https://m.media-amazon.com/images/I/61gVfUHxSfL._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/614WPs7pU5L._AC_UY218_.jpg",
-      "https://m.media-amazon.com/images/I/51tC28xllqL._AC_UY218_.jpg"
+      "https://media.tatacroma.com/Croma%20Assets/Large%20Appliances/Washers%20and%20Dryers/Images/270357_0_pww9y0.png"
     ],
     "rating": 4.2,
     "best_time_to_buy": [
@@ -10059,7 +10053,7 @@
       "material": "Metal, Stainless Steel",
       "origin": "India"
     },
-    "search_boost": 3,
+    "search_boost": 5,
     "color": "Silver",
     "material": "Metal",
     "finish": "Glossy",
@@ -10300,7 +10294,7 @@
     "finish": "Textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free delivery on orders above ₹499",
+    "offers": "Free delivery on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -10682,7 +10676,7 @@
     "finish": "Textured",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free Shipping on orders above ₹999",
+    "offers": "Free Shipping on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -11239,7 +11233,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹999",
+    "offers": "15% off on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -11706,7 +11700,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free Shipping on orders above ₹499",
+    "offers": "Free Shipping on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": true,
     "warehouse_loc": {
@@ -11858,7 +11852,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹999",
+    "offers": "15% off on orders above \u20b9999",
     "exchange_available": false,
     "assured_badge": true,
     "warehouse_loc": {
@@ -12010,7 +12004,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹999",
+    "offers": "5% off on orders above \u20b9999",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -12157,7 +12151,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹499",
+    "offers": "15% off on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -12235,7 +12229,7 @@
     "finish": "Dried",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹500",
+    "offers": "15% off on orders above \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -12544,7 +12538,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹500",
+    "offers": "5% off on orders above \u20b9500",
     "exchange_available": false,
     "assured_badge": true,
     "warehouse_loc": {
@@ -12624,7 +12618,7 @@
     "finish": "Unrefined",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹499",
+    "offers": "5% off on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": true,
     "warehouse_loc": {
@@ -12640,7 +12634,7 @@
     "brand": "Saffola",
     "title": "Saffola Active Rice Bran Oil",
     "category": "Grocery",
-    "description": "Saffola Active Rice Bran Oil is a light amber-colored cooking oil derived from the outer layer of rice kernels. This refined vegetable oil is a heart-healthy choice for everyday cooking, making it suitable for health-conscious individuals and families. Its key features include a high smoke point, making it ideal for deep frying and sautéing. The oil is rich in Oryzanol, an antioxidant that helps maintain healthy cholesterol levels. It also boasts a neutral taste, ensuring that it doesn't overpower the flavors of your dishes. Its light texture ensures less oil absorption, making your meals lighter and healthier. Packaged in durable, food-grade plastic, it promises quality and freshness.",
+    "description": "Saffola Active Rice Bran Oil is a light amber-colored cooking oil derived from the outer layer of rice kernels. This refined vegetable oil is a heart-healthy choice for everyday cooking, making it suitable for health-conscious individuals and families. Its key features include a high smoke point, making it ideal for deep frying and saut\u00e9ing. The oil is rich in Oryzanol, an antioxidant that helps maintain healthy cholesterol levels. It also boasts a neutral taste, ensuring that it doesn't overpower the flavors of your dishes. Its light texture ensures less oil absorption, making your meals lighter and healthier. Packaged in durable, food-grade plastic, it promises quality and freshness.",
     "price": 175.0,
     "subcategories": [
       "Cooking Oil",
@@ -12855,7 +12849,7 @@
     "finish": "Smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹999",
+    "offers": "5% off on orders above \u20b9999",
     "exchange_available": false,
     "assured_badge": true,
     "warehouse_loc": {
@@ -13238,7 +13232,7 @@
     "finish": "Glossy",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹500",
+    "offers": "15% off on orders above \u20b9500",
     "exchange_available": false,
     "assured_badge": true,
     "warehouse_loc": {
@@ -13392,7 +13386,7 @@
     "finish": "Powder",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹500",
+    "offers": "5% off on orders above \u20b9500",
     "exchange_available": false,
     "assured_badge": false,
     "warehouse_loc": {
@@ -13544,7 +13538,7 @@
     "finish": "Unpolished",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹500",
+    "offers": "15% off on orders above \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -13617,7 +13611,7 @@
     "finish": "Powdered",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹200",
+    "offers": "5% off on orders above \u20b9200",
     "exchange_available": false,
     "assured_badge": false,
     "warehouse_loc": {
@@ -13771,7 +13765,7 @@
     "finish": "Powdered",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹200",
+    "offers": "5% off on orders above \u20b9200",
     "exchange_available": true,
     "assured_badge": true,
     "warehouse_loc": {
@@ -13921,7 +13915,7 @@
     "finish": "Smooth",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹500",
+    "offers": "15% off on orders above \u20b9500",
     "exchange_available": false,
     "assured_badge": true,
     "warehouse_loc": {
@@ -14320,7 +14314,7 @@
     "finish": "Solid",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹299",
+    "offers": "5% off on orders above \u20b9299",
     "exchange_available": false,
     "assured_badge": false,
     "warehouse_loc": {
@@ -14476,7 +14470,7 @@
     "finish": "Natural",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹499",
+    "offers": "15% off on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -14856,7 +14850,7 @@
     "finish": "Matte",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "15% off on orders above ₹500",
+    "offers": "15% off on orders above \u20b9500",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -14934,7 +14928,7 @@
     "finish": "Polished",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "Free Shipping on Orders Above ₹499",
+    "offers": "Free Shipping on Orders Above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -15244,7 +15238,7 @@
     "finish": "Gel",
     "plus_eligible": true,
     "delivery_time": 3,
-    "offers": "5% off on orders above ₹499",
+    "offers": "5% off on orders above \u20b9499",
     "exchange_available": true,
     "assured_badge": false,
     "warehouse_loc": {
@@ -15906,9 +15900,7 @@
       "rakhi",
       "gift"
     ],
-    "related_ids": [
-      
-    ],
+    "related_ids": [],
     "retail_price": 299.0,
     "review_count": 234,
     "images": [
@@ -15983,9 +15975,7 @@
       "home",
       "comfort"
     ],
-    "related_ids": [
-      
-    ],
+    "related_ids": [],
     "retail_price": 1799.0,
     "review_count": 678,
     "images": [
@@ -16373,9 +16363,7 @@
       "men's fashion",
       "festival wear"
     ],
-    "related_ids": [
-      
-    ],
+    "related_ids": [],
     "retail_price": 1999.0,
     "review_count": 567,
     "images": [
@@ -16528,8 +16516,7 @@
       "student",
       "computer"
     ],
-    "related_ids": [
-    ],
+    "related_ids": [],
     "retail_price": 52999.0,
     "review_count": 1234,
     "images": [
@@ -16603,9 +16590,7 @@
       "sports",
       "athletic"
     ],
-    "related_ids": [
-    
-    ],
+    "related_ids": [],
     "retail_price": 10999.0,
     "review_count": 2345,
     "images": [
@@ -16915,9 +16900,7 @@
       "wireless",
       "audio"
     ],
-    "related_ids": [
-      
-    ],
+    "related_ids": [],
     "retail_price": 9999.0,
     "review_count": 3456,
     "images": [
@@ -16952,6 +16935,766 @@
       "coords": [
         19.076,
         72.8777
+      ]
+    }
+  },
+  {
+    "id": 220,
+    "brand": "Samsung",
+    "title": "Samsung 8kg Front Load Washing Machine",
+    "category": "appliances",
+    "description": "Samsung 8kg Front Loading Fully Automatic Washing Machine with Digital Inverter Technology, Quick Wash, and Steam Wash for effective cleaning.",
+    "price": 32999.0,
+    "subcategories": [
+      "washing machines",
+      "home appliances"
+    ],
+    "category_path": [
+      "Appliances",
+      "Washing Machines",
+      "Front Load"
+    ],
+    "synonyms": [
+      "washer",
+      "laundry machine",
+      "front load washer"
+    ],
+    "attributes": {
+      "capacity": "8kg",
+      "type": "front load",
+      "energy_rating": "5 star"
+    },
+    "tags": [
+      "washing machine",
+      "samsung",
+      "front load",
+      "energy efficient"
+    ],
+    "related_ids": [
+      124,
+      125,
+      126
+    ],
+    "retail_price": 42999.0,
+    "review_count": 445,
+    "images": [
+      "https://m.media-amazon.com/images/I/7173BKFbNPL._UF1000,1000_QL80_.jpg"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "festive",
+      "allTime"
+    ],
+    "stock": 25,
+    "how_many_purchased": 3200,
+    "is_best_seller": true,
+    "contextual_data": {
+      "ideal_for": "Medium to large families",
+      "material": "Stainless Steel Drum",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "White",
+    "material": "Stainless Steel",
+    "finish": "Glossy",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "10% instant discount on HDFC cards",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 221,
+    "brand": "LG",
+    "title": "LG 7kg Top Load Washing Machine",
+    "category": "appliances",
+    "description": "LG 7kg Top Loading Washing Machine with Smart Inverter Technology, TurboDrum, and 6 Motion DD for superior washing performance.",
+    "price": 23499.0,
+    "subcategories": [
+      "washing machines",
+      "home appliances"
+    ],
+    "category_path": [
+      "Appliances",
+      "Washing Machines",
+      "Top Load"
+    ],
+    "synonyms": [
+      "washer",
+      "laundry machine",
+      "top load washer"
+    ],
+    "attributes": {
+      "capacity": "7kg",
+      "type": "top load",
+      "energy_rating": "5 star"
+    },
+    "tags": [
+      "washing machine",
+      "lg",
+      "top load",
+      "smart inverter"
+    ],
+    "related_ids": [
+      124,
+      125,
+      126
+    ],
+    "retail_price": 29999.0,
+    "review_count": 382,
+    "images": [
+      "https://www.lg.com/content/dam/channel/wcms/in/images/washing-machines/t70vbsf1z_asfqeil_eail_in_c/gallery/T70VBSF1Z-Basic.jpg/jcr:content/renditions/thum-350x350.jpeg"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "festive",
+      "monsoon"
+    ],
+    "stock": 35,
+    "how_many_purchased": 2800,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "Small to medium families",
+      "material": "Stainless Steel Drum",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "Silver",
+    "material": "Stainless Steel",
+    "finish": "Matte",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Free installation and demo",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.66,
+        77.23
+      ]
+    }
+  },
+  {
+    "id": 222,
+    "brand": "Godrej",
+    "title": "Godrej 6.5kg Semi Automatic Washing Machine",
+    "category": "appliances",
+    "description": "Godrej 6.5kg Semi Automatic Washing Machine with Active Soak technology, rust-proof body, and lint filter for efficient washing.",
+    "price": 12999.0,
+    "subcategories": [
+      "washing machines",
+      "home appliances"
+    ],
+    "category_path": [
+      "Appliances",
+      "Washing Machines",
+      "Semi Automatic"
+    ],
+    "synonyms": [
+      "washer",
+      "laundry machine",
+      "semi automatic washer"
+    ],
+    "attributes": {
+      "capacity": "6.5kg",
+      "type": "semi automatic",
+      "energy_rating": "4 star"
+    },
+    "tags": [
+      "washing machine",
+      "godrej",
+      "semi automatic",
+      "budget"
+    ],
+    "related_ids": [
+      124,
+      125,
+      126
+    ],
+    "retail_price": 15999.0,
+    "review_count": 298,
+    "images": [
+      "https://5.imimg.com/data5/MG/TZ/DK/GLADMIN-9009/godrej-6-5-kg-semi-automatic-top-load-washing-machine-gws-6502-ppc-red-500x500.jpg"
+    ],
+    "rating": 4.1,
+    "best_time_to_buy": [
+      "budget sales",
+      "allTime"
+    ],
+    "stock": 45,
+    "how_many_purchased": 4100,
+    "is_best_seller": false,
+    "contextual_data": {
+      "ideal_for": "Budget-conscious families",
+      "material": "Plastic Body with Steel Drum",
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "White",
+    "material": "Plastic and Steel",
+    "finish": "Matte",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Special launch price - save \u20b93000",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Bangalore",
+      "coords": [
+        12.9716,
+        77.5946
+      ]
+    }
+  },
+  {
+    "id": 230,
+    "brand": "The Pant Project",
+    "title": "Men's Stretchable Formal Trousers",
+    "category": "apparel",
+    "description": "Premium stretchable formal trousers for men. Perfect for office wear and business meetings. Made with high-quality fabric for comfort and durability.",
+    "price": 2199.0,
+    "subcategories": [
+      "formal pants",
+      "office wear"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Formal Pants"
+    ],
+    "synonyms": [
+      "formal trousers",
+      "office pants",
+      "business pants"
+    ],
+    "attributes": {
+      "fit": "Slim",
+      "material": "Cotton Blend",
+      "occasion": "Formal"
+    },
+    "tags": [
+      "pants",
+      "formal",
+      "office",
+      "stretchable"
+    ],
+    "related_ids": [
+      23,
+      24
+    ],
+    "retail_price": 2999.0,
+    "review_count": 420,
+    "images": [
+      "https://pantproject.com/cdn/shop/files/DSC1113.jpg?v=1743609636"
+    ],
+    "rating": 4.4,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 75,
+    "how_many_purchased": 3100,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "Grey",
+    "material": "Cotton Blend",
+    "finish": "Formal",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free shipping above \u20b91999",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 231,
+    "brand": "IndiaMART",
+    "title": "Cotton Casual Pants For Men",
+    "category": "apparel",
+    "description": "Comfortable cotton casual pants for everyday wear. Perfect for weekend outings and casual occasions.",
+    "price": 1299.0,
+    "subcategories": [
+      "casual pants",
+      "cotton pants"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Casual Pants"
+    ],
+    "synonyms": [
+      "casual trousers",
+      "cotton pants",
+      "everyday pants"
+    ],
+    "attributes": {
+      "material": "100% Cotton",
+      "fit": "Regular"
+    },
+    "tags": [
+      "pants",
+      "casual",
+      "cotton",
+      "comfortable"
+    ],
+    "related_ids": [
+      23
+    ],
+    "retail_price": 1799.0,
+    "review_count": 280,
+    "images": [
+      "https://5.imimg.com/data5/SELLER/Default/2022/9/GM/YY/GL/160160585/casual-pants-for-men.jpg"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 120,
+    "how_many_purchased": 2400,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "Brown",
+    "material": "Cotton",
+    "finish": "Casual",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Buy 2 Get 1 Free",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.6139,
+        77.209
+      ]
+    }
+  },
+  {
+    "id": 232,
+    "brand": "Westside",
+    "title": "Formal Trousers for Men",
+    "category": "apparel",
+    "description": "Premium formal trousers from Westside. Perfect for corporate wear and formal events.",
+    "price": 1899.0,
+    "subcategories": [
+      "formal pants",
+      "corporate wear"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Formal Pants"
+    ],
+    "synonyms": [
+      "formal trousers",
+      "corporate pants",
+      "office trousers"
+    ],
+    "attributes": {
+      "fit": "Tailored",
+      "occasion": "Formal"
+    },
+    "tags": [
+      "pants",
+      "formal",
+      "corporate",
+      "premium"
+    ],
+    "related_ids": [
+      24
+    ],
+    "retail_price": 2499.0,
+    "review_count": 350,
+    "images": [
+      "https://www.westside.com/cdn/shop/files/301030742GREY_1.jpg?v=1752729089"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 90,
+    "how_many_purchased": 2800,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "Light Grey",
+    "material": "Polyester Blend",
+    "finish": "Formal",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Exchange available",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Bangalore",
+      "coords": [
+        12.9716,
+        77.5946
+      ]
+    }
+  },
+  {
+    "id": 233,
+    "brand": "Flipkart",
+    "title": "Formal Pants For Men",
+    "category": "apparel",
+    "description": "Classic formal pants for men available at best prices on Flipkart. Perfect for office and formal occasions.",
+    "price": 1599.0,
+    "subcategories": [
+      "formal pants",
+      "office wear"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Formal Pants"
+    ],
+    "synonyms": [
+      "formal trousers",
+      "office pants"
+    ],
+    "attributes": {
+      "fit": "Regular",
+      "material": "Cotton Blend"
+    },
+    "tags": [
+      "pants",
+      "formal",
+      "office",
+      "classic"
+    ],
+    "related_ids": [
+      23,
+      24
+    ],
+    "retail_price": 2199.0,
+    "review_count": 290,
+    "images": [
+      "https://rukminim2.flixcart.com/image/514/616/xif0q/trouser/c/z/f/30-el-p-cot-el-cielo-original-imahed6dbpb3vgts.jpeg?q=90&crop=false"
+    ],
+    "rating": 4.1,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 110,
+    "how_many_purchased": 2200,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "Beige",
+    "material": "Cotton Blend",
+    "finish": "Formal",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "Free delivery",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Chennai",
+      "coords": [
+        13.0827,
+        80.2707
+      ]
+    }
+  },
+  {
+    "id": 234,
+    "brand": "Red Cherry",
+    "title": "FRANKO ROGER FLEXI WAIST Slim Fit Men Brown Trousers",
+    "category": "apparel",
+    "description": "Slim fit brown trousers with flexi waist technology. Perfect for comfortable all-day wear.",
+    "price": 1799.0,
+    "subcategories": [
+      "casual pants",
+      "slim fit pants"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Casual Pants"
+    ],
+    "synonyms": [
+      "slim trousers",
+      "brown pants",
+      "flexi waist pants"
+    ],
+    "attributes": {
+      "fit": "Slim",
+      "waist": "Flexi Waist"
+    },
+    "tags": [
+      "pants",
+      "slim fit",
+      "flexi waist",
+      "brown"
+    ],
+    "related_ids": [
+      23
+    ],
+    "retail_price": 2399.0,
+    "review_count": 340,
+    "images": [
+      "https://rukminim2.flixcart.com/image/704/844/xif0q/trouser/x/g/p/30-2201beige-red-cherry-original-imag73gjf9zcycng.jpeg?q=90&crop=false"
+    ],
+    "rating": 4.2,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 85,
+    "how_many_purchased": 1900,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "Beige",
+    "material": "Cotton Blend",
+    "finish": "Casual",
+    "plus_eligible": true,
+    "delivery_time": 3,
+    "offers": "No cost EMI available",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Hyderabad",
+      "coords": [
+        17.385,
+        78.4867
+      ]
+    }
+  },
+  {
+    "id": 235,
+    "brand": "Combraided",
+    "title": "Trousers for Men",
+    "category": "apparel",
+    "description": "Trendy trousers for men available at best prices. Perfect for casual and semi-formal occasions.",
+    "price": 1399.0,
+    "subcategories": [
+      "casual pants",
+      "trendy pants"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Casual Pants"
+    ],
+    "synonyms": [
+      "casual trousers",
+      "trendy pants"
+    ],
+    "attributes": {
+      "fit": "Regular",
+      "style": "Trendy"
+    },
+    "tags": [
+      "pants",
+      "casual",
+      "trendy",
+      "affordable"
+    ],
+    "related_ids": [
+      24
+    ],
+    "retail_price": 1899.0,
+    "review_count": 220,
+    "images": [
+      "https://rukminim2.flixcart.com/image/412/494/xif0q/trouser/4/t/g/36-single-pista-combraided-original-imah8zvzmz3tfsph.jpeg?q=90&crop=false"
+    ],
+    "rating": 4.0,
+    "best_time_to_buy": [
+      "allTime"
+    ],
+    "stock": 95,
+    "how_many_purchased": 1600,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 3,
+    "color": "Light Green",
+    "material": "Cotton",
+    "finish": "Casual",
+    "plus_eligible": true,
+    "delivery_time": 4,
+    "offers": "Free shipping",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Pune",
+      "coords": [
+        18.5204,
+        73.8567
+      ]
+    }
+  },
+  {
+    "id": 236,
+    "brand": "Louis Philippe",
+    "title": "Men's Textured Trousers",
+    "category": "apparel",
+    "description": "Premium textured trousers from Louis Philippe. Sophisticated design for the modern gentleman.",
+    "price": 2899.0,
+    "subcategories": [
+      "formal pants",
+      "premium pants"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Formal Pants"
+    ],
+    "synonyms": [
+      "textured trousers",
+      "premium pants",
+      "designer pants"
+    ],
+    "attributes": {
+      "fit": "Tailored",
+      "texture": "Textured",
+      "premium": "Yes"
+    },
+    "tags": [
+      "pants",
+      "formal",
+      "premium",
+      "textured",
+      "designer"
+    ],
+    "related_ids": [
+      23,
+      24
+    ],
+    "retail_price": 3999.0,
+    "review_count": 480,
+    "images": [
+      "https://imagescdn.louisphilippe.com/img/app/product/3/39965511-19575327.jpg"
+    ],
+    "rating": 4.5,
+    "best_time_to_buy": [
+      "allTime",
+      "festive"
+    ],
+    "stock": 60,
+    "how_many_purchased": 2600,
+    "is_best_seller": true,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 5,
+    "color": "Charcoal Grey",
+    "material": "Premium Cotton Blend",
+    "finish": "Textured",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Premium collection - 10% off",
+    "exchange_available": true,
+    "assured_badge": true,
+    "warehouse_loc": {
+      "name": "Mumbai",
+      "coords": [
+        19.076,
+        72.8777
+      ]
+    }
+  },
+  {
+    "id": 237,
+    "brand": "Dennis Lingo",
+    "title": "Men's Offwhite Solid Formal Trousers",
+    "category": "apparel",
+    "description": "Elegant offwhite solid formal trousers from Dennis Lingo. Perfect for formal events and professional settings.",
+    "price": 1999.0,
+    "subcategories": [
+      "formal pants",
+      "solid pants"
+    ],
+    "category_path": [
+      "Apparel",
+      "Men",
+      "Pants",
+      "Formal Pants"
+    ],
+    "synonyms": [
+      "formal trousers",
+      "offwhite pants",
+      "solid pants"
+    ],
+    "attributes": {
+      "fit": "Slim",
+      "color": "Solid",
+      "occasion": "Formal"
+    },
+    "tags": [
+      "pants",
+      "formal",
+      "offwhite",
+      "solid",
+      "elegant"
+    ],
+    "related_ids": [
+      23
+    ],
+    "retail_price": 2699.0,
+    "review_count": 380,
+    "images": [
+      "https://www.dennislingo.com/cdn/shop/files/DLMFTRS23027_OW_1.jpg?v=1708435824&width=800"
+    ],
+    "rating": 4.3,
+    "best_time_to_buy": [
+      "allTime",
+      "formal events"
+    ],
+    "stock": 70,
+    "how_many_purchased": 2100,
+    "is_best_seller": false,
+    "contextual_data": {
+      "origin": "India"
+    },
+    "search_boost": 4,
+    "color": "Offwhite",
+    "material": "Cotton Blend",
+    "finish": "Formal",
+    "plus_eligible": true,
+    "delivery_time": 2,
+    "offers": "Free alteration service",
+    "exchange_available": true,
+    "assured_badge": false,
+    "warehouse_loc": {
+      "name": "Delhi",
+      "coords": [
+        28.6139,
+        77.209
       ]
     }
   }

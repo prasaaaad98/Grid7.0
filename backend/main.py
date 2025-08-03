@@ -372,6 +372,7 @@ trending_map = {
     'p': [
         "Poco 5g mobile",
         "Pens",
+        "Pants for men",
         "Pilgrim face serum",
         "Poco f7 5g",
         "Photo frames",
@@ -514,11 +515,23 @@ class Product(BaseModel):
         allow_population_by_field_name = True
 
 @app.get("/autosuggest", response_model=List[str])
-def autosuggest(q: str = Query("", min_length=0)):
+def autosuggest(
+    q: str = Query("", min_length=0),
+    context_category_path: Optional[str] = Query(None, description="Previous category path as JSON string for context-aware suggestions")
+):
     qn = normalize(q)
     qt = translate_hindi_to_english(qn)
     if qt != qn:
         qn = qt
+
+    # Parse context category path
+    previous_category_path = []
+    if context_category_path:
+        try:
+            import json
+            previous_category_path = json.loads(context_category_path)
+        except:
+            previous_category_path = []
 
     # 0-char: show global trending
     if qn == "":
@@ -527,7 +540,9 @@ def autosuggest(q: str = Query("", min_length=0)):
     # 1-char: per-letter trending
     if len(qn) == 1:
         return trending_map.get(qn, [])[:8]
+    
     suggestions = []
+    context_suggestions = []
     # trending for prefix
     suggestions += [t for t in trending_map.get(qn[0], []) if normalize(t).startswith(qn)]
     # trie
@@ -676,6 +691,48 @@ def autosuggest(q: str = Query("", min_length=0)):
     max_suggestions = 8
     final = templates[:2] + others[: (max_suggestions - len(templates[:2]))]
 
+    # ===== CONTEXT-AWARE PRIORITIZATION =====
+    # If we have previous category path, prioritize suggestions from same hierarchy
+    if previous_category_path and len(previous_category_path) >= 2:
+        context_suggestions = []
+        regular_suggestions = []
+        
+        # Check each suggestion against products to see if they share category context
+        for suggestion in final:
+            suggestion_norm = normalize(suggestion)
+            has_context_match = False
+            
+            # Look for products that match this suggestion
+            for item in data:
+                item_title_norm = normalize(item.get('title', ''))
+                item_desc_norm = normalize(item.get('description', ''))
+                item_category_path = item.get('category_path', [])
+                
+                # Check if suggestion matches this product (title, description, or synonyms)
+                suggestion_matches_product = (
+                    suggestion_norm in item_title_norm or 
+                    any(suggestion_norm in normalize(syn) for syn in item.get('synonyms', [])) or
+                    suggestion_norm in item_desc_norm
+                )
+                
+                if suggestion_matches_product:
+                    # Check if this product shares category hierarchy with previous search
+                    # Match first 2 levels: e.g., ["Apparel", "Men"] from ["Apparel", "Men", "Shirts", "Denim Shirts"]
+                    if (len(item_category_path) >= 2 and 
+                        len(previous_category_path) >= 2 and
+                        item_category_path[0] == previous_category_path[0] and  # Same top category
+                        item_category_path[1] == previous_category_path[1]):   # Same second level
+                        has_context_match = True
+                        break
+            
+            if has_context_match:
+                context_suggestions.append(suggestion)
+            else:
+                regular_suggestions.append(suggestion)
+        
+        # Reorder: context-matched suggestions first, then regular ones
+        final = context_suggestions + regular_suggestions
+
     # 5) Dedupe & Title-case
     seen_norm = set()
     res = []
@@ -821,10 +878,14 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, s
             # Only warehouse coordinates - delivery calculated dynamically on frontend
         }
 
+    # Extract category_path from the most relevant product (first in results)
+    most_relevant_category_path = final_list[0].get('category_path', []) if final_list else []
+    
     return {
         "total_hits": total_hits,
         "sponsored_id": sponsored_id,
         "results": [serialize(p) for p in final_list[:10]],
+        "most_relevant_category_path": most_relevant_category_path,
         "facets": {
             "brands": brand_facet.most_common(),
             "categories": cat_facet.most_common()
