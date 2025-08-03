@@ -195,74 +195,74 @@ export default function ResultsGrid({ query, filters, sort, userLat, userLon, on
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
         {products.map((product, index) => {
           return (
-            <div key={`${product.id}-${index}`} className="bg-white rounded shadow hover:shadow-lg transition-shadow p-2 sm:p-4">
-              <div className="relative mb-2 sm:mb-4">
-                <img
-                  src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.svg"}
-                  alt={product.title}
-                  loading="lazy"
-                  className="w-full h-32 sm:h-48 object-cover rounded"
-                />
-                {product.assured_badge && (
-                  <div className="absolute top-1 left-1 sm:top-2 sm:left-2 bg-blue-600 text-white px-1.5 py-0.5 rounded text-xs font-medium flex items-center">
-                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Assured
-                  </div>
-                )}
-                <button className="absolute top-1 right-1 sm:top-2 sm:right-2 p-1 bg-white rounded-full shadow">
-                  <Heart size={12} className="sm:w-4 sm:h-4 text-gray-400" />
-                </button>
-              </div>
+                         <div key={`${product.id}-${index}`} className="bg-white rounded shadow hover:shadow-lg transition-shadow p-2 sm:p-4 flex flex-col h-full">
+               <div className="relative mb-2 sm:mb-4">
+                 <img
+                   src={product.images && product.images.length > 0 ? product.images[0] : "/placeholder.svg"}
+                   alt={product.title}
+                   loading="lazy"
+                   className="w-full h-32 sm:h-48 object-cover rounded"
+                 />
+                 <button className="absolute top-1 right-1 sm:top-2 sm:right-2 p-1 bg-white rounded-full shadow">
+                   <Heart size={12} className="sm:w-4 sm:h-4 text-gray-400" />
+                 </button>
+               </div>
 
-              <h3 className="font-medium text-xs sm:text-sm mb-1 sm:mb-2 line-clamp-2">{product.title}</h3>
+               <h3 className="font-medium text-xs sm:text-sm mb-1 sm:mb-2 line-clamp-2">{product.title}</h3>
 
-              <div className="flex items-center mb-1 sm:mb-2">
-                <div className="flex items-center bg-green-500 text-white px-1 py-0.5 rounded text-xs">
-                  <span className="text-xs">{product.rating}</span>
-                  <Star size={8} className="sm:w-2.5 sm:h-2.5 ml-1 fill-current" />
-                </div>
-                {product.isSponsored && (
-                  <span className="text-xs text-gray-500 ml-2">*sponsored</span>
-                )}
-              </div>
+               <div className="flex items-center mb-1 sm:mb-2">
+                 <div className="flex items-center bg-green-500 text-white px-1 py-0.5 rounded text-xs">
+                   <span className="text-xs">{product.rating}</span>
+                   <Star size={8} className="sm:w-2.5 sm:h-2.5 ml-1 fill-current" />
+                 </div>
+                                  {product.assured_badge && (
+                   <div className="flex items-center bg-blue-600 text-white px-1 py-0.5 rounded text-xs ml-2">
+                     <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                       <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                     </svg>
+                     Assured
+                   </div>
+                 )}
+                 {product.isSponsored && (
+                   <span className="text-xs text-gray-500 ml-2">*sponsored</span>
+                 )}
+               </div>
 
-              <div className="mb-1 sm:mb-2">
-                <span className="text-sm sm:text-lg font-semibold">
-                  ₹{Math.round(product.price).toLocaleString()}
-                </span>
-                {product.retail_price > product.price && (
-                  <span className="text-xs sm:text-sm text-gray-500 line-through ml-1 sm:ml-2">
-                    ₹{product.retail_price.toLocaleString()}
-                  </span>
-                )}
-              </div>
+               <div className="mb-1 sm:mb-2">
+                 <span className="text-sm sm:text-lg font-semibold">
+                   ₹{Math.round(product.price).toLocaleString()}
+                 </span>
+                 {product.retail_price > product.price && (
+                   <span className="text-xs sm:text-sm text-gray-500 line-through ml-1 sm:ml-2">
+                     ₹{product.retail_price.toLocaleString()}
+                   </span>
+                 )}
+               </div>
 
-              {/* Delivery Information */}
-              {product.calculatedDeliveryDays && (
-                <div className="mb-1 sm:mb-2">
-                  <span className="text-xs text-green-600 font-medium">
-                    📦 Delivery in {product.calculatedDeliveryDays} day{product.calculatedDeliveryDays > 1 ? 's' : ''}
-                    {product.warehouse_loc?.name && (
-                      <span className="text-gray-500 ml-1">from {product.warehouse_loc.name}</span>
-                    )}
-                  </span>
-                </div>
-              )}
+               {/* Delivery Information */}
+               {product.calculatedDeliveryDays && (
+                 <div className="mb-1 sm:mb-2">
+                   <span className="text-xs text-green-600 font-medium">
+                     📦 Delivery in {product.calculatedDeliveryDays} day{product.calculatedDeliveryDays > 1 ? 's' : ''}
+                     {product.warehouse_loc?.name && (
+                       <span className="text-gray-500 ml-1">from {product.warehouse_loc.name.length > 8 ? product.warehouse_loc.name.substring(0, 8) + '..' : product.warehouse_loc.name}</span>
+                     )}
+                   </span>
+                 </div>
+               )}
 
-              <div className="space-y-1 sm:space-y-2">
-                <button
-                  onClick={() => addToCart(product)}
-                  className="w-full bg-[#ff9f00] hover:bg-[#e68900] text-white py-1 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors"
-                >
-                  Add to Cart
-                </button>
-                <button className="w-full bg-[#fb641b] hover:bg-[#e55a1b] text-white py-1 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors">
-                  Buy Now
-                </button>
-              </div>
-            </div>
+               <div className="space-y-1 sm:space-y-2 mt-auto">
+                 <button
+                   onClick={() => addToCart(product)}
+                   className="w-full bg-[#ff9f00] hover:bg-[#e68900] text-white py-1 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors"
+                 >
+                   Add to Cart
+                 </button>
+                 <button className="w-full bg-[#fb641b] hover:bg-[#e55a1b] text-white py-1 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm font-medium transition-colors">
+                   Buy Now
+                 </button>
+               </div>
+             </div>
           )
         })}
       </div>

@@ -22,6 +22,25 @@ from functools import lru_cache
 nlp = spacy.load("en_core_web_sm")
 def normalize(text: str) -> str:
     return re.sub(r"[^a-z0-9 ]", "", text.lower()).strip()
+
+def stem_word(word: str) -> str:
+    """Simple stemming to handle common plural forms"""
+    if len(word) <= 3:
+        return word
+    
+    # Common plural endings
+    if word.endswith('s'):
+        # Don't stem if it's already short or ends with 'ss'
+        if len(word) > 3 and not word.endswith('ss'):
+            return word[:-1]
+    return word
+
+def normalize_with_stemming(text: str) -> str:
+    """Normalize text and apply stemming to each word"""
+    normalized = normalize(text)
+    words = normalized.split()
+    stemmed_words = [stem_word(word) for word in words]
+    return " ".join(stemmed_words)
 def translate_hindi_to_english(text: str) -> str:
     return normalize(text)
 
@@ -61,9 +80,34 @@ for idx, item in enumerate(data):
     text = normalize(item["title"]) + " " + normalize(item.get("description",""))
     for tok in text.split():
         inv_index[tok].add(idx)
+        # Add stemmed version for plural/singular matching
+        stemmed_tok = stem_word(tok)
+        if stemmed_tok != tok:
+            inv_index[stemmed_tok].add(idx)
     for syn in item.get("synonyms", []):
         for tok in normalize(syn).split():
             inv_index[tok].add(idx)
+            stemmed_tok = stem_word(tok)
+            if stemmed_tok != tok:
+                inv_index[stemmed_tok].add(idx)
+    for tag in item.get("tags", []):
+        for tok in normalize(tag).split():
+            inv_index[tok].add(idx)
+            stemmed_tok = stem_word(tok)
+            if stemmed_tok != tok:
+                inv_index[stemmed_tok].add(idx)
+    for subcat in item.get("subcategories", []):
+        for tok in normalize(subcat).split():
+            inv_index[tok].add(idx)
+            stemmed_tok = stem_word(tok)
+            if stemmed_tok != tok:
+                inv_index[stemmed_tok].add(idx)
+    for cat_path in item.get("category_path", []):
+        for tok in normalize(cat_path).split():
+            inv_index[tok].add(idx)
+            stemmed_tok = stem_word(tok)
+            if stemmed_tok != tok:
+                inv_index[stemmed_tok].add(idx)
 
 # ─── Build data map for related items ───
 data_map = {item["id"]: item for item in data}
@@ -91,6 +135,10 @@ def extract_phrases(text: str) -> List[str]:
     phrases = []
     doc = nlp(text or "")
     for chunk in doc.noun_chunks:
+        tokens = chunk.text.lower().split()
+        # skip chunks like "a X", "this Y", "the Z"
+        if tokens[0] in {"a","an","the","this","that","these","those"}:
+            continue
         phrase = normalize(chunk.text)
         if 1 <= len(chunk.text.split()) <= 4 and len(phrase) >= 2:
             phrases.append(phrase)
@@ -540,6 +588,10 @@ def autosuggest(q: str = Query("", min_length=0)):
     for ph in suggestion_phrases:
         if re.search(rf"\b{re.escape(qn)}\b", ph) and ph not in suggestions:
             substr_hits.append(ph)
+        # Also check stemmed version
+        stemmed_qn = " ".join([stem_word(word) for word in qn.split()])
+        if stemmed_qn != qn and re.search(rf"\b{re.escape(stemmed_qn)}\b", ph) and ph not in suggestions:
+            substr_hits.append(ph)
     suggestions += substr_hits
     # fuzzy (only if trie and substring didn't find enough)
     fuzzy_hits = []
@@ -565,10 +617,25 @@ def autosuggest(q: str = Query("", min_length=0)):
     # phonetic
     code = doublemetaphone(qn)[0]
     suggestions += [ph for ph,c in phrase_phonetics.items() if c == code and ph not in suggestions]
-    # semantic phrase neighbors
+    # semantic phrase neighbors—but only true extensions when user typed >1 word
     q_emb = model.encode([qn])
-    _, idx = phrase_index.search(np.array(q_emb), 5)
-    suggestions += [suggestion_phrases[i] for i in idx[0] if suggestion_phrases[i] not in suggestions]
+    _, idx = phrase_index.search(np.array(q_emb), 10)
+    sem_hits = []
+    prefix_tokens = qn.split()
+    full_prefix = " ".join(prefix_tokens)
+    for i in idx[0]:
+        ph = suggestion_phrases[i]
+        # skip if already in list
+        if ph in suggestions:
+            continue
+        # if multi-word prefix, demand exact phrase-prefix match
+        if len(prefix_tokens) > 1:
+            if not ph.startswith(full_prefix):
+                continue
+        sem_hits.append(ph)
+        if len(sem_hits) >= 5:
+            break
+    suggestions += sem_hits
     # graph expansions (expand only from top candidates, and only on‑prefix neighbors)
     seed = suggestions[:5].copy()
     added = 0
@@ -614,20 +681,134 @@ def autosuggest(q: str = Query("", min_length=0)):
     # Mark all template suggestions for bonus scoring
     template_set = set(templated[:2])
 
-    # price‑range templates for "under"
-    # e.g. prefix qn = "shirt under"
-    # price‑range templates for "under"
-    # Trigger these suggestions earlier based on prefixes of "under"
+    # Enhanced price-range templates and detection
     tokens = qn.split()
+    
+    # Detect price-related queries
+    price_keywords = ["under", "below", "less than", "cheap", "budget", "affordable"]
+    price_patterns = [
+        r"under\s+(\d+)",
+        r"below\s+(\d+)", 
+        r"less\s+than\s+(\d+)",
+        r"cheap\s+(\w+)",
+        r"budget\s+(\w+)",
+        r"affordable\s+(\w+)"
+    ]
+    
+    # Check if query contains price-related keywords
+    has_price_keyword = any(keyword in qn for keyword in price_keywords)
+    
+    # Extract base product category from query
+    product_categories = {
+        "mobile": ["phone", "mobile", "smartphone", "iphone", "samsung", "oneplus", "vivo", "motorola"],
+        "laptop": ["laptop", "computer", "dell", "hp", "lenovo", "macbook"],
+        "shoes": ["shoes", "footwear", "sneakers", "boots"],
+        "tshirts": ["tshirt", "t-shirt", "shirt", "clothing"],
+        "headphones": ["headphones", "earbuds", "airpods", "audio"],
+        "watch": ["watch", "smartwatch", "apple watch"],
+        "accessories": ["cover", "case", "mobile cover", "phone case"]
+    }
+    
+    detected_category = None
+    for category, keywords in product_categories.items():
+        if any(keyword in qn for keyword in keywords):
+            detected_category = category
+            break
+    
+    # Define price ranges based on category
+    category_price_ranges = {
+        "mobile": [5000, 10000, 15000, 20000, 30000, 50000],
+        "laptop": [20000, 30000, 40000, 50000, 70000, 100000],
+        "shoes": [500, 1000, 2000, 3000, 5000],
+        "tshirts": [500, 1000, 1500, 2000, 3000],
+        "headphones": [1000, 2000, 5000, 10000, 20000],
+        "watch": [5000, 10000, 20000, 30000, 50000],
+        "accessories": [500, 1000, 2000, 3000],
+        "default": [500, 1000, 2000, 5000, 10000]
+    }
+    
+    # If user types "under" as last word, suggest price ranges
     if tokens and tokens[-1] == "under":
         base = " ".join(tokens[:-1]).strip()
+        price_ranges = category_price_ranges.get(detected_category, category_price_ranges["default"])
         
-        # Define the buckets you care about
-        for bucket in [500, 1000, 2000, 5000]:
-            # Construct the suggestion with the full "under" word for clarity
+        for bucket in price_ranges:
             cand = f"{base} under {bucket}"
             if cand not in suggestions:
                 suggestions.append(cand)
+    
+    # If user types partial price after "under", suggest complete prices
+    if tokens and len(tokens) >= 2 and tokens[-2] == "under":
+        partial_price = tokens[-1]
+        base = " ".join(tokens[:-2]).strip()
+        
+        # Check if partial_price is a number
+        if partial_price.isdigit():
+            price_ranges = category_price_ranges.get(detected_category, category_price_ranges["default"])
+            
+            # Find price ranges that start with the partial price
+            matching_prices = []
+            for bucket in price_ranges:
+                if str(bucket).startswith(partial_price):
+                    matching_prices.append(bucket)
+            
+            # If no exact matches, suggest some reasonable prices
+            if not matching_prices:
+                partial_int = int(partial_price)
+                # Suggest prices around the partial input
+                if partial_int < 1000:
+                    matching_prices = [partial_int * 1000, partial_int * 1000 + 5000, partial_int * 1000 + 10000]
+                elif partial_int < 10000:
+                    matching_prices = [partial_int * 1000, partial_int * 1000 + 5000, partial_int * 1000 + 10000]
+                else:
+                    matching_prices = [partial_int * 1000, partial_int * 1000 + 5000, partial_int * 1000 + 10000]
+            
+            for bucket in matching_prices[:3]:  # Limit to 3 suggestions
+                cand = f"{base} under {bucket}"
+                if cand not in suggestions:
+                    suggestions.append(cand)
+    
+    # If query contains price-related keywords but no specific price, suggest price ranges
+    elif has_price_keyword and detected_category:
+        # Extract the product term (remove price keywords)
+        product_term = qn
+        for keyword in price_keywords:
+            product_term = product_term.replace(keyword, "").strip()
+        
+        if product_term:
+            price_ranges = category_price_ranges.get(detected_category, category_price_ranges["default"])
+            for bucket in price_ranges:
+                cand = f"{product_term} under {bucket}"
+                if cand not in suggestions:
+                    suggestions.append(cand)
+    
+    # Enhanced suggestions for product categories with price ranges
+    elif detected_category and len(qn.split()) <= 2:  # Short queries like "mobile", "laptop"
+        price_ranges = category_price_ranges.get(detected_category, category_price_ranges["default"])
+        # Suggest top 3 most relevant price ranges for the category
+        for bucket in price_ranges[:3]:
+            cand = f"{qn} under {bucket}"
+            if cand not in suggestions:
+                suggestions.append(cand)
+    
+    # If query contains a specific price, suggest similar price ranges
+    price_match = re.search(r'(\d+)', qn)
+    if price_match and detected_category:
+        price = int(price_match.group(1))
+        price_ranges = category_price_ranges.get(detected_category, category_price_ranges["default"])
+        
+        # Find relevant price ranges around the mentioned price
+        relevant_ranges = [r for r in price_ranges if r >= price * 0.5 and r <= price * 2]
+        if not relevant_ranges:
+            relevant_ranges = price_ranges[:3]  # Default to first 3 ranges
+        
+        for bucket in relevant_ranges:
+            # Extract base product term
+            base = re.sub(r'\d+', '', qn).strip()
+            if base:
+                cand = f"{base} under {bucket}"
+                if cand not in suggestions:
+                    suggestions.append(cand)
 
     # brand-prefix expansions (bring in `<brand> <prefix>`)
     brands_seen = set()
@@ -701,6 +882,10 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, s
     lex_ids = set()
     for tok in q_norm.split():
         lex_ids |= inv_index.get(tok, set())
+        # Also search for stemmed version
+        stemmed_tok = stem_word(tok)
+        if stemmed_tok != tok:
+            lex_ids |= inv_index.get(stemmed_tok, set())
 
     cand_ids = faiss_ids | lex_ids
     candidates = [data[i] for i in cand_ids]
@@ -817,7 +1002,8 @@ def _compute_search(q_norm, min_price, max_price, min_rating, brand, category, s
             'search_boost': item.get('search_boost', 0.0),
             'related_ids': item.get('related_ids', []),
             'assured_badge': item.get('assured_badge', False),
-            'warehouse_loc': item.get('warehouse_loc')
+            'warehouse_loc': item.get('warehouse_loc'),
+            'is_high_rated_alternative': item.get('is_high_rated_alternative', False)
             # Only warehouse coordinates - delivery calculated dynamically on frontend
         }
 
@@ -848,10 +1034,132 @@ def search(
     if qt != q_norm:
         q_norm = qt
     
-    # Call the cached search function
-    result = _compute_search(q_norm, min_price, max_price, min_rating, brand, category, sort)
+    # Enhanced price parsing from query
     
-    # Return the enhanced response with facets
+    # Parse price-related queries
+    price_keywords = ["under", "below", "less than", "cheap", "budget", "affordable"]
+    price_patterns = [
+        r"under\s+(\d+)",
+        r"below\s+(\d+)", 
+        r"less\s+than\s+(\d+)",
+        r"cheap\s+(\w+)",
+        r"budget\s+(\w+)",
+        r"affordable\s+(\w+)"
+    ]
+    
+    # Extract price from query if present
+    extracted_price = None
+    for pattern in price_patterns:
+        match = re.search(pattern, q_norm)
+        if match:
+            if pattern in [r"under\s+(\d+)", r"below\s+(\d+)", r"less\s+than\s+(\d+)"]:
+                extracted_price = int(match.group(1))
+                break
+    
+    # Detect product category for price range adjustment
+    product_categories = {
+        "mobile": ["phone", "mobile", "smartphone", "iphone", "samsung", "oneplus", "vivo", "motorola"],
+        "laptop": ["laptop", "computer", "dell", "hp", "lenovo", "macbook"],
+        "shoes": ["shoes", "footwear", "sneakers", "boots"],
+        "tshirts": ["tshirt", "t-shirt", "shirt", "clothing"],
+        "headphones": ["headphones", "earbuds", "airpods", "audio"],
+        "watch": ["watch", "smartwatch", "apple watch"],
+        "accessories": ["cover", "case", "mobile cover", "phone case"]
+    }
+    
+    detected_category = None
+    for category_name, keywords in product_categories.items():
+        if any(keyword in q_norm for keyword in keywords):
+            detected_category = category_name
+            break
+    
+    # Adjust price filtering based on extracted price and category
+    adjusted_min_price = min_price
+    adjusted_max_price = max_price
+    
+    if extracted_price:
+        # For "under X" queries, set max_price to X
+        adjusted_max_price = extracted_price
+        
+        # Allow some flexibility for high-rated products slightly above the price
+        # This allows products with good reviews that are slightly more expensive
+        flexibility_factor = 1.15  # Allow 15% above the specified price for high-rated products
+        
+    # Check if query contains price-related keywords without specific price
+    has_price_keyword = any(keyword in q_norm for keyword in price_keywords)
+    if has_price_keyword and not extracted_price and detected_category:
+        # Set reasonable default price ranges based on category
+        category_default_prices = {
+            "mobile": 15000,
+            "laptop": 40000,
+            "shoes": 2000,
+            "tshirts": 1500,
+            "headphones": 5000,
+            "watch": 15000,
+            "accessories": 2000,
+            "default": 5000
+        }
+        adjusted_max_price = category_default_prices.get(detected_category, category_default_prices["default"])
+    
+    # Call the enhanced search function with adjusted price parameters
+    result = _compute_search(q_norm, adjusted_min_price, adjusted_max_price, min_rating, brand, category, sort)
+    
+    # Post-process results to include high-rated products slightly above price limit
+    if extracted_price and result.get("results"):
+        # Find products that are slightly above the price but have high ratings
+        high_rated_above_limit = []
+        price_limit = extracted_price
+        flexibility_limit = price_limit * 1.15  # 15% flexibility
+        
+        for item in data:
+            if (price_limit < item["price"] <= flexibility_limit and 
+                item["rating"] >= 4.0 and 
+                item.get("review_count", 0) >= 100):
+                
+                                 # Check if this item matches the query - be more strict
+                 item_text = normalize(item["title"] + " " + item.get("description", ""))
+                 item_category = normalize(item.get("category", ""))
+                 
+                 # Only include if the item's category matches the detected category
+                 # For laptop category, check if item is actually a laptop
+                 if detected_category == "laptop":
+                     if any(keyword in item_text for keyword in ["laptop", "computer", "dell", "hp", "lenovo", "macbook"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "mobile":
+                     if any(keyword in item_text for keyword in ["phone", "mobile", "smartphone", "iphone", "samsung", "oneplus", "vivo", "motorola"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "shoes":
+                     if any(keyword in item_text for keyword in ["shoes", "footwear", "sneakers", "boots"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "tshirts":
+                     if any(keyword in item_text for keyword in ["tshirt", "t-shirt", "shirt", "clothing"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "headphones":
+                     if any(keyword in item_text for keyword in ["headphones", "earbuds", "airpods", "audio"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "watch":
+                     if any(keyword in item_text for keyword in ["watch", "smartwatch", "apple watch"]):
+                         high_rated_above_limit.append(item)
+                 elif detected_category == "accessories":
+                     if any(keyword in item_text for keyword in ["cover", "case", "mobile cover", "phone case"]):
+                         high_rated_above_limit.append(item)
+        
+        # Add high-rated products to results (limit to 2-3 additional items)
+        if high_rated_above_limit:
+            # Sort by rating and review count
+            high_rated_above_limit.sort(key=lambda x: (x["rating"], x.get("review_count", 0)), reverse=True)
+            
+            # Add to results (limit to 3 additional items)
+            additional_items = high_rated_above_limit[:3]
+            
+            # Mark these as "high-rated alternatives"
+            for item in additional_items:
+                item["is_high_rated_alternative"] = True
+            
+            # Add to results
+            result["results"].extend(additional_items)
+            result["total_hits"] += len(additional_items)
+    
     return result
 
 if __name__ == "__main__":
